@@ -6,25 +6,30 @@
     background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    animation: fadeIn 0.5s ease;
+    border: 2px solid rgba(76, 159, 112, 0.1);
 }
 
 #game-container h2 {
     text-align: center;
     color: var(--primary-color);
-    margin-bottom: 0.76rem;
-    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 #game-container h2::after {
     content: "";
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 40px;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
     height: 3px;
     background-color: var(--secondary-color);
     border-radius: 2px;
@@ -33,16 +38,19 @@
 .game-description {
     text-align: center;
     margin-bottom: 1.4rem;
-    color: #666;
-    font-size: 0.95rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 /* 游戏面板样式 */
 #game-panel {
-    background-color: #f9fafc;
-    border-radius: 10px;
-    padding: 1.14rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(76, 159, 112, 0.1);
 }
 
 /* 游戏状态区域 */
@@ -52,22 +60,43 @@
     align-items: center;
     margin-bottom: 1.14rem;
     padding-bottom: 0.76rem;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 2px solid rgba(76, 159, 112, 0.1);
 }
 
+/* 关卡选择按钮 */
 .level-info {
     background-color: var(--primary-color);
     color: white;
-    padding: 0.38rem 0.76rem;
-    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    border-radius: 24px;
     font-weight: 600;
-    font-size: 0.855rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    box-shadow: 0 2px 8px rgba(76, 159, 112, 0.2);
+}
+
+.level-info:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 159, 112, 0.3);
+}
+
+.level-info i {
+    font-size: 0.8rem;
 }
 
 .score-info {
     font-weight: 600;
     color: var(--primary-color);
-    font-size: 0.95rem;
+    font-size: 1rem;
+    background: rgba(76, 159, 112, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
 }
 
 /* 游戏区域样式 */
@@ -85,40 +114,59 @@
     margin-bottom: 1.5rem;
     display: flex;
     gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .sound-button {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 24px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     transition: var(--transition);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(76, 159, 112, 0.2);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    min-width: 120px;
+    justify-content: center;
 }
 
 .sound-button:hover {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(76, 159, 112, 0.3);
 }
 
-.sound-button:active {
-    transform: translateY(0);
+.sound-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 #repeat-sound {
-    background-color: #7d92b5;
+    background-color: var(--secondary-color);
+    box-shadow: 0 2px 8px rgba(230, 162, 60, 0.2);
 }
 
 #repeat-sound:hover {
-    background-color: #6b82a8;
+    background-color: #d48f2f;
+    box-shadow: 0 4px 12px rgba(230, 162, 60, 0.3);
+}
+
+#start-game.sound-button {
+    background-color: var(--accent-color);
+    box-shadow: 0 2px 8px rgba(216, 140, 154, 0.2);
+}
+
+#start-game.sound-button:hover {
+    background-color: #c47a87;
+    box-shadow: 0 4px 12px rgba(216, 140, 154, 0.3);
 }
 
 /* 选项区域 */
@@ -128,46 +176,85 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
 }
 
 .kana-option {
-    width: 66.5px;
-    height: 66.5px;
-    font-size: 2.09rem;
+    min-width: 70px;
+    width: auto;
+    height: 70px;
+    padding: 0 1rem;
+    font-size: 2rem;
     background-color: white;
-    border: 2px solid #d9e2f0;
-    border-radius: 10px;
+    border: 2px solid rgba(76, 159, 112, 0.2);
+    border-radius: var(--border-radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--box-shadow);
     position: relative;
+    overflow: hidden;
 }
 
 .kana-option:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
-    border-color: #b6c9e3;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--primary-color);
+}
+
+.kana-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.kana-option:hover::before {
+    transform: translateX(100%);
 }
 
 .kana-option.correct {
-    background-color: #8FD14F;
-    border-color: #76b043;
+    background-color: #4CAF50;
+    border-color: #45a049;
     color: white;
+    animation: correctAnswer 0.5s ease;
 }
 
 .kana-option.incorrect {
-    background-color: #FF6B6B;
-    border-color: #e55c5c;
+    background-color: #ff6b6b;
+    border-color: #ff5252;
     color: white;
+    animation: incorrectAnswer 0.5s ease;
 }
 
 .kana-option.highlight {
-    animation: pulse 1s infinite;
-    border-color: #8fd14f;
+    animation: highlight 2s infinite;
+    border-color: #4CAF50;
+}
+
+@keyframes correctAnswer {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes incorrectAnswer {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+@keyframes highlight {
+    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
 }
 
 .placeholder-text {
@@ -187,11 +274,19 @@
 }
 
 .feedback-correct {
-    color: #66bb6a;
+    color: #4CAF50;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
 }
 
 .feedback-incorrect {
-    color: #f44336;
+    color: #ff6b6b;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
 }
 
 /* 控制按钮区域 */
@@ -199,33 +294,47 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .control-button {
     background-color: #e0e0e0;
     border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
-    font-size: 0.95rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 24px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    min-width: 140px;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .control-button:hover {
     background-color: #d0d0d0;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.control-button.primary {
+#restart-game {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+#restart-game:hover {
+    background-color: #d48f2f;
+}
+
+#next-level {
     background-color: var(--primary-color);
     color: white;
 }
 
-.control-button.primary:hover {
+#next-level:hover {
     background-color: var(--primary-dark);
 }
 
@@ -233,32 +342,33 @@
     background-color: #e0e0e0;
     color: #a0a0a0;
     cursor: not-allowed;
-}
-
-.control-button:disabled:hover {
     transform: none;
+    box-shadow: none;
 }
 
 /* 关卡完成样式 */
 .level-complete {
     text-align: center;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin: 0.8rem 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, rgba(76, 159, 112, 0.1), rgba(230, 162, 60, 0.1));
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin: 1rem 0;
+    box-shadow: var(--box-shadow);
     animation: fadeIn 0.5s ease;
+    border: 2px solid rgba(76, 159, 112, 0.1);
 }
 
 .level-complete h3 {
     color: var(--primary-color);
-    margin-bottom: 0.8rem;
-    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
 .level-complete p {
-    margin-bottom: 0.4rem;
-    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
 }
 
 /* 消息样式 */
@@ -327,8 +437,8 @@
 /* 响应式设计 */
 @media (max-width: 768px) {
     #game-container {
-        margin: 1rem auto 4rem;
-        padding: 1.2rem;
+        margin: 1rem auto;
+        padding: 1rem;
     }
     
     #game-panel {
@@ -336,19 +446,25 @@
     }
     
     .kana-option {
-        width: 57px;
-        height: 57px;
-        font-size: 1.71rem;
+        min-width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
     }
     
     #sound-control {
-        flex-direction: row;
-        gap: 0.5rem;
+        gap: 0.6rem;
     }
     
-    .sound-button, .control-button {
-        padding: 0.5rem 1rem;
+    .sound-button {
+        padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+        min-width: 100px;
+    }
+    
+    .control-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        min-width: 120px;
     }
 }
 
@@ -363,8 +479,10 @@
     }
     
     .kana-option {
-        width: 71.25px;
+        min-width: 71.25px;
+        width: auto;
         height: 71.25px;
+        padding: 0 0.9rem;
     }
 }
 
@@ -393,12 +511,245 @@
     }
     
     .kana-option {
-        width: 57px;
+        min-width: 57px;
+        width: auto;
         height: 57px;
+        padding: 0 0.6rem;
+        font-size: 1.52rem;
     }
 }
 
 .header-area {
     text-align: center;
     margin-bottom: 1rem;
+}
+
+/* 背景音乐按钮样式 */
+.bgm-button {
+    background: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.bgm-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: rotate(180deg);
+}
+
+.bgm-button.playing {
+    background-color: var(--primary-color);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+/* 关卡选择弹出层 */
+.level-selector {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.level-selector.active {
+    display: flex;
+}
+
+.level-selector-content {
+    background-color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+.level-selector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eee;
+}
+
+.level-selector-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* 关卡分类导航 */
+.level-categories {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.level-categories::-webkit-scrollbar {
+    display: none;
+}
+
+.category-tab {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: none;
+    border: 2px solid #e0e0e0;
+    color: #666;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.category-tab:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.category-tab.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* 关卡网格布局 */
+.level-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+    padding: 0.5rem;
+}
+
+.level-item {
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.level-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.level-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.level-item:hover::before {
+    background-color: var(--primary-color);
+}
+
+.level-item.current {
+    border-color: var(--primary-color);
+    background-color: #e3f2fd;
+}
+
+.level-item.current::before {
+    background-color: var(--primary-color);
+}
+
+/* 关卡类型标签 */
+.level-type {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.level-type.hiragana {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.level-type.katakana {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.level-type.mixed {
+    background-color: #fff3e0;
+    color: #f57c00;
+}
+
+.level-item h4 {
+    margin: 0 0 1rem 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    padding-right: 4.5rem;
+}
+
+.level-item p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.level-progress {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.level-progress i {
+    color: var(--primary-color);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .level-selector-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .level-list {
+        grid-template-columns: 1fr;
+    }
+
+    .level-selector-header h3 {
+        font-size: 1.3rem;
+    }
 } 

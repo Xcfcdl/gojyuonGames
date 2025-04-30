@@ -1,23 +1,23 @@
 /**
  * 假名数据结构
- * 按行分组存储平假名和对应的罗马音
+ * 按行分组存储平假名和片假名及对应的罗马音
  */
 const kanaData = {
     // あ行
     'a': [
-        { char: 'あ', romaji: 'a' },
-        { char: 'い', romaji: 'i' },
-        { char: 'う', romaji: 'u' },
-        { char: 'え', romaji: 'e' },
-        { char: 'お', romaji: 'o' }
+        { char: 'あ', katakana: 'ア', romaji: 'a' },
+        { char: 'い', katakana: 'イ', romaji: 'i' },
+        { char: 'う', katakana: 'ウ', romaji: 'u' },
+        { char: 'え', katakana: 'エ', romaji: 'e' },
+        { char: 'お', katakana: 'オ', romaji: 'o' }
     ],
     // か行
     'ka': [
-        { char: 'か', romaji: 'ka' },
-        { char: 'き', romaji: 'ki' },
-        { char: 'く', romaji: 'ku' },
-        { char: 'け', romaji: 'ke' },
-        { char: 'こ', romaji: 'ko' }
+        { char: 'か', katakana: 'カ', romaji: 'ka' },
+        { char: 'き', katakana: 'キ', romaji: 'ki' },
+        { char: 'く', katakana: 'ク', romaji: 'ku' },
+        { char: 'け', katakana: 'ケ', romaji: 'ke' },
+        { char: 'こ', katakana: 'コ', romaji: 'ko' }
     ],
     // さ行
     'sa': [
@@ -195,233 +195,186 @@ const kanaData = {
  * 关卡定义，从简单到复杂
  */
 const levels = [
+    // 基础入门关卡
     { 
-        id: 1, 
-        name: 'あ行练习', 
-        rows: ['a'], 
-        description: '学习あ行五个基本假名',
+        id: 1,
+        category: 'basic',
+        type: 'hiragana',
+        name: 'あ行平假名', 
+        rows: ['a'],
+        description: '学习あ行五个基本平假名',
         requiredScore: 5
     },
-    { 
-        id: 2, 
-        name: 'か行练习', 
-        rows: ['ka'], 
-        description: '学习か行五个基本假名',
+    {
+        id: 2,
+        category: 'basic',
+        type: 'katakana',
+        name: 'ア行片假名',
+        rows: ['a'],
+        description: '学习ア行五个基本片假名',
+        requiredScore: 5,
+        useKatakana: true
+    },
+    {
+        id: 3,
+        category: 'basic',
+        type: 'mixed',
+        name: 'あ/ア行混合',
+        rows: ['a'],
+        description: '混合练习あ/ア行假名',
+        requiredScore: 8,
+        useMixed: true
+    },
+    {
+        id: 4,
+        category: 'basic',
+        type: 'hiragana',
+        name: 'か行平假名',
+        rows: ['ka'],
+        description: '学习か行五个基本平假名',
         requiredScore: 5
     },
-    { 
-        id: 3, 
-        name: 'あ行+か行混合', 
-        rows: ['a', 'ka'], 
-        description: '混合练习あ行和か行',
+    {
+        id: 5,
+        category: 'basic',
+        type: 'katakana',
+        name: 'カ行片假名',
+        rows: ['ka'],
+        description: '学习カ行五个基本片假名',
+        requiredScore: 5,
+        useKatakana: true
+    },
+
+    // 进阶练习关卡
+    {
+        id: 6,
+        category: 'intermediate',
+        type: 'hiragana',
+        name: 'あ～か行平假名',
+        rows: ['a', 'ka'],
+        description: '混合练习あ行和か行平假名',
         requiredScore: 8
     },
-    { 
-        id: 4, 
-        name: 'さ行练习', 
-        rows: ['sa'], 
-        description: '学习さ行五个基本假名',
-        requiredScore: 5
+    {
+        id: 7,
+        category: 'intermediate',
+        type: 'katakana',
+        name: 'ア～カ行片假名',
+        rows: ['a', 'ka'],
+        description: '混合练习ア行和カ行片假名',
+        requiredScore: 8,
+        useKatakana: true
     },
-    { 
-        id: 5, 
-        name: 'あ~さ行混合', 
-        rows: ['a', 'ka', 'sa'], 
-        description: '混合练习あ、か、さ三行假名',
-        requiredScore: 10
+    {
+        id: 8,
+        category: 'intermediate',
+        type: 'mixed',
+        name: 'あ～か行混合挑战',
+        rows: ['a', 'ka'],
+        description: '综合练习平假名和片假名',
+        requiredScore: 10,
+        useMixed: true
     },
-    { 
-        id: 6, 
-        name: 'た行练习', 
-        rows: ['ta'], 
-        description: '学习た行五个基本假名',
-        requiredScore: 5
-    },
-    { 
-        id: 7, 
-        name: 'な行练习', 
-        rows: ['na'], 
-        description: '学习な行五个基本假名',
-        requiredScore: 5
-    },
-    { 
-        id: 8, 
-        name: 'た~な行混合', 
-        rows: ['ta', 'na'], 
-        description: '混合练习た行和な行',
-        requiredScore: 8
-    },
-    { 
-        id: 9, 
-        name: 'あ~な行混合', 
-        rows: ['a', 'ka', 'sa', 'ta', 'na'], 
-        description: '综合练习前五行假名',
-        requiredScore: 15
-    },
-    { 
-        id: 10, 
-        name: 'は行练习', 
-        rows: ['ha'], 
-        description: '学习は行五个基本假名',
-        requiredScore: 5
-    },
-    { 
-        id: 11, 
-        name: 'ま行练习', 
-        rows: ['ma'], 
-        description: '学习ま行五个基本假名',
-        requiredScore: 5
-    },
-    { 
-        id: 12, 
-        name: 'は~ま行混合', 
-        rows: ['ha', 'ma'], 
-        description: '混合练习は行和ま行',
-        requiredScore: 8
-    },
-    { 
-        id: 13, 
-        name: 'や行练习', 
-        rows: ['ya'], 
-        description: '学习や行三个基本假名',
-        requiredScore: 3
-    },
-    { 
-        id: 14, 
-        name: 'ら行练习', 
-        rows: ['ra'], 
-        description: '学习ら行五个基本假名',
-        requiredScore: 5
-    },
-    { 
-        id: 15, 
-        name: 'わ行练习', 
-        rows: ['wa'], 
-        description: '学习わ行假名和ん',
-        requiredScore: 3
-    },
-    { 
-        id: 16, 
-        name: '清音综合练习', 
-        rows: ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa'], 
-        description: '练习所有清音假名',
-        requiredScore: 20
-    },
-    { 
-        id: 17, 
-        name: 'が行练习', 
-        rows: ['ga'], 
-        description: '学习が行浊音假名',
-        requiredScore: 5
-    },
-    { 
-        id: 18, 
-        name: 'ざ行练习', 
-        rows: ['za'], 
-        description: '学习ざ行浊音假名',
-        requiredScore: 5
-    },
-    { 
-        id: 19, 
-        name: 'だ行练习', 
-        rows: ['da'], 
-        description: '学习だ行浊音假名',
-        requiredScore: 5
-    },
-    { 
-        id: 20, 
-        name: 'ば行练习', 
-        rows: ['ba'], 
-        description: '学习ば行浊音假名',
-        requiredScore: 5
-    },
-    { 
-        id: 21, 
-        name: 'ぱ行练习', 
-        rows: ['pa'], 
-        description: '学习ぱ行半浊音假名',
-        requiredScore: 5
-    },
-    { 
-        id: 22, 
-        name: '浊音综合练习', 
-        rows: ['ga', 'za', 'da', 'ba', 'pa'], 
-        description: '练习所有浊音和半浊音假名',
-        requiredScore: 15
-    },
-    { 
-        id: 23, 
-        name: 'きゃ行练习', 
-        rows: ['kya'], 
-        description: '学习きゃ行拗音',
-        requiredScore: 3
-    },
-    { 
-        id: 24, 
-        name: 'しゃ行练习', 
-        rows: ['sha'], 
-        description: '学习しゃ行拗音',
-        requiredScore: 3
-    },
-    { 
-        id: 25, 
-        name: 'ちゃ行练习', 
-        rows: ['cha'], 
-        description: '学习ちゃ行拗音',
-        requiredScore: 3
-    },
-    { 
-        id: 26, 
-        name: '基础拗音混合', 
-        rows: ['kya', 'sha', 'cha'], 
-        description: '练习基础拗音组合',
-        requiredScore: 9
-    },
-    { 
-        id: 27, 
-        name: 'にゃ~みゃ行练习', 
-        rows: ['nya', 'hya', 'mya'], 
-        description: '学习にゃ、ひゃ、みゃ行拗音',
-        requiredScore: 9
-    },
-    { 
-        id: 28, 
-        name: 'りゃ行练习', 
-        rows: ['rya'], 
-        description: '学习りゃ行拗音',
-        requiredScore: 3
-    },
-    { 
-        id: 29, 
-        name: '清音拗音综合', 
-        rows: ['kya', 'sha', 'cha', 'nya', 'hya', 'mya', 'rya'], 
-        description: '练习所有清音拗音',
-        requiredScore: 15
-    },
-    { 
-        id: 30, 
-        name: '浊音拗音练习', 
-        rows: ['gya', 'ja', 'bya', 'pya'], 
-        description: '练习浊音和半浊音拗音',
+    {
+        id: 9,
+        category: 'intermediate',
+        type: 'hiragana',
+        name: 'さ～な行平假名',
+        rows: ['sa', 'ta', 'na'],
+        description: '学习さ、た、な行平假名',
         requiredScore: 12
     },
-    { 
-        id: 31, 
-        name: '促音练习', 
-        rows: ['sokuon'], 
-        description: '学习促音っ',
-        requiredScore: 2
+    {
+        id: 10,
+        category: 'intermediate',
+        type: 'katakana',
+        name: 'サ～ナ行片假名',
+        rows: ['sa', 'ta', 'na'],
+        description: '学习サ、タ、ナ行片假名',
+        requiredScore: 12,
+        useKatakana: true
     },
-    { 
-        id: 32, 
-        name: '终极挑战', 
-        rows: ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa', 
-               'ga', 'za', 'da', 'ba', 'pa', 
-               'kya', 'sha', 'cha', 'nya', 'hya', 'mya', 'rya',
-               'gya', 'ja', 'bya', 'pya',
-               'sokuon'], 
-        description: '测试所有假名的掌握程度',
-        requiredScore: 30
+    {
+        id: 11,
+        category: 'intermediate',
+        type: 'mixed',
+        name: 'さ～な行混合挑战',
+        rows: ['sa', 'ta', 'na'],
+        description: '混合练习平假名和片假名',
+        requiredScore: 15,
+        useMixed: true
+    },
+    {
+        id: 12,
+        category: 'intermediate',
+        type: 'hiragana',
+        name: 'は～わ行平假名',
+        rows: ['ha', 'ma', 'ya', 'ra', 'wa'],
+        description: '学习は～わ行平假名',
+        requiredScore: 15
+    },
+    {
+        id: 13,
+        category: 'intermediate',
+        type: 'katakana',
+        name: 'ハ～ワ行片假名',
+        rows: ['ha', 'ma', 'ya', 'ra', 'wa'],
+        description: '学习ハ～ワ行片假名',
+        requiredScore: 15,
+        useKatakana: true
+    },
+    {
+        id: 14,
+        category: 'intermediate',
+        type: 'mixed',
+        name: 'は～わ行混合挑战',
+        rows: ['ha', 'ma', 'ya', 'ra', 'wa'],
+        description: '混合练习平假名和片假名',
+        requiredScore: 18,
+        useMixed: true
+    },
+
+    // 高级挑战关卡
+    {
+        id: 15,
+        category: 'advanced',
+        type: 'hiragana',
+        name: '平假名综合练习',
+        rows: ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa'],
+        description: '练习所有平假名',
+        requiredScore: 20
+    },
+    {
+        id: 16,
+        category: 'advanced',
+        type: 'katakana',
+        name: '片假名综合练习',
+        rows: ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa'],
+        description: '练习所有片假名',
+        requiredScore: 20,
+        useKatakana: true
+    },
+    {
+        id: 17,
+        category: 'advanced',
+        type: 'mixed',
+        name: '综合假名挑战',
+        rows: ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa'],
+        description: '混合练习所有平假名和片假名',
+        requiredScore: 25,
+        useMixed: true
+    },
+
+    // 大师级关卡
+    {
+        id: 18,
+        category: 'master',
+        type: 'mixed',
+        name: '假名大师挑战',
+        rows: ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa'],
+        description: '终极挑战：完全掌握所有假名',
+        requiredScore: 30,
+        useMixed: true
     }
 ];
 

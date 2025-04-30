@@ -1,0 +1,20 @@
+id,category,type,name,rows,description,required_score,use_katakana,use_mixed
+1,basic,hiragana,あ行平假名,a,学习あ行五个基本平假名,5,FALSE,FALSE
+2,basic,katakana,ア行片假名,a,学习ア行五个基本片假名,5,TRUE,FALSE
+3,basic,mixed,あ/ア行混合,a,混合练习あ/ア行假名,8,FALSE,TRUE
+4,basic,hiragana,か行平假名,ka,学习か行五个基本平假名,5,FALSE,FALSE
+5,basic,katakana,カ行片假名,ka,学习カ行五个基本片假名,5,TRUE,FALSE
+6,intermediate,hiragana,あ～か行平假名,a ka,混合练习あ行和か行平假名,8,FALSE,FALSE
+7,intermediate,katakana,ア～カ行片假名,a ka,混合练习ア行和カ行片假名,8,TRUE,FALSE
+8,intermediate,mixed,あ～か行混合挑战,a ka,综合练习平假名和片假名,10,FALSE,TRUE
+9,intermediate,hiragana,さ～な行平假名,sa ta na,学习さ、た、な行平假名,12,FALSE,FALSE
+10,intermediate,katakana,サ～ナ行片假名,sa ta na,学习サ、タ、ナ行片假名,12,TRUE,FALSE
+11,intermediate,mixed,さ～な行混合挑战,sa ta na,混合练习平假名和片假名,15,FALSE,TRUE
+12,intermediate,hiragana,は～わ行平假名,ha ma ya ra wa,学习は～わ行平假名,15,FALSE,FALSE
+13,intermediate,katakana,ハ～ワ行片假名,ha ma ya ra wa,学习ハ～ワ行片假名,15,TRUE,FALSE
+14,intermediate,mixed,は～わ行混合挑战,ha ma ya ra wa,混合练习平假名和片假名,18,FALSE,TRUE
+15,advanced,hiragana,平假名综合练习,a ka sa ta na ha ma ya ra wa,练习所有平假名,20,FALSE,FALSE
+16,advanced,katakana,片假名综合练习,a ka sa ta na ha ma ya ra wa,练习所有片假名,20,TRUE,FALSE
+17,advanced,mixed,综合假名挑战,a ka sa ta na ha ma ya ra wa,混合练习所有平假名和片假名,25,FALSE,TRUE
+18,master,mixed,假名大师挑战,a ka sa ta na ha ma ya ra wa,终极挑战：完全掌握所有假名,30,FALSE,TRUE
+19,master,mixed,假名大师挑战拗音,kya sha cha nya hya mya rya gya ja bya pya,终极挑战：完全掌握所有浊音假名,33,FALSE,TRUE
