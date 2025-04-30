@@ -85,7 +85,7 @@ class KanaListeningGame {
             this.updateBgmButtonState();
             
             // 更新加载状态
-            this.optionsArea.innerHTML = '<div class="placeholder-text"><p>点击"开始游戏"按钮开始</p></div>';
+            this.optionsArea.innerHTML = '<div class="placeholder-text"><p>はじめをクリックして開始</p></div>';
             
             // 启用重新开始和下一关按钮
             this.restartButton.disabled = false;
@@ -198,7 +198,7 @@ class KanaListeningGame {
         // 更新界面
         this.updateScoreDisplay();
         this.enableGameControls();
-        this.startButton.innerHTML = '<i class="fas fa-volume-up"></i> 播放';
+        this.startButton.innerHTML = '<i class="fas fa-volume-up"></i> はじめ';
         
         // 开始第一题
         this.nextQuestion();
@@ -216,7 +216,7 @@ class KanaListeningGame {
         // 更新界面
         this.updateScoreDisplay();
         this.enableGameControls();
-        this.startButton.innerHTML = '<i class="fas fa-volume-up"></i> 播放';
+        this.startButton.innerHTML = '<i class="fas fa-volume-up"></i> はじめ';
         this.feedbackArea.innerHTML = '';
         
         // 开始新的一题
@@ -287,8 +287,8 @@ class KanaListeningGame {
             
             // 如果没有加载到假名，输出警告
             if (this.levelKanas.length === 0) {
-                console.warn('警告：当前关卡没有加载到任何假名！');
-                console.warn('可用的假名组：', Object.keys(this.kanaData));
+                console.warn('警告：現在のレベルには何もデータがありません！');
+                console.warn('利用可能なデータ：', Object.keys(this.kanaData));
             }
         }
     }
@@ -344,7 +344,7 @@ class KanaListeningGame {
             (this.currentKana.katakana || this.currentKana.char) : 
             this.currentKana.char;
         
-        console.log(`当前问题：${displayChar} (${this.currentKana.romaji})`);
+        console.log(`現在の問題：${displayChar} (${this.currentKana.romaji})`);
         
         // 生成选项
         this.generateOptions();
@@ -532,8 +532,8 @@ class KanaListeningGame {
             }
         });
         
-        // 判断是否答对（使用romaji比对）
-        const isCorrect = this.currentKana.romaji === this.currentKana.romaji;
+        // 判断是否答对（使用字符比较）
+        const isCorrect = selectedChar === correctChar;
         
         // 更新分数
         if (isCorrect) {
@@ -549,11 +549,11 @@ class KanaListeningGame {
         // 提供视觉反馈
         if (isCorrect) {
             selectedOption.classList.add('correct');
-            this.feedbackArea.innerHTML = '<div class="feedback-correct">正确！</div>';
+            this.feedbackArea.innerHTML = '<div class="feedback-correct">正解！</div>';
         } else {
             selectedOption.classList.add('incorrect');
             correctOption.classList.add('highlight');
-            this.feedbackArea.innerHTML = '<div class="feedback-incorrect">错误！正确答案是：' + correctChar + '</div>';
+            this.feedbackArea.innerHTML = '<div class="feedback-incorrect">ミス！正解は：' + correctChar + '</div>';
         }
         
         // 延迟后进入下一题或结束关卡
@@ -579,9 +579,9 @@ class KanaListeningGame {
         // 显示完成消息
         this.feedbackArea.innerHTML = `
             <div class="level-complete">
-                <h3>恭喜！关卡完成</h3>
-                <p>得分: ${this.score}/${this.totalQuestions}</p>
-                <p>正确率: ${Math.round((this.score / this.totalQuestions) * 100)}%</p>
+                <h3>完成しました！</h3>
+                <p>正解数/回答数: ${this.score}/${this.totalQuestions}</p>
+                <p>正解率: ${Math.round((this.score / this.totalQuestions) * 100)}%</p>
             </div>
         `;
         
@@ -589,7 +589,7 @@ class KanaListeningGame {
         this.optionsArea.innerHTML = '';
         
         // 更新按钮状态
-        this.startButton.innerHTML = '<i class="fas fa-play"></i> 开始游戏';
+        this.startButton.innerHTML = '<i class="fas fa-play"></i> はじめ';
         
         celebrateLevelComplete();
     }
@@ -624,7 +624,7 @@ class KanaListeningGame {
      * 更新分数显示
      */
     updateScoreDisplay() {
-        this.scoreDisplay.textContent = `得分: ${this.score}/${this.totalQuestions} (目标: ${this.currentLevel ? this.currentLevel.requiredScore : 0})`;
+        this.scoreDisplay.textContent = `正答数/回答数: ${this.score}/${this.totalQuestions} (目標: ${this.currentLevel ? this.currentLevel.requiredScore : 0})`;
     }
     
     /**
@@ -641,7 +641,7 @@ class KanaListeningGame {
     disableGameControls() {
         this.repeatButton.disabled = true;
         this.startButton.disabled = false;
-        this.startButton.innerHTML = '<i class="fas fa-play"></i> 开始游戏';
+        this.startButton.innerHTML = '<i class="fas fa-play"></i> はじめ';
     }
     
     /**
@@ -680,10 +680,10 @@ class KanaListeningGame {
     updateBgmButtonState(isPlaying = false) {
         if (isPlaying) {
             this.bgmButton.classList.add('playing');
-            this.bgmButton.title = '点击暂停背景音乐';
+            this.bgmButton.title = '背景音楽を一時停止';
         } else {
             this.bgmButton.classList.remove('playing');
-            this.bgmButton.title = '点击播放背景音乐';
+            this.bgmButton.title = '背景音楽を再生';
         }
     }
 
@@ -706,7 +706,7 @@ class KanaListeningGame {
                 <p>${level.description}</p>
                 <div class="level-progress">
                     <i class="fas fa-star"></i>
-                    目标分数：${level.requiredScore}分
+                    目標分数：${level.requiredScore}分
                 </div>
             </div>
         `).join('');
@@ -728,9 +728,9 @@ class KanaListeningGame {
      */
     getLevelTypeText(type) {
         const types = {
-            'hiragana': '平假名',
-            'katakana': '片假名',
-            'mixed': '混合'
+            'hiragana': 'ひらがな',
+            'katakana': 'カタカナ',
+            'mixed': 'ミックス'
         };
         return types[type] || '';
     }
@@ -756,7 +756,7 @@ class KanaListeningGame {
      */
     switchLevel(levelIndex) {
         if (this.isGameActive) {
-            if (!confirm('切换关卡将丢失当前进度，确定要切换吗？')) {
+            if (!confirm('关卡切换将丢失当前进度，确定要切换吗？')) {
                 return;
             }
         }
@@ -775,7 +775,7 @@ class KanaListeningGame {
         this.updateScoreDisplay();
         this.startButton.disabled = false;
         this.updateNextLevelButton();
-        this.optionsArea.innerHTML = '<div class="placeholder-text"><p>点击"开始游戏"按钮开始</p></div>';
+        this.optionsArea.innerHTML = '<div class="placeholder-text"><p>はじめをクリックして開始</p></div>';
         this.feedbackArea.innerHTML = '';
         
         // 禁用游戏控制
