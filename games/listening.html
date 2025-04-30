@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>听音选字 - 五十音图游戏集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/games/listening.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="../index.html"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="game-container">
+            <div class="header-area">
+                <h2><i class="fas fa-headphones"></i> 听音选字</h2>
+                <div class="game-description">
+                    <p>听取假名发音，选择对应的假名字符</p>
+                </div>
+            </div>
+            
+            <div id="game-panel">
+                <div id="game-status">
+                    <div class="level-info">
+                        <span id="current-level">あ行练习</span>
+                    </div>
+                    <div class="score-info">
+                        <span id="current-score">得分: 0/0</span>
+                    </div>
+                </div>
+                
+                <div id="game-area">
+                    <div id="sound-control">
+                        <button id="play-sound" class="sound-button">
+                            <i class="fas fa-volume-up"></i> 播放
+                        </button>
+                        <button id="repeat-sound" class="sound-button">
+                            <i class="fas fa-redo"></i> 重听
+                        </button>
+                    </div>
+                    
+                    <div id="options-area">
+                        <!-- 选项会动态生成 -->
+                        <div class="placeholder-text">
+                            <p>点击"开始游戏"按钮开始</p>
+                        </div>
+                    </div>
+                    
+                    <div id="feedback-area">
+                        <!-- 反馈信息会显示在这里 -->
+                    </div>
+                </div>
+                
+                <div id="controls-area">
+                    <button id="start-game" class="control-button primary">
+                        <i class="fas fa-play"></i> 开始游戏
+                    </button>
+                    <button id="next-level" class="control-button" disabled>
+                        <i class="fas fa-forward"></i> 下一关
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+    </footer>
+
+    <script src="../assets/js/games/listening/data.js"></script>
+    <script src="../assets/js/games/listening/speech.js"></script>
+    <script src="../assets/js/games/listening/game.js"></script>
+</body>
+</html> 

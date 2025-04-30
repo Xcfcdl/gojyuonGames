@@ -1,0 +1,404 @@
+/* 游戏容器样式 */
+#game-container {
+    max-width: 712px;
+    margin: 1.4rem auto 4.75rem;
+    padding: 1.7rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+#game-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 0.76rem;
+    font-size: 1.7rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#game-container h2::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+.game-description {
+    text-align: center;
+    margin-bottom: 1.4rem;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* 游戏面板样式 */
+#game-panel {
+    background-color: #f9fafc;
+    border-radius: 10px;
+    padding: 1.14rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 游戏状态区域 */
+#game-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.14rem;
+    padding-bottom: 0.76rem;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.level-info {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.38rem 0.76rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.855rem;
+}
+
+.score-info {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+
+/* 游戏区域样式 */
+#game-area {
+    min-height: 266px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1.4rem;
+}
+
+/* 音频控制 */
+#sound-control {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0.8rem;
+}
+
+.sound-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sound-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sound-button:active {
+    transform: translateY(0);
+}
+
+#repeat-sound {
+    background-color: #7d92b5;
+}
+
+#repeat-sound:hover {
+    background-color: #6b82a8;
+}
+
+/* 选项区域 */
+#options-area {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.kana-option {
+    width: 66.5px;
+    height: 66.5px;
+    font-size: 2.09rem;
+    background-color: white;
+    border: 2px solid #d9e2f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.kana-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    border-color: #b6c9e3;
+}
+
+.kana-option.correct {
+    background-color: #8FD14F;
+    border-color: #76b043;
+    color: white;
+}
+
+.kana-option.incorrect {
+    background-color: #FF6B6B;
+    border-color: #e55c5c;
+    color: white;
+}
+
+.kana-option.highlight {
+    animation: pulse 1s infinite;
+    border-color: #8fd14f;
+}
+
+.placeholder-text {
+    color: #999;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* 反馈区域 */
+#feedback-area {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.feedback-correct {
+    color: #66bb6a;
+}
+
+.feedback-incorrect {
+    color: #f44336;
+}
+
+/* 控制按钮区域 */
+#controls-area {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.control-button {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.control-button:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+.control-button.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.control-button.primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.control-button:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.control-button:disabled:hover {
+    transform: none;
+}
+
+/* 关卡完成样式 */
+.level-complete {
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 0.8rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.5s ease;
+}
+
+.level-complete h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+}
+
+.level-complete p {
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+}
+
+/* 消息样式 */
+.message {
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin: 0.8rem 0;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.message.info {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+.message.error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.message.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.warning-message {
+    background-color: #fff8e1;
+    color: #f57f17;
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin: 0.8rem 0;
+    text-align: center;
+    border-left: 4px solid #ffb300;
+    font-size: 0.9rem;
+}
+
+.warning-message p {
+    margin-bottom: 0.4rem;
+}
+
+/* 动画 */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(143, 209, 79, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(143, 209, 79, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(143, 209, 79, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    #game-container {
+        margin: 1rem auto 4rem;
+        padding: 1.2rem;
+    }
+    
+    #game-panel {
+        padding: 1rem;
+    }
+    
+    .kana-option {
+        width: 57px;
+        height: 57px;
+        font-size: 1.71rem;
+    }
+    
+    #sound-control {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    
+    .sound-button, .control-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 更高效的垂直空间利用 */
+@media (min-height: 800px) {
+    #game-container {
+        margin: 2rem auto 5rem;
+    }
+    
+    #game-area {
+        min-height: 304px;
+    }
+    
+    .kana-option {
+        width: 71.25px;
+        height: 71.25px;
+    }
+}
+
+/* 小屏幕高度优化 */
+@media (max-height: 700px) {
+    #game-container {
+        margin: 0.8rem auto 4rem;
+        padding: 1.2rem;
+    }
+    
+    #game-container h2 {
+        font-size: 1.52rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .game-description {
+        margin-bottom: 1rem;
+    }
+    
+    #game-panel {
+        padding: 1rem;
+    }
+    
+    #game-area {
+        min-height: 237.5px;
+    }
+    
+    .kana-option {
+        width: 57px;
+        height: 57px;
+    }
+}
+
+.header-area {
+    text-align: center;
+    margin-bottom: 1rem;
+} 
