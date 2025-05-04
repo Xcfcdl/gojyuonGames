@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>假名消消乐 - 五十音图游戏集</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/games/match.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="../index.html"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> 返回首页</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="match-hero-section">
+            <h2><i class="fas fa-th"></i> 假名消消乐</h2>
+            <p>通过配对记忆和听音消除，巩固假名认知，支持多种难度和模式</p>
+        </section>
+        <section class="match-controls">
+            <div class="difficulty-group">
+                <label>难度：</label>
+                <select id="difficulty-select">
+                    <option value="3">3x3</option>
+                    <option value="5">5x5</option>
+                    <option value="9">9x9</option>
+                    <option value="16">16x16</option>
+                </select>
+            </div>
+            <div class="mode-group">
+                <label>模式：</label>
+                <select id="mode-select">
+                    <option value="hiragana">平假名</option>
+                    <option value="katakana">片假名</option>
+                    <option value="mixed">混合</option>
+                </select>
+            </div>
+            <button id="restart-match" class="start-button"><i class="fas fa-redo"></i> 重新开始</button>
+            <button id="fullscreen-btn" class="start-button" title="全屏棋盘"><i class="fas fa-expand"></i> 全屏</button>
+            <button id="exit-fullscreen-btn" class="start-button" style="display:none;" title="退出全屏"><i class="fas fa-compress"></i> 恢复</button>
+
+        </section>
+        <section class="match-board-section">
+            <div id="match-board" class="match-board"></div>
+        </section>
+        <section class="match-feedback" id="match-feedback"></section>
+    </main>
+    <footer>
+        <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+    </footer>
+    <audio id="audio-correct" src="../assets/audio/correct.mp3" preload="auto"></audio>
+    <audio id="audio-incorrect" src="../assets/audio/incorrect.mp3" preload="auto"></audio>
+    <script src="../assets/js/games/listening/speech.js"></script>
+    <script src="../assets/js/games/match.js"></script>
+</body>
+</html>
