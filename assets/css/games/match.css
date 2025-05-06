@@ -263,4 +263,95 @@
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+ 
+@media (max-width: 600px) {
+    .match-board-section {
+        min-height: 0;
+        padding: 0;
+    }
+    .match-board {
+        padding: 2vw;
+        gap: 2vw;
+    }
+    .match-btn {
+        width: 12vw;
+        height: 12vw;
+        min-width: 36px;
+        min-height: 36px;
+        max-width: 56px;
+        max-height: 56px;
+        font-size: 2.2vw;
+        border-radius: 2vw;
+    }
+    .match-btn span {
+        font-size: 1.5em;
+    }
+    .match-modal {
+        min-width: 80vw;
+        padding: 1.2rem 0.5rem 1.2rem;
+    }
+    .match-modal h3 {
+        font-size: 1.5rem;
+    }
+    .match-modal .modal-btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
 
+/* 桌面端默认按钮尺寸已设置 */
+
+/* 移动端自适应按钮尺寸 */
+@media (max-width: 600px) {
+    .match-board {
+        padding: 2vw;
+        gap: 2vw;
+    }
+    /* 默认移动端按钮尺寸 */
+    .match-btn {
+        width: 15vw;
+        height: 15vw;
+        min-width: 28px;
+        min-height: 28px;
+        max-width: 48px;
+        max-height: 48px;
+        font-size: 8vw;
+        border-radius: 2vw;
+    }
+    .match-btn span {
+        font-size: 1.3em;
+    }
+    /* 5x5 棋盘 */
+    .match-board[style*='grid-template-columns: repeat(5'] .match-btn {
+        width: 12vw;
+        height: 12vw;
+        font-size: 6vw;
+    }
+    /* 9x9 棋盘 */
+    .match-board[style*='grid-template-columns: repeat(9'] .match-btn {
+        width: 9vw;
+        height: 9vw;
+        font-size: 5vw;
+    }
+    /* 16x16 棋盘 */
+    .match-board[style*='grid-template-columns: repeat(16'] .match-btn {
+        width: 4vw;
+        height: 4vw;
+        font-size: 2vw;
+        min-width: 12px;
+        min-height: 12px;
+        max-width: 20px;
+        max-height: 20px;
+    }
+    .match-modal {
+        min-width: 80vw;
+        padding: 1.2rem 0.5rem 1.2rem;
+    }
+    .match-modal h3 {
+        font-size: 1.5rem;
+    }
+    .match-modal .modal-btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
