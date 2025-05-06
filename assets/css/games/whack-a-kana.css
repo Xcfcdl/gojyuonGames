@@ -1,0 +1,305 @@
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.game-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+.game-info {
+    display: flex;
+    gap: 20px;
+}
+
+.whack-area {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.hole {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #8B4513;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.writing-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.writing-area.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+#writing-canvas {
+    border: 2px solid #333;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.writing-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.game-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.difficulty-selector {
+    display: flex;
+    gap: 5px;
+}
+
+.difficulty-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* 识别结果样式 */
+.recognition-result {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    min-height: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.recognition-result.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+.recognition-result.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+/* 地鼠样式 */
+.mole {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+    background-color: #f5f5dc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    animation: pop-up 0.5s ease;
+}
+
+@keyframes pop-up {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+}
+
+/* 脉冲动画 */
+.pulse {
+    animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* 游戏说明弹窗样式 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #4CAF50;
+}
+
+.modal-body {
+    line-height: 1.6;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    .whack-area {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    
+    .hole {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .mole {
+        width: 64px;
+        height: 64px;
+        top: 8px;
+        left: 8px;
+        font-size: 20px;
+    }
+    
+    button {
+        padding: 10px 18px;
+        font-size: 16px;
+        min-width: 80px;
+    }
+    
+    .difficulty-btn {
+        padding: 8px 12px;
+    }
+    
+    #writing-canvas {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .whack-area {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+    
+    .hole {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .mole {
+        width: 56px;
+        height: 56px;
+        top: 7px;
+        left: 7px;
+        font-size: 18px;
+        max-width: 56px; /* 防止溢出 */
+        max-height: 56px; /* 防止溢出 */
+    }
+    
+    .game-footer {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .game-footer.minimized {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 5px;
+        background: rgba(255,255,255,0.9);
+        transform: translateY(80%);
+        transition: transform 0.3s ease;
+    }
+    
+    .game-footer.minimized:hover {
+        transform: translateY(0);
+    }
+    
+    .difficulty-selector {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    
+    button {
+        padding: 12px 20px;
+        font-size: 16px;
+        min-width: 100px;
+        min-height: 44px; /* 增加按钮高度，便于触摸 */
+    }
+    
+    #writing-canvas {
+        width: 200px;
+        height: 200px;
+    }
+}

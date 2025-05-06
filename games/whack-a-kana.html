@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>假名打地鼠 - 五十音图学习游戏</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/games/whack-a-kana.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>假名打地鼠</h1>
+            <div class="game-info">
+                <div class="score">得分: <span id="score">0</span></div>
+                <div class="timer">时间: <span id="timer">--</span></div>
+            </div>
+        </header>
+        
+        <main class="game-main">
+            <div class="whack-area" id="whack-area">
+                <!-- 5个地鼠坑位 -->
+                <div class="hole" id="hole-1"></div>
+                <div class="hole" id="hole-2"></div>
+                <div class="hole" id="hole-3"></div>
+                <div class="hole" id="hole-4"></div>
+                <div class="hole" id="hole-5"></div>
+            </div>
+            
+            <div class="writing-area">
+                <canvas id="writing-canvas" width="300" height="300"></canvas>
+                <div class="writing-controls">
+                    <button id="clear-canvas">清除</button>
+                    <button id="recognize-kana">识别</button>
+                </div>
+                <div id="recognition-result" class="recognition-result"></div>
+            </div>
+        </main>
+        
+        <footer class="game-footer">
+            <div class="difficulty-selector">
+                <button class="difficulty-btn" data-level="easy">初级</button>
+                <button class="difficulty-btn" data-level="medium">中级</button>
+                <button class="difficulty-btn" data-level="hard">高级</button>
+                <button class="difficulty-btn" data-level="expert">终极</button>
+            </div>
+            <button id="start-game">开始游戏</button>
+            <button id="sound-toggle">音效</button>
+            <button id="instructions-btn">游戏说明</button>
+        </footer>
+        
+        <!-- 游戏说明弹窗 -->
+        <div class="modal-overlay" id="instructions-modal">
+            <div class="modal-content">
+                <button class="modal-close" id="close-modal">&times;</button>
+                <h2 class="modal-title">游戏说明</h2>
+                <div class="modal-body">
+                    <p>欢迎来到假名打地鼠游戏！</p>
+                    <p>游戏规则：</p>
+                    <ol>
+                        <li>点击出现的假名地鼠得分</li>
+                        <li>不同难度有不同的时间限制</li>
+                        <li>连续点击正确可以增加连击分数</li>
+                    </ol>
+                    <p>祝您游戏愉快！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 引入handwriting.js库 -->
+    <script src="../assets/js/games/whack-a-kana/handwriting.js"></script>
+    <script src="../assets/js/games/whack-a-kana/handwriting.canvas.js"></script>
+    
+    <script src="../assets/js/games/whack-a-kana/game.js"></script>
+    <script src="../assets/js/games/whack-a-kana/canvas.js"></script>
+    <script src="../assets/js/games/whack-a-kana/audio.js"></script>
+</body>
+</html>
