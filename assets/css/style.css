@@ -415,3 +415,22 @@ footer {
 .logo h1 a:hover {
     opacity: 0.85;
 } 
+
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .logo h1 {
+        font-size: 1.1rem;
+        letter-spacing: 0.2px;
+    }
+    nav {
+        padding: 0 0.7rem;
+    }
+    footer {
+        padding: 0.5rem 0;
+        font-size: 0.95rem;
+        box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
+    }
+}

@@ -70,16 +70,6 @@
     white-space: nowrap;
 }
 
-@media (max-width: 600px) {
-    .match-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 1.1rem;
-    }
-    .match-btn span {
-        font-size: 1em;
-    }
-}
 
 
 .match-btn.hidden {
@@ -132,17 +122,7 @@
     color: var(--primary-dark);
 }
 
-@media (max-width: 600px) {
-    .match-board {
-        padding: 4px;
-        gap: 4px;
-    }
-    .match-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 1.1rem;
-    }
-}
+
 /* ... 现有样式 ... */
 
 .fullscreen-board {
@@ -300,6 +280,40 @@
 }
 
 /* 桌面端默认按钮尺寸已设置 */
+
+
+@media (max-width: 900px) {
+   
+  
+    /* 16x16 棋盘专用，允许横向滚动，按钮不再极小 */
+    .match-board[style*='grid-template-columns: repeat(16'] .match-btn {
+        width: min(3vw, 18px);
+        height: min(3vw, 18px);
+        min-width: 12px;
+        min-height: 12px;
+        font-size: min(1.2vw, 0.9rem);
+    }
+}
+
+/* 竖屏时进一步优化按钮和棋盘 */
+@media (max-width: 900px) and (orientation: portrait) {
+     .match-board-section {
+        padding-bottom: 12vw;
+    } 
+    .match-board {
+        margin: 0 auto;
+    }
+    .match-btn {
+        font-size: min(3vw, 1.1rem);
+    }
+    .match-board[style*='grid-template-columns: repeat(16'] .match-btn {
+        width: min(2.2vw, 14px);
+        height: min(2.2vw, 14px);
+        min-width: 10px;
+        min-height: 10px;
+        font-size: min(1vw, 0.8rem);
+    }
+}
 
 /* 移动端自适应按钮尺寸 */
 @media (max-width: 600px) {
