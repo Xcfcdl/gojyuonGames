@@ -97,5 +97,5 @@ class AudioManager {
     }
 }
 
-// 推荐全局单例
-window.audioManager = new AudioManager(); 
+const audioManager = new AudioManager();
+export default audioManager; 

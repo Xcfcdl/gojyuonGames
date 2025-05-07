@@ -1,4 +1,4 @@
-import AudioManager from '../common/audioManager.js';
+import audioManager from '../common/audioManager.js';
 import WritingCanvas from '../common/writingCanvas.js';
 
 class WhackAKanaGame {

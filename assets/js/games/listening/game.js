@@ -1,7 +1,7 @@
 /**
  * 听音选字游戏核心逻辑
  */
-import AudioManager from '../common/audioManager.js';
+import audioManager from '../common/audioManager.js';
 import SpeechManager from '../common/speechManager.js';
 import DataLoader from '../common/dataLoader.js';
 
@@ -163,7 +163,7 @@ class KanaListeningGame {
 
         // 背景音乐按钮
         this.bgmButton.addEventListener('click', () => {
-            const isPlaying = window.audioManager.toggleBgm();
+            const isPlaying = audioManager.toggleBgm();
             this.updateBgmButtonState(isPlaying);
         });
 
@@ -522,29 +522,43 @@ class KanaListeningGame {
         // 获取所有选项元素
         const options = document.querySelectorAll('.kana-option');
         const correctChar = this.getKanaChar(this.currentKana);
+        const correctRomaji = this.currentKana.romaji;
         
         let correctOption = null;
         let selectedOption = null;
         
         // 找到正确选项和用户选择的选项
         options.forEach(option => {
-            if (option.textContent === correctChar) {
+            if (option.textContent.trim() === correctChar.trim()) {
                 correctOption = option;
             }
-            if (option.textContent === selectedChar) {
+            if (option.textContent.trim() === selectedChar.trim()) {
                 selectedOption = option;
             }
         });
         
-        // 判断是否答对（使用字符比较）
-        const isCorrect = selectedChar === correctChar;
+        // 获取用户选择的假名对象
+        let selectedKana = null;
+        for (const row of Object.values(this.kanaData)) {
+            for (const kana of row) {
+                if (kana.char === selectedChar || kana.katakana === selectedChar) {
+                    selectedKana = kana;
+                    break;
+                }
+            }
+            if (selectedKana) break;
+        }
+        const selectedRomaji = selectedKana ? selectedKana.romaji : null;
+        
+        // 判断是否答对（用罗马音比较）
+        const isCorrect = selectedRomaji && (selectedRomaji === correctRomaji);
         
         // 更新分数
         if (isCorrect) {
             this.score++;
-            window.audioManager.playCorrect(); // 播放正确音效
+            audioManager.playCorrect(); // 播放正确音效
         } else {
-            window.audioManager.playIncorrect(); // 播放错误音效
+            audioManager.playIncorrect(); // 播放错误音效
         }
         
         // 更新分数显示
@@ -552,11 +566,11 @@ class KanaListeningGame {
         
         // 提供视觉反馈
         if (isCorrect) {
-            selectedOption.classList.add('correct');
+            if (selectedOption) selectedOption.classList.add('correct');
             this.feedbackArea.innerHTML = '<div class="feedback-correct">正解！</div>';
         } else {
-            selectedOption.classList.add('incorrect');
-            correctOption.classList.add('highlight');
+            if (selectedOption) selectedOption.classList.add('incorrect');
+            if (correctOption) correctOption.classList.add('highlight');
             this.feedbackArea.innerHTML = '<div class="feedback-incorrect">ミス！正解は：' + correctChar + '</div>';
         }
         
@@ -578,7 +592,7 @@ class KanaListeningGame {
         this.isGameActive = false;
         
         // 播放成功音效
-        window.audioManager.playSuccess();
+        audioManager.playSuccess();
         
         // 显示完成消息
         this.feedbackArea.innerHTML = `
