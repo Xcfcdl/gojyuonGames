@@ -210,12 +210,6 @@ class WhackAKanaGame {
         // 创建地鼠元素
         const mole = document.createElement('div');
         mole.className = 'mole';
-        // 随机选择地鼠图片
-        const mouseImgs = [
-            "url('../../image/mouse.svg')",
-            "url('../../image/mouse2.svg')"
-        ];
-        mole.style.backgroundImage = mouseImgs[Math.floor(Math.random() * mouseImgs.length)];
         mole.innerHTML = `<span class="kana-on-mole">${kana}</span>`;
         mole.dataset.kana = kana;
         
