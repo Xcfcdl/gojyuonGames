@@ -13,8 +13,14 @@
             <div class="logo">
                 <h1><i class="fas fa-keyboard"></i> 假名打字练习</h1>
             </div>
+            <div class="header-actions" style="display:flex;gap:8px;align-items:center;">
+                <button id="end-game-btn" style="display:none;">结束本轮/返回题库</button>
+                <button id="go-home-btn">回到主页</button>
+            </div>
         </nav>
     </header>
+    <!-- header 展开按钮 -->
+    <button id="expand-header-btn" style="display:none;position:fixed;top:10px;left:10px;z-index:1000;">展开菜单</button>
     <main>
         <!-- 游戏说明弹窗 -->
         <div id="game-instruction-modal" class="modal show">
@@ -77,10 +83,28 @@
                 <div>连对数：<span id="streak">0</span></div>
             </div>
         </section>
+        <!-- 错题列表区域 -->
+        <div id="wrong-list-section">
+            <h3>错题列表</h3>
+            <table id="wrong-list-table">
+                <thead>
+                    <tr>
+                        <th>假名</th>
+                        <th>罗马音</th>
+                        <th>你的输入</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </main>
     <footer>
         <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+        <button id="clear-wrong-list-btn" style="margin-top:8px;">清空错题本</button>
     </footer>
+    <!-- footer 展开按钮 -->
+    <button id="expand-footer-btn" style="display:none;position:fixed;bottom:10px;left:10px;z-index:1000;">展开底部</button>
     <script src="../assets/js/games/common/audioManager.js"></script>
     <script type="module" src="../assets/js/games/typing.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>

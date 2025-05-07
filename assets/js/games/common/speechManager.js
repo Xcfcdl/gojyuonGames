@@ -125,13 +125,36 @@ class SpeechManager {
             throw error;
         }
     }
-    async speakKana(kana) {
-        console.log('[SpeechManager] speakKana called with:', kana);
+    /**
+     * 支持假名字符或罗马音
+     */
+    async speakKana(kanaOrRomaji) {
+        let kana = kanaOrRomaji;
+        // 如果传入的是罗马音，尝试查找对应的假名
+        if (/^[a-zA-Z]+$/.test(kanaOrRomaji)) {
+            // 遍历 kanaMapping.basic/dakuon/youon，找到第一个匹配的假名
+            if (this.kanaMapping) {
+                const findKana = (group) => {
+                    for (const [k, v] of Object.entries(group)) {
+                        if (v === kanaOrRomaji) return k;
+                    }
+                    return null;
+                };
+                kana = findKana(this.kanaMapping.basic)
+                    || findKana(this.kanaMapping.dakuon)
+                    || findKana(this.kanaMapping.youon)
+                    || findKana(this.kanaMapping.katakana);
+            }
+        }
+        if (!kana) {
+            console.warn('[SpeechManager] No kana found for input:', kanaOrRomaji);
+            return;
+        }
         const audioPath = this.getAudioPath(kana);
+        console.log('[SpeechManager] speakKana called with:', kanaOrRomaji, '->', kana);
         console.log('[SpeechManager] getAudioPath result:', audioPath);
         if (audioPath) {
             try {
-                console.log('[SpeechManager] playLocalAudio will be called with:', audioPath);
                 await this.playLocalAudio(audioPath);
                 console.log('[SpeechManager] playLocalAudio finished');
             } catch (e) {

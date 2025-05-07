@@ -1,5 +1,8 @@
 import audioManager from '../common/audioManager.js';
 import WritingCanvas from '../common/writingCanvas.js';
+import SpeechManager from '../common/speechManager.js';
+
+const speechManager = new SpeechManager();
 
 class WhackAKanaGame {
     constructor() {
@@ -72,10 +75,10 @@ class WhackAKanaGame {
         
         // 音效切换按钮
         this.soundButton.addEventListener('click', () => {
-            window.audioManager.toggleSoundEffects();
+            audioManager.toggleSoundEffects();
             this.updateSoundButtonState();
             // 更新按钮文本
-            const isMuted = window.audioManager.areSoundEffectsMuted();
+            const isMuted = audioManager.areSoundEffectsMuted();
             this.soundButton.textContent = isMuted ? '开启音效' : '关闭音效';
         });
         
@@ -193,7 +196,7 @@ class WhackAKanaGame {
     }
     
     updateSoundButtonState() {
-        const isMuted = window.audioManager.areSoundEffectsMuted();
+        const isMuted = audioManager.areSoundEffectsMuted();
         this.soundButton.textContent = isMuted ? '开启音效' : '关闭音效';
     }
     
@@ -217,7 +220,7 @@ class WhackAKanaGame {
         document.getElementById(holeId).appendChild(mole);
         
         // 播放假名发音
-        window.audioManager.playKanaSound(kana);
+        speechManager.speakKana(kana);
         
         // 记录活动地鼠
         this.activeHoles.push(holeId);
@@ -368,12 +371,12 @@ class WhackAKanaGame {
             }
             
             // 播放正确音效
-            window.audioManager.playCorrect();
+            audioManager.playCorrect();
         } else {
             this.comboCount = 0;
             
             // 播放错误音效
-            window.audioManager.playIncorrect();
+            audioManager.playIncorrect();
         }
         
         this.updateScoreDisplay();
@@ -443,8 +446,8 @@ window.onload = () => {
                 resultDisplay.classList.add('success');
                 setTimeout(() => resultDisplay.classList.remove('success'), 1500);
                 // 播放假名音频
-                if (window.audioManager && typeof window.audioManager.playKanaSound === 'function' && romaji) {
-                    window.audioManager.playKanaSound(romaji);
+                if (speechManager && typeof speechManager.speakKana === 'function' && romaji) {
+                    speechManager.speakKana(romaji);
                 }
                 // 检查是否与当前游戏中的假名匹配
                 if (window.game && typeof window.game.checkAnswer === 'function') {

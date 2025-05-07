@@ -1,6 +1,7 @@
 // 引入通用模块
 import { getKanaList, getKanaTable, getPresetKana } from './common/dataLoader.js';
 import SpeechManager from './common/speechManager.js';
+import audioManager from './common/audioManager.js';
 
 // DOM 元素
 const modal = document.getElementById('game-instruction-modal');
@@ -29,6 +30,11 @@ const fastestTimeSpan = document.getElementById('fastest-time');
 const slowestTimeSpan = document.getElementById('slowest-time');
 const streakSpan = document.getElementById('streak');
 const realStartBtn = document.getElementById('real-start-btn');
+const expandHeaderBtn = document.getElementById('expand-header-btn');
+const clearWrongListBtn = document.getElementById('clear-wrong-list-btn');
+const endGameBtn = document.getElementById('end-game-btn');
+const goHomeBtn = document.getElementById('go-home-btn');
+const expandFooterBtn = document.getElementById('expand-footer-btn');
 
 // 游戏状态
 let selectedKana = [];
@@ -43,6 +49,7 @@ let stats = {
     fastest: null,
     slowest: null,
     perQuestion: [],
+    wrongList: loadWrongListFromStorage() // 初始化时从本地加载
 };
 let questionStartTime = null;
 let delay = 0.5;
@@ -53,6 +60,26 @@ let currentPreset = null;
 
 // 创建 SpeechManager 实例
 const speechManager = new SpeechManager();
+
+// 本地存储 key
+const WRONG_LIST_KEY = 'kana_typing_wrong_list';
+
+// 载入本地错题本
+function loadWrongListFromStorage() {
+    try {
+        const data = localStorage.getItem(WRONG_LIST_KEY);
+        if (data) {
+            return JSON.parse(data);
+        }
+    } catch (e) {}
+    return [];
+}
+// 保存错题本到本地
+function saveWrongListToStorage() {
+    try {
+        localStorage.setItem(WRONG_LIST_KEY, JSON.stringify(stats.wrongList));
+    } catch (e) {}
+}
 
 // 说明弹窗逻辑
 startBtn.onclick = () => {
@@ -147,13 +174,19 @@ function startGame() {
         fastest: null,
         slowest: null,
         perQuestion: [],
+        wrongList: loadWrongListFromStorage() // 新游戏时也从本地加载
     };
     gameSection.style.display = 'block';
     kanaSelectSection.style.display = 'none';
     settingsSection.style.display = 'none';
     header.classList.add('collapsed');
+    updateHeaderCollapseState();
     footer.classList.add('collapsed');
+    updateFooterCollapseState();
     nextQuestion();
+    updateWrongList();
+    // 显示结束游戏按钮
+    endGameBtn.style.display = 'inline-block';
 }
 
 // 题目流程
@@ -204,18 +237,26 @@ function checkAnswer() {
         stats.correct++;
         stats.streak++;
         if (stats.streak > stats.maxStreak) stats.maxStreak = stats.streak;
-        window.audioManager.playCorrect();
+        audioManager.playCorrect();
         romajiInput.className = 'correct';
         feedbackMsg.textContent = '正确！';
         feedbackMsg.className = 'correct';
     } else {
         stats.streak = 0;
-        if (window.audioManager && typeof window.audioManager.playIncorrect === 'function') {
-            window.audioManager.playIncorrect();
+        if (audioManager && typeof audioManager.playIncorrect === 'function') {
+            audioManager.playIncorrect();
         }
         romajiInput.className = 'incorrect';
         feedbackMsg.textContent = `错误，正确答案：${answer}`;
         feedbackMsg.className = 'incorrect';
+        // 记录错题
+        stats.wrongList.push({
+            kana: currentKana.hiragana || currentKana.katakana || currentKana.romaji,
+            romaji: currentKana.romaji,
+            input: userInput
+        });
+        updateWrongList();
+        saveWrongListToStorage();
     }
     updateStats();
     setTimeout(nextQuestion, delay * 1000);
@@ -242,9 +283,89 @@ romajiInput.addEventListener('focus', () => {
     }, 200);
 });
 
+// 更新 header 折叠状态时显示/隐藏展开按钮
+function updateHeaderCollapseState() {
+    if (header.classList.contains('collapsed')) {
+        expandHeaderBtn.style.display = 'block';
+    } else {
+        expandHeaderBtn.style.display = 'none';
+    }
+}
+expandHeaderBtn.onclick = () => {
+    header.classList.remove('collapsed');
+    updateHeaderCollapseState();
+};
+
+// 更新 footer 折叠状态时显示/隐藏展开按钮
+function updateFooterCollapseState() {
+    if (footer.classList.contains('collapsed')) {
+        expandFooterBtn.style.display = 'block';
+    } else {
+        expandFooterBtn.style.display = 'none';
+    }
+}
+expandFooterBtn.onclick = () => {
+    footer.classList.remove('collapsed');
+    updateFooterCollapseState();
+};
+
 // 初始化
 window.dataLoader.init().then(() => {
     bindPresetBtns();
     renderKanaTable();
     realStartBtn.onclick = startGame;
-}); 
+});
+
+function updateWrongList() {
+    const tbody = document.querySelector('#wrong-list-table tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    stats.wrongList.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${item.kana}</td><td>${item.romaji}</td><td>${item.input}</td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+// 清空错题本按钮
+if (clearWrongListBtn) {
+    clearWrongListBtn.onclick = () => {
+        if (confirm('确定要清空错题本吗？')) {
+            stats.wrongList = [];
+            saveWrongListToStorage();
+            updateWrongList();
+        }
+    };
+}
+
+// 在每次 header 折叠/展开时调用
+updateHeaderCollapseState();
+
+// 在每次 footer 折叠/展开时调用
+updateFooterCollapseState();
+
+// 页面加载时渲染错题本
+updateWrongList();
+
+// 结束游戏并返回题库选择区
+function endGameAndReturnToSelect() {
+    gameSection.style.display = 'none';
+    kanaSelectSection.style.display = 'block';
+    settingsSection.style.display = 'block';
+    header.classList.remove('collapsed');
+    updateHeaderCollapseState();
+    footer.classList.remove('collapsed');
+    updateFooterCollapseState();
+    endGameBtn.style.display = 'none';
+}
+
+// 主页跳转
+if (goHomeBtn) {
+    goHomeBtn.onclick = () => {
+        window.location.href = '/';
+    };
+}
+
+if (endGameBtn) {
+    endGameBtn.onclick = endGameAndReturnToSelect;
+} 
