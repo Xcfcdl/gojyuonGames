@@ -1,6 +1,10 @@
 /**
  * 听音选字游戏核心逻辑
  */
+import AudioManager from '../common/audioManager.js';
+import SpeechManager from '../common/speechManager.js';
+import DataLoader from '../common/dataLoader.js';
+
 class KanaListeningGame {
     constructor() {
         // 游戏状态
@@ -43,7 +47,7 @@ class KanaListeningGame {
     async init() {
         try {
             // 加载数据
-            const { kanaData, levels } = await dataLoader.init();
+            const { kanaData, levels } = await window.dataLoader.init();
             console.log('初始化游戏数据:', {
                 kanaGroups: Object.keys(kanaData),
                 totalLevels: levels.length
@@ -74,7 +78,7 @@ class KanaListeningGame {
             
             // 检查语音系统是否可用
             setTimeout(() => {
-                if (!speechManager.isReady()) {
+                if (!window.speechManager.isReady()) {
                     this.showTTSWarning();
                 } else {
                     this.enableGameStart();
@@ -159,7 +163,7 @@ class KanaListeningGame {
 
         // 背景音乐按钮
         this.bgmButton.addEventListener('click', () => {
-            const isPlaying = audioManager.toggleBgm();
+            const isPlaying = window.audioManager.toggleBgm();
             this.updateBgmButtonState(isPlaying);
         });
 
@@ -408,7 +412,7 @@ class KanaListeningGame {
         const kanaToSpeak = this.getKanaChar(this.currentKana);
         
         // 使用语音合成播放
-        speechManager.speak(kanaToSpeak)
+        window.speechManager.speak(kanaToSpeak)
             .then(() => {
                 // 播放完成后启用按钮
                 this.startButton.disabled = false;
@@ -538,9 +542,9 @@ class KanaListeningGame {
         // 更新分数
         if (isCorrect) {
             this.score++;
-            audioManager.playCorrect(); // 播放正确音效
+            window.audioManager.playCorrect(); // 播放正确音效
         } else {
-            audioManager.playIncorrect(); // 播放错误音效
+            window.audioManager.playIncorrect(); // 播放错误音效
         }
         
         // 更新分数显示
@@ -574,7 +578,7 @@ class KanaListeningGame {
         this.isGameActive = false;
         
         // 播放成功音效
-        audioManager.playSuccess();
+        window.audioManager.playSuccess();
         
         // 显示完成消息
         this.feedbackArea.innerHTML = `

@@ -8,14 +8,27 @@
     <link rel="stylesheet" href="../assets/css/games/whack-a-kana.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="../index.html"><i class="fas fa-language"></i> 五十音図游戏</a></h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </nav>
+    </header>
     <div class="game-container">
-        <header class="game-header">
-            <h1>假名打地鼠</h1>
+        <div class="header-area">
+            <h2><i class="fas fa-hammer"></i> 假名打地鼠</h2>
+            <div class="game-description">
+                <p>点击出现的假名地鼠得分，支持多种难度和模式</p>
+            </div>
             <div class="game-info">
                 <div class="score">得分: <span id="score">0</span></div>
                 <div class="timer">时间: <span id="timer">--</span></div>
             </div>
-        </header>
+        </div>
         
         <main class="game-main">
             <div class="whack-area" id="whack-area">
@@ -47,6 +60,7 @@
             <button id="start-game">开始游戏</button>
             <button id="sound-toggle">音效</button>
             <button id="instructions-btn">游戏说明</button>
+            <button class="footer-expand-btn" style="display:none;">展开</button>
         </footer>
         
         <!-- 游戏说明弹窗 -->
@@ -72,8 +86,6 @@
     <script src="../assets/js/games/whack-a-kana/handwriting.js"></script>
     <script src="../assets/js/games/whack-a-kana/handwriting.canvas.js"></script>
     
-    <script src="../assets/js/games/whack-a-kana/game.js"></script>
-    <script src="../assets/js/games/whack-a-kana/canvas.js"></script>
-    <script src="../assets/js/games/whack-a-kana/audio.js"></script>
+    <script type="module" src="../assets/js/games/whack-a-kana/game.js"></script>
 </body>
 </html>

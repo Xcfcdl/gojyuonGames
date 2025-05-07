@@ -32,6 +32,7 @@
     background-color: #8B4513;
     border-radius: 50%;
     overflow: hidden;
+
 }
 
 .writing-area {
@@ -118,7 +119,10 @@ button:hover {
     left: 10px;
     width: 80px;
     height: 80px;
-    background-color: #f5f5dc;
+    background-image: url('../../image/mouse.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom 10px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -198,108 +202,206 @@ button:hover {
     line-height: 1.6;
 }
 
-/* 响应式设计 */
+/* 优化 header 区域 */
+.header-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 18px 0 10px 0;
+    gap: 8px;
+}
+.header-area h2 {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.header-area .game-description {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+.header-area .game-info {
+    display: flex;
+    gap: 32px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    background: #f7f7f7;
+    border-radius: 8px;
+    padding: 6px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+/* 主内容区卡片感 */
+.game-main {
+    background: #fafbfc;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 24px 18px 18px 18px;
+    margin-bottom: 18px;
+}
+
+.whack-area {
+    margin-top: 10px;
+    margin-bottom: 18px;
+}
+
+.writing-area {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    padding: 16px 0 10px 0;
+    margin-bottom: 24px;
+}
+
+/* game-footer 优化 */
+.game-footer {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    margin-top: 10px;
+    padding: 10px 0;
+}
+
+.difficulty-selector {
+    gap: 10px;
+}
+.difficulty-btn {
+    font-size: 1rem;
+    border: 1px solid #4CAF50;
+    background: #fff;
+    color: #4CAF50;
+    transition: background 0.2s, color 0.2s;
+}
+.difficulty-btn.active, .difficulty-btn:hover {
+    background: #4CAF50;
+    color: #fff;
+}
+
+button {
+    font-size: 1rem;
+    min-width: 90px;
+    min-height: 38px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+/* 响应式优化 */
 @media (max-width: 768px) {
-    .game-container {
-        padding: 15px;
+    .header-area {
+        padding: 10px 0 6px 0;
+        margin-bottom: 12px;
     }
-    
-    .whack-area {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
+    .game-main {
+        padding: 12px 4px 10px 4px;
     }
-    
-    .hole {
-        width: 70px;
-        height: 70px;
+    .writing-area {
+        padding: 10px 0 6px 0;
+        margin-bottom: 12px;
     }
-    
-    .mole {
-        width: 64px;
-        height: 64px;
-        top: 8px;
-        left: 8px;
-        font-size: 20px;
+    .game-footer {
+        padding: 6px 0;
     }
-    
-    button {
-        padding: 10px 18px;
-        font-size: 16px;
-        min-width: 80px;
-    }
-    
     .difficulty-btn {
-        padding: 8px 12px;
+        min-width: 60px;
+        font-size: 0.95rem;
     }
-    
-    #writing-canvas {
-        width: 250px;
-        height: 250px;
+}
+@media (max-width: 480px) {
+    .header-area h2 {
+        font-size: 1.2rem;
+    }
+    .header-area .game-info {
+        font-size: 0.95rem;
+        gap: 12px;
+        padding: 4px 8px;
+    }
+    .game-main {
+        padding: 4px 0 4px 0;
+    }
+    .writing-area {
+        padding: 6px 0 4px 0;
+    }
+    .game-footer {
+        padding: 4px 0;
+    }
+    .difficulty-btn {
+        min-width: 44px;
+        font-size: 0.9rem;
+    }
+    .whack-area {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5px;
+    }
+    .hole {
+        width: 56px;
+        height: 56px;
+    }
+    .mole {
+        width: 44px;
+        height: 44px;
+        top: 6px;
+        left: 6px;
+        font-size: 1rem;
+    }
+    .game-container {
+        padding: 4px;
+    }
+    .game-main {
+        padding: 2px 0 2px 0;
+    }
+    .game-footer {
+        flex-direction: column;
+        gap: 8px;
+        padding: 4px 0;
+    }
+    .difficulty-btn, .game-footer button {
+        min-width: 80px;
+        min-height: 38px;
+        font-size: 1rem;
+        padding: 10px 0;
+    }
+    .writing-area {
+        padding: 4px 0 2px 0;
     }
 }
 
-@media (max-width: 480px) {
-    .game-header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .whack-area {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5px;
-    }
-    
-    .hole {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .mole {
-        width: 56px;
-        height: 56px;
-        top: 7px;
-        left: 7px;
-        font-size: 18px;
-        max-width: 56px; /* 防止溢出 */
-        max-height: 56px; /* 防止溢出 */
-    }
-    
-    .game-footer {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .game-footer.minimized {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 5px;
-        background: rgba(255,255,255,0.9);
-        transform: translateY(80%);
-        transition: transform 0.3s ease;
-    }
-    
-    .game-footer.minimized:hover {
-        transform: translateY(0);
-    }
-    
-    .difficulty-selector {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-    
-    button {
-        padding: 12px 20px;
-        font-size: 16px;
-        min-width: 100px;
-        min-height: 44px; /* 增加按钮高度，便于触摸 */
-    }
-    
-    #writing-canvas {
-        width: 200px;
-        height: 200px;
-    }
+.game-footer.minimized {
+    max-height: 38px !important;
+    height: 38px !important;
+    opacity: 1;
+    overflow: visible;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s, padding 0.3s, margin 0.3s, height 0.3s;
+    pointer-events: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.game-footer.minimized > *:not(.footer-expand-btn) {
+    display: none !important;
+}
+.footer-expand-btn {
+    display: none;
+    width: 80px;
+    height: 32px;
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 16px 16px 0 0;
+    font-size: 1rem;
+    position: relative;
+    margin-top: 2px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    z-index: 2;
+}
+.game-footer.minimized .footer-expand-btn {
+    display: block !important;
 }

@@ -1,3 +1,6 @@
+import AudioManager from '../common/audioManager.js';
+import WritingCanvas from '../common/writingCanvas.js';
+
 class WhackAKanaGame {
     constructor() {
         // 游戏状态
@@ -19,6 +22,8 @@ class WhackAKanaGame {
         this.soundButton = document.getElementById('sound-toggle');
         this.difficultyButtons = document.querySelectorAll('.difficulty-btn');
         this.writingArea = document.querySelector('.writing-area');
+        this.footer = document.querySelector('.game-footer');
+        this.footerExpandBtn = document.querySelector('.footer-expand-btn');
         
         // 绑定事件
         this.bindEvents();
@@ -67,12 +72,20 @@ class WhackAKanaGame {
         
         // 音效切换按钮
         this.soundButton.addEventListener('click', () => {
-            audioManager.toggleSoundEffects();
+            window.audioManager.toggleSoundEffects();
             this.updateSoundButtonState();
             // 更新按钮文本
-            const isMuted = audioManager.areSoundEffectsMuted();
+            const isMuted = window.audioManager.areSoundEffectsMuted();
             this.soundButton.textContent = isMuted ? '开启音效' : '关闭音效';
         });
+        
+        // footer 展开按钮
+        if (this.footerExpandBtn) {
+            this.footerExpandBtn.addEventListener('click', () => {
+                this.footer.classList.remove('minimized');
+                this.footerExpandBtn.style.display = 'none';
+            });
+        }
     }
     
     loadGameData() {
@@ -108,7 +121,9 @@ class WhackAKanaGame {
         
         // 在移动端最小化footer
         if (this.isMobile) {
-            document.querySelector('.game-footer').classList.add('minimized');
+            this.footer.classList.add('minimized');
+            this.footerExpandBtn.style.display = '';
+            document.querySelector('.game-main').style.marginBottom = '8px';
         }
         
         // 开始计时
@@ -128,10 +143,11 @@ class WhackAKanaGame {
         // 清除所有活动地鼠
         this.clearAllMoles();
         
-        // 在移动设备上显示写字面板
+        // 在移动设备上显示footer
         if (this.isMobile) {
-          
-            document.querySelector('.game-footer').classList.remove('minimized');
+            this.footer.classList.remove('minimized');
+            this.footerExpandBtn.style.display = 'none';
+            document.querySelector('.game-main').style.marginBottom = '';
         }
         
         // 更新UI
@@ -177,7 +193,7 @@ class WhackAKanaGame {
     }
     
     updateSoundButtonState() {
-        const isMuted = audioManager.areSoundEffectsMuted();
+        const isMuted = window.audioManager.areSoundEffectsMuted();
         this.soundButton.textContent = isMuted ? '开启音效' : '关闭音效';
     }
     
@@ -194,14 +210,14 @@ class WhackAKanaGame {
         // 创建地鼠元素
         const mole = document.createElement('div');
         mole.className = 'mole';
-        mole.textContent = kana;
+        mole.innerHTML = `<span class="kana-on-mole">${kana}</span>`;
         mole.dataset.kana = kana;
         
         // 添加到坑位
         document.getElementById(holeId).appendChild(mole);
         
         // 播放假名发音
-        audioManager.playKanaSound(kana);
+        window.audioManager.playKanaSound(kana);
         
         // 记录活动地鼠
         this.activeHoles.push(holeId);
@@ -352,12 +368,12 @@ class WhackAKanaGame {
             }
             
             // 播放正确音效
-            audioManager.playCorrectSound();
+            window.audioManager.playCorrect();
         } else {
             this.comboCount = 0;
             
             // 播放错误音效
-            audioManager.playIncorrectSound();
+            window.audioManager.playIncorrect();
         }
         
         this.updateScoreDisplay();
@@ -392,4 +408,50 @@ class WhackAKanaGame {
 // 初始化游戏
 window.onload = () => {
     window.game = new WhackAKanaGame();
+    // 初始化手写识别
+    window.writingCanvas = new WritingCanvas('writing-canvas');
+    // 绑定清除按钮
+    const clearBtn = document.getElementById('clear-canvas');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => window.writingCanvas.clear());
+    }
+    // 绑定识别按钮
+    const recognizeBtn = document.getElementById('recognize-kana');
+    if (recognizeBtn) {
+        recognizeBtn.addEventListener('click', () => {
+            window.writingCanvas.recognizeKana();
+            window.writingCanvas.setCallBack((results, err) => {
+                const resultDisplay = document.getElementById('recognition-result');
+                if (err || !results || results.length === 0) {
+                    resultDisplay.textContent = '无法识别，请重试';
+                    resultDisplay.classList.add('error');
+                    setTimeout(() => resultDisplay.classList.remove('error'), 1500);
+                    return;
+                }
+                const kana = results[0];
+                let romaji = '';
+                if (window.writingCanvas.kanaMapping) {
+                    if (window.writingCanvas.kanaMapping.basic[kana]) {
+                        romaji = window.writingCanvas.kanaMapping.basic[kana];
+                    } else if (window.writingCanvas.kanaMapping.dakuon[kana]) {
+                        romaji = window.writingCanvas.kanaMapping.dakuon[kana];
+                    } else if (window.writingCanvas.kanaMapping.youon[kana]) {
+                        romaji = window.writingCanvas.kanaMapping.youon[kana];
+                    }
+                }
+                resultDisplay.textContent = `识别结果: ${kana} (${romaji || '未知'})`;
+                resultDisplay.classList.add('success');
+                setTimeout(() => resultDisplay.classList.remove('success'), 1500);
+                // 播放假名音频
+                if (window.audioManager && typeof window.audioManager.playKanaSound === 'function' && romaji) {
+                    window.audioManager.playKanaSound(romaji);
+                }
+                // 检查是否与当前游戏中的假名匹配
+                if (window.game && typeof window.game.checkAnswer === 'function') {
+                    window.game.checkAnswer(kana);
+                    setTimeout(() => window.writingCanvas.clear(), 500);
+                }
+            });
+        });
+    }
 };

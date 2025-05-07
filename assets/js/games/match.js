@@ -1,4 +1,6 @@
- // 假名消消乐核心逻辑
+import SpeechManager from './common/speechManager.js';
+
+// 假名消消乐核心逻辑
 
 const DIFFICULTY_MAP = {
     3: 9,
@@ -104,7 +106,7 @@ function onBtnClick(btn, kana) {
     btn.classList.remove('hidden', 'incorrect');
     btn.classList.add('pulse');
     btn.textContent = kana;
-    speechManager.speak(kana);
+    window.speechManager.speak(kana);
     setTimeout(() => btn.classList.remove('pulse'), 300);
 
     if (!firstBtn) {
@@ -174,8 +176,18 @@ function checkMatch() {
 
 function showCompleteModal() {
     // 播放音效
-    audioCorrect.currentTime = 0;
-    audioCorrect.play();
+    let audioSuccess = document.getElementById('audio-success');
+    if (!audioSuccess) {
+        audioSuccess = document.createElement('audio');
+        audioSuccess.id = 'audio-success';
+        audioSuccess.src = '../assets/audio/success.mp3';
+        audioSuccess.preload = 'auto';
+        document.body.appendChild(audioSuccess);
+    }
+    audioSuccess.currentTime = 0;
+    audioSuccess.volume = 0.1;
+   
+    audioSuccess.play();
     // 避免重复弹窗
     if (document.querySelector('.match-modal-mask')) return;
     // 彩纸canvas
