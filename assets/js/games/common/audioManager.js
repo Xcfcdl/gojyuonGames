@@ -95,42 +95,7 @@ class AudioManager {
         this.sounds.success.volume = 0.3;
         this.sounds.success.play().catch(e => {});
     }
-
-    // 假名发音（支持平假名、片假名、浊音、拗音）
-    playKanaSound(kana) {
-        if (!this.enableKana || this.areSoundEffectsMuted) return;
-        let romajiCode = kana;
-        // 检查是否是日文假名字符
-        if (/^[\u3040-\u309F\u30A0-\u30FF]$/.test(kana)) {
-            // 是假名字符
-            if (!this.kanaMappingLoaded) {
-                this.loadKanaMapping();
-                setTimeout(() => this.playKanaSound(kana), 200);
-                return;
-            }
-            if (this.kanaMapping) {
-                if (this.kanaMapping.basic && this.kanaMapping.basic[kana]) {
-                    romajiCode = this.kanaMapping.basic[kana];
-                } else if (this.kanaMapping.dakuon && this.kanaMapping.dakuon[kana]) {
-                    romajiCode = this.kanaMapping.dakuon[kana];
-                } else if (this.kanaMapping.youon && this.kanaMapping.youon[kana]) {
-                    romajiCode = this.kanaMapping.youon[kana];
-                } else if (this.kanaMapping.katakana && this.kanaMapping.katakana[kana]) {
-                    romajiCode = this.kanaMapping.katakana[kana];
-                } else {
-                    // console.error(`未找到假名${kana}的罗马音映射`);
-                    return;
-                }
-            }
-        }
-        // 检查缓存
-        if (!this.kanaAudioCache[romajiCode]) {
-            this.kanaAudioCache[romajiCode] = new Audio(this.basePath + 'kana/' + romajiCode + '.mp3');
-        }
-        this.kanaAudioCache[romajiCode].play().catch(e => {});
-    }
 }
 
 // 推荐全局单例
-window.audioManager = new AudioManager();
-export default AudioManager; 
+window.audioManager = new AudioManager(); 

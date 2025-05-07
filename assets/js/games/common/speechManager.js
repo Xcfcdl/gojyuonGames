@@ -125,6 +125,22 @@ class SpeechManager {
             throw error;
         }
     }
+    async speakKana(kana) {
+        console.log('[SpeechManager] speakKana called with:', kana);
+        const audioPath = this.getAudioPath(kana);
+        console.log('[SpeechManager] getAudioPath result:', audioPath);
+        if (audioPath) {
+            try {
+                console.log('[SpeechManager] playLocalAudio will be called with:', audioPath);
+                await this.playLocalAudio(audioPath);
+                console.log('[SpeechManager] playLocalAudio finished');
+            } catch (e) {
+                console.error('[SpeechManager] playLocalAudio error:', e);
+            }
+        } else {
+            console.warn('[SpeechManager] No audioPath found for kana:', kana);
+        }
+    }
     cancel() {
         if (this.synth) {
             this.synth.cancel();

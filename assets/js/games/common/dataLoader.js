@@ -89,4 +89,21 @@ class DataLoader {
 
 // 推荐全局单例
 window.dataLoader = new DataLoader();
-export default DataLoader; 
+export default DataLoader;
+
+export function getKanaList() {
+    // 展平成一维数组
+    if (!window.dataLoader.kanaData) return [];
+    return Object.values(window.dataLoader.kanaData).flat();
+}
+
+export function getKanaTable() {
+    // 返回二维数组
+    if (!window.dataLoader.kanaData) return [];
+    return Object.values(window.dataLoader.kanaData);
+}
+
+export function getPresetKana(preset) {
+    // 这里只做简单示例，实际可根据 preset 筛选
+    return getKanaList().map(k => k.romaji);
+} 
