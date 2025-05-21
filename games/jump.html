@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五十音跳一跳 - 日语假名学习</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/games/jump.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-language"></i> 五十音図ゲーム</h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">返回首页</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="jump-header">
+            <div class="jump-score">分数：<span id="jump-score">0</span></div>
+            <div class="jump-progress">进度：<span id="jump-progress">1</span></div>
+        </div>
+        <div class="jump-mode-select" id="jump-mode-select">
+            <!-- 模式选择按钮 -->
+        </div>
+        <div class="jump-board">
+            <div class="jump-future-row" id="jump-future-row">
+                <!-- 未来两个假名 -->
+            </div>
+            <div class="jump-candidate-row" id="jump-candidate-row">
+                <!-- 当前可选两个假名 -->
+            </div>
+            <div class="jump-row" id="jump-current-row">
+                <!-- 当前假名 -->
+            </div>
+        </div>
+        <div class="jump-controls">
+            <button id="jump-btn-pause" class="jump-mode-btn"><i class="fas fa-pause"></i> 暂停</button>
+            <button id="jump-btn-reset" class="jump-mode-btn"><i class="fas fa-redo"></i> 重置</button>
+            <button id="jump-btn-exit" class="jump-mode-btn"><i class="fas fa-sign-out-alt"></i> 退出</button>
+        </div>
+        <!-- 弹窗 -->
+        <div id="jump-modal" style="display:none;" class="modal-overlay">
+            <div class="modal-content">
+                <p id="jump-modal-message">你还没开始学习吗？乱选😡</p>
+                <button id="jump-modal-close" class="jump-mode-btn">关闭</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+    </footer>
+    <script type="module" src="../assets/js/games/jump.js"></script>
+</body>
+</html> 
