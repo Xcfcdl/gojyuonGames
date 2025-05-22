@@ -15,6 +15,7 @@
     <title>五十音图游戏集 - 日语假名学习</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- 多语言资源文件后续由JS动态加载 -->
 </head>
 <body>
     <header>
@@ -23,7 +24,15 @@
                 <h1><i class="fas fa-language"></i> 五十音図ゲーム</h1>
             </div>
             <div class="nav-links">
-                <a href="games/日语课堂教学辅助游戏.html" class="nav-aux-game-btn"><i class="fas fa-chalkboard-teacher"></i> 日语课堂教辅游戏</a>
+                <a href="games/日语课堂教学辅助游戏.html" class="nav-aux-game-btn" data-i18n="aux_game"><i class="fas fa-chalkboard-teacher"></i> 日语课堂教学辅助游戏</a>
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
                 <!-- 预留导航链接位置 -->
             </div>
         </nav>
@@ -31,202 +40,18 @@
 
     <main>
         <div class="hero-section">
-            <h2>通过游戏学习日语假名</h2>
-            <p>有趣、互动的方式掌握五十音图</p>
+            <h2 data-i18n="desc">通过游戏学习日语假名</h2>
+            <p data-i18n="desc_sub">有趣、互动的方式掌握五十音图</p>
         </div>
 
-        <section class="games-grid">
-            <!-- 听音选字游戏卡片 -->
-            <article class="game-card">
-                <div class="game-card-badge">推荐</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-headphones"></i> 听音选字</h2>
-                    <p>通过听力练习学习日语假名发音，提高听力识别能力</p>
-                    <a href="games/listening.html" class="start-button">开始游戏 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-             <!-- 假名消消乐游戏卡片 -->
-             <article class="game-card">
-                <div class="game-card-badge">新上线</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-th"></i> 假名消消乐</h2>
-                    <p>通过配对记忆和听音消除，巩固假名认知，支持多种难度和模式</p>
-                    <a href="games/match.html" class="start-button">开始游戏 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-            <article class="game-card">
-                <div class="game-card-badge">新上线</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-gamepad"></i> 假名打地鼠</h2>
-                    <p>听音写假名打地鼠游戏</p>
-                    <a href="games/whack-a-kana.html" class="start-button">开始游戏 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-            <!-- 预留其他游戏卡片位置（占位符） -->
-            <article class="game-card">
-                <div class="game-card-badge">新上线</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-keyboard"></i> 假名打字练习</h2>
-                    <p>提高假名输入速度，熟悉日语键盘布局</p>
-                    <a href="games/typing.html" class="start-button">开始游戏 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-            
-            <article class="game-card">
-                <div class="game-card-badge">新上线</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-shoe-prints"></i> 五十音跳一跳</h2>
-                    <p>根据五十音顺序跳跃，强化假名记忆</p>
-                    <a href="games/jump.html" class="start-button">开始游戏 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">即将推出</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-brain"></i> 记忆配对</h2>
-                    <p>通过记忆配对游戏加强对假名的记忆和识别</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <!-- 新增待定游戏项目 -->
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-link"></i> 五十音连连看</h2>
-                    <p>通过连连看游戏配对假名，提高记忆效果。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-clone"></i> 五十音翻翻乐</h2>
-                    <p>翻牌记忆游戏，记住假名和对应读音。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-puzzle-piece"></i> 五十音拼图</h2>
-                    <p>拼图游戏，将打乱的假名拼回正确位置。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-random"></i> 五十音接龙</h2>
-                    <p>接龙游戏，按照读音顺序连接假名。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-keyboard"></i> 五十音打字比赛</h2>
-                    <p>打字速度比赛，看谁最快输入正确的假名。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-volume-up"></i> 五十音听力挑战</h2>
-                    <p>听力游戏，听录音选择正确的假名。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-search"></i> 五十音找茬</h2>
-                    <p>找茬游戏，找出两幅图中不同的假名。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-pen"></i> 五十音填空</h2>
-                    <p>填空游戏，根据上下文填写正确的假名。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-brain"></i> 五十音记忆大挑战</h2>
-                    <p>记忆游戏，记住假名位置并进行复现。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-        
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-spell-check"></i> 五十音拼字游戏</h2>
-                    <p>拼字游戏，用假名拼出单词。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-sort-alpha-down"></i> 五十音排序</h2>
-                    <p>排序游戏，按照假名顺序排列。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-user-friends"></i> 五十音找朋友</h2>
-                    <p>配对游戏，找到读音相同的假名。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-map-signs"></i> 五十音迷宫</h2>
-                    <p>迷宫游戏，通过识别假名走出迷宫。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-circle"></i> 五十音泡泡龙</h2>
-                    <p>泡泡龙游戏，射出击破相同假名的泡泡。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-tetris"></i> 五十音俄罗斯方块</h2>
-                    <p>俄罗斯方块游戏，用假名代替方块。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-            
-            <article class="game-card coming-soon">
-                <div class="game-card-badge">待定</div>
-                <div class="game-card-content">
-                    <h2><i class="fas fa-paint-brush"></i> 五十音涂鸦</h2>
-                    <p>涂鸦游戏，用假名画出图案。</p>
-                    <a href="#" class="start-button disabled">敬请期待 <i class="fas fa-hourglass-half"></i></a>
-                </div>
-            </article>
-        </section>
+        <section class="games-grid" id="gamesGrid"></section>
     </main>
 
     <footer>
-        <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+        <p><i class="far fa-copyright"></i> <span data-i18n="copyright">2025 五十音図ゲーム - 版权所有</span></p>
     </footer>
-
+    <script src="assets/js/i18n.js"></script>
     <script src="assets/js/main.js"></script>
+    
 </body>
 </html>

@@ -38,7 +38,7 @@ const audioIncorrect = document.getElementById('audio-incorrect');
 
 // 载入假名数据
 let kanaMapping = null;
-fetch('../assets/audio/kana/kana_mapping.json')
+fetch(`../assets/audio/kana/kana_mapping.json?v=${new Date().getTime()}`)
     .then(res => res.json())
     .then(data => { kanaMapping = data; initGame(); });
 
@@ -201,9 +201,9 @@ function showCompleteModal() {
     mask.className = 'match-modal-mask';
     mask.innerHTML = `
       <div class="match-modal">
-        <h3>🎉 恭喜完成本局！</h3>
-        <div style="margin-bottom:1.2rem;">全部配对完成！</div>
-        <button class="modal-btn" id="modal-restart">再来一局</button>
+        <h3>🎉 ${window.langData[window.currentLang]?.match_complete_title || '恭喜完成本局！'}</h3>
+        <div style="margin-bottom:1.2rem;">${window.langData[window.currentLang]?.match_complete_message || '全部配对完成！'}</div>
+        <button class="modal-btn" id="modal-restart">${window.langData[window.currentLang]?.match_play_again_button || '再来一局'}</button>
       </div>
     `;
     document.body.appendChild(mask);
@@ -234,13 +234,16 @@ function showCompleteModal() {
             startVelocity: 30,
             ticks: 300
         };
-        const confetti = new ConfettiGenerator(confettiSettings);
-        confetti.render();
-        setTimeout(() => {
-            confetti.clear();
-            const canvas = document.getElementById('confetti-canvas');
-            if (canvas) canvas.remove();
-        }, 3000);
+        // 通过 window 访问 ConfettiGenerator，并确保它存在
+        if (typeof window.ConfettiGenerator === 'function') {
+            const confetti = new window.ConfettiGenerator(confettiSettings);
+            confetti.render();
+            setTimeout(() => {
+                confetti.clear();
+                const canvas = document.getElementById('confetti-canvas');
+                if (canvas) canvas.remove();
+            }, 3000);
+        }
     }, 100);
     // 关闭/再来一局
     mask.querySelector('#modal-restart').onclick = () => {

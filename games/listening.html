@@ -15,13 +15,22 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="../index.html"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+                <h1><a href="../index.html" data-i18n="title"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
             </div>
             <div class="nav-links">
                 <button id="bgm-toggle" class="bgm-button" title="背景音乐">
                     <i class="fas fa-music"></i>
                 </button>
-                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> 返回首页</a>
+                <!-- 添加语言切换下拉菜单 -->
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span data-i18n="back_home">返回首页</span></a>
             </div>
         </nav>
     </header>
@@ -29,20 +38,20 @@
     <main>
         <div id="game-container">
             <div class="header-area">
-                <h2><i class="fas fa-headphones"></i> 听音选字</h2>
+                <h2 data-i18n="game_listen_title"><i class="fas fa-headphones"></i> 听音选字</h2>
                 <div class="game-description">
-                    <p>听取假名发音，选择对应的假名字符</p>
+                    <p data-i18n="game_listen_desc">听取假名发音，选择对应的假名字符</p>
                 </div>
             </div>
             
             <div id="game-panel">
                 <div id="game-status">
                     <button class="level-info" id="current-level">
-                        <span>加载中...</span>
+                        <span data-i18n="loading">加载中...</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="score-info">
-                        <span id="current-score">得分: 0/0</span>
+                        <span data-i18n="score_label">得分:</span> <span id="score-value">0</span>/<span id="total-questions">0</span>
                     </div>
                 </div>
                 
@@ -50,27 +59,27 @@
                 <div class="level-selector" id="level-selector">
                     <div class="level-selector-content">
                         <div class="level-selector-header">
-                            <h3>选择关卡</h3>
-                            <button class="level-selector-close">
+                            <h3 data-i18n="select_level_title">选择关卡</h3>
+                            <button class="level-selector-close" data-i18n="close_button_title" title="关闭">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
                         
                         <!-- 关卡分类导航 -->
                         <div class="level-categories" id="level-categories">
-                            <button class="category-tab active" data-category="all">
+                            <button class="category-tab active" data-category="all" data-i18n="category_all">
                                 <i class="fas fa-th-large"></i> 全部关卡
                             </button>
-                            <button class="category-tab" data-category="basic">
+                            <button class="category-tab" data-category="basic" data-i18n="category_basic">
                                 <i class="fas fa-star"></i> 基础入门
                             </button>
-                            <button class="category-tab" data-category="intermediate">
+                            <button class="category-tab" data-category="intermediate" data-i18n="category_intermediate">
                                 <i class="fas fa-graduation-cap"></i> 进阶练习
                             </button>
-                            <button class="category-tab" data-category="advanced">
+                            <button class="category-tab" data-category="advanced" data-i18n="category_advanced">
                                 <i class="fas fa-trophy"></i> 高级挑战
                             </button>
-                            <button class="category-tab" data-category="master">
+                            <button class="category-tab" data-category="master" data-i18n="category_master">
                                 <i class="fas fa-crown"></i> 大师级
                             </button>
                         </div>
@@ -78,7 +87,7 @@
                         <div class="level-list" id="level-list">
                             <!-- 关卡列表将由 JavaScript 动态生成 -->
                             <div class="loading-message">
-                                <i class="fas fa-spinner fa-spin"></i> 正在加载关卡数据...
+                                <i class="fas fa-spinner fa-spin"></i> <span data-i18n="loading_levels">正在加载关卡数据...</span>
                             </div>
                         </div>
                     </div>
@@ -86,10 +95,10 @@
                 
                 <div id="game-area">
                     <div id="sound-control">
-                        <button id="start-game" class="sound-button primary" disabled>
+                        <button id="start-game" class="sound-button primary" disabled data-i18n="start_game">
                             <i class="fas fa-play"></i> はじめ
                         </button>
-                        <button id="repeat-sound" class="sound-button" disabled>
+                        <button id="repeat-sound" class="sound-button" disabled data-i18n="repeat_sound">
                             <i class="fas fa-redo"></i> 聞き直す
                         </button>
                     </div>
@@ -97,7 +106,7 @@
                     <div id="options-area">
                         <!-- 选项会动态生成 -->
                         <div class="placeholder-text">
-                            <p>ゲームデータを読み込んでいます...</p>
+                            <p data-i18n="loading_game_data">ゲームデータを読み込んでいます...</p>
                         </div>
                     </div>
                     
@@ -107,10 +116,10 @@
                 </div>
                 
                 <div id="controls-area">
-                    <button id="restart-game" class="control-button" disabled>
+                    <button id="restart-game" class="control-button" disabled data-i18n="restart_game">
                         <i class="fas fa-redo-alt"></i> はじめから
                     </button>
-                    <button id="next-level" class="control-button" disabled>
+                    <button id="next-level" class="control-button" disabled data-i18n="next_level">
                         <i class="fas fa-forward"></i> 次のレベル
                     </button>
                 </div>
@@ -119,11 +128,14 @@
     </main>
 
     <footer>
-        <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+        <p><i class="far fa-copyright"></i> <span data-i18n="copyright">2025 五十音図ゲーム - 版权所有</span></p>
     </footer>
 
     <!-- 加载游戏脚本 -->
-
-    <script type="module" src="../assets/js/games/listening/game.js"></script>
+    <script src="../assets/js/i18n.js"></script> <!-- 引入i18n脚本 -->
+    <script type="module" src="../assets/js/games/common/dataLoader.js"></script>
+    <script type="module" src="../assets/js/games/common/audioManager.js"></script>
+    <script type="module" src="../assets/js/games/common/speechManager.js"></script>
+    <script type="module" src="../assets/js/games/listening/game.js?v=${new Date().getTime()}"></script>
 </body>
 </html> 

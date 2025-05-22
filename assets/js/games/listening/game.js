@@ -23,7 +23,8 @@ class KanaListeningGame {
         
         // 元素引用
         this.levelDisplay = document.getElementById('current-level');
-        this.scoreDisplay = document.getElementById('current-score');
+        this.scoreValueDisplay = document.getElementById('score-value');
+        this.totalQuestionsDisplay = document.getElementById('total-questions');
         this.optionsArea = document.getElementById('options-area');
         this.feedbackArea = document.getElementById('feedback-area');
         this.startButton = document.getElementById('start-game');
@@ -42,7 +43,7 @@ class KanaListeningGame {
     }
     
     /**
-     * 初始化游戏
+     * 初始化游戏 (异步加载数据部分)
      */
     async init() {
         try {
@@ -58,47 +59,53 @@ class KanaListeningGame {
             
             // 验证数据完整性
             if (!this.validateGameData()) {
+                // 如果数据验证失败，尝试显示多语言错误信息
+                 const errorMessage = window.langData?.[window.currentLang]?.game_data_validation_error || '游戏数据验证失败';
+                 this.showMessage(errorMessage, 'error');
                 throw new Error('游戏数据验证失败');
             }
             
-            // 设置初始关卡
+            // 数据加载完成后，等待语言数据加载并在 langDataLoaded 事件中更新UI
+            // 设置初始关卡 (数据已加载，可以在此设置)
             this.currentLevelIndex = 0;
             this.loadLevel(this.currentLevelIndex);
-            
-            // 设置初始界面
-            this.updateLevelDisplay();
-            this.updateScoreDisplay();
-            this.disableGameControls();
-            
-            // 生成关卡列表
-            this.generateLevelList();
-            
-            // 绑定分类标签事件
-            this.bindCategoryEvents();
-            
-            // 检查语音系统是否可用
-            setTimeout(() => {
-                if (!window.speechManager.isReady()) {
-                    this.showTTSWarning();
-                } else {
-                    this.enableGameStart();
-                }
-            }, 1000);
 
             // 初始化背景音乐按钮状态
             this.updateBgmButtonState();
             
-            // 更新加载状态
-            this.optionsArea.innerHTML = '<div class="placeholder-text"><p>はじめをクリックして開始</p></div>';
-            
-            // 启用重新开始和下一关按钮
+            // 启用重新开始按钮（不受游戏活跃状态影响）
             this.restartButton.disabled = false;
-            this.updateNextLevelButton();
-            
+
         } catch (error) {
             console.error('游戏初始化失败:', error);
-            this.showMessage('游戏数据加载失败，请刷新页面重试', 'error');
+            // 在这里调用 showMessage 可能会在语言数据未加载时出错
+            // 更好的做法是，如果在数据加载阶段就失败，显示一个硬编码的错误消息或等待语言加载
+             const errorMessage = window.langData?.[window.currentLang]?.game_data_load_error || '游戏数据加载失败，请刷新页面重试';
+             this.showMessage(errorMessage, 'error');
         }
+    }
+    
+    /**
+     * 在语言数据加载或切换后更新游戏UI
+     */
+    updateGameUIForLang() {
+        console.log('Function: updateGameUIForLang called', { currentLang: window.currentLang });
+        // 设置初始界面 (语言数据加载后执行)
+        this.updateLevelDisplay();
+        // this.updateScoreDisplay(); // 分数显示不依赖语言，不需要在这里更新
+        this.disableGameControls(); // 禁用控制按钮，显示开始提示
+        
+        // 生成关卡列表 (依赖语言数据)
+        this.generateLevelList();
+
+        // 更新加载状态/placeholder文本 (依赖语言数据)
+        this.optionsArea.innerHTML = `<div class="placeholder-text"><p>${window.langData[window.currentLang]?.listening_placeholder || 'はじめをクリックして開始'}</p></div>`;
+        
+        // 更新下一关按钮状态 (不依赖语言，但在初始化时需要)
+        this.updateNextLevelButton();
+
+        // 更新开始按钮文本 (非游戏活跃状态下的文本)
+        this.startButton.innerHTML = `<i class="fas fa-play"></i> ${window.langData[window.currentLang]?.start_game || 'はじめ'}`;
     }
     
     /**
@@ -202,7 +209,8 @@ class KanaListeningGame {
         // 更新界面
         this.updateScoreDisplay();
         this.enableGameControls();
-        this.startButton.innerHTML = '<i class="fas fa-volume-up"></i> はじめ';
+        // 游戏开始后的按钮文本可能也需要多语言
+        this.startButton.innerHTML = `<i class="fas fa-volume-up"></i> ${window.langData[window.currentLang]?.listening_start_btn || 'はじめ'}`;
         
         // 开始第一题
         this.nextQuestion();
@@ -215,16 +223,20 @@ class KanaListeningGame {
         // 重置游戏状态
         this.score = 0;
         this.totalQuestions = 0;
-        this.isGameActive = true;
+        this.isGameActive = false; // 重新开始后游戏应该暂停，等待点击开始
+        this.currentKana = null; // 重置当前题目
         
         // 更新界面
         this.updateScoreDisplay();
-        this.enableGameControls();
-        this.startButton.innerHTML = '<i class="fas fa-volume-up"></i> はじめ';
-        this.feedbackArea.innerHTML = '';
+        // 禁用游戏控制，但保持开始按钮可用
+        this.disableGameControls();
+        // 重新开始按钮文本应该显示"开始"的多语言文本
+        this.startButton.innerHTML = `<i class="fas fa-play"></i> ${window.langData[window.currentLang]?.start_game || 'はじめ'}`;
+        this.feedbackArea.innerHTML = ''; // 清空反馈区
+        this.optionsArea.innerHTML = `<div class="placeholder-text"><p>${window.langData[window.currentLang]?.listening_placeholder || 'はじめをクリックして開始'}</p></div>`; // 显示placeholder
         
-        // 开始新的一题
-        this.nextQuestion();
+        // 不立即开始新的一题，等待用户点击开始按钮
+        // this.nextQuestion();
     }
     
     /**
@@ -246,7 +258,7 @@ class KanaListeningGame {
             // 拗音
             const youonRows = ['kya', 'sha', 'cha', 'nya', 'hya', 'mya', 'rya', 'gya', 'ja', 'bya', 'pya'];
             
-            console.log('开始加载关卡:', this.currentLevel.name);
+            console.log('开始加载关卡:', this.currentLevel[`name_${window.currentLang}`] || this.currentLevel.name);
             console.log('关卡行:', this.currentLevel.rows);
             
             // 根据关卡类型添加相应的假名
@@ -294,6 +306,10 @@ class KanaListeningGame {
                 console.warn('警告：現在のレベルには何もデータがありません！');
                 console.warn('利用可能なデータ：', Object.keys(this.kanaData));
             }
+        } else {
+            console.error('无效的关卡索引:', levelIndex);
+            // 显示错误信息，需要多语言化
+            this.showMessage((window.langData && window.langData.invalid_level_index_error) || '无效的关卡索引', 'error');
         }
     }
     
@@ -303,13 +319,13 @@ class KanaListeningGame {
      * @returns {string|null} 浊音行ID
      */
     getDakuonRow(basicRow) {
-        const dakuonMap = {
+        const mapping = {
             'ka': 'ga',
             'sa': 'za',
             'ta': 'da',
             'ha': 'ba'
         };
-        return dakuonMap[basicRow] || null;
+        return mapping[basicRow] || null;
     }
     
     /**
@@ -318,16 +334,12 @@ class KanaListeningGame {
      * @returns {string|null} 拗音行ID
      */
     getYouonRow(basicRow) {
-        const youonMap = {
-            'ka': 'kya',
-            'sa': 'sha',
-            'ta': 'cha',
-            'na': 'nya',
-            'ha': 'hya',
-            'ma': 'mya',
-            'ra': 'rya'
+        const mapping = {
+            'ki': 'kya',
+            'shi': 'sha',
+            'chi': 'cha'
         };
-        return youonMap[basicRow] || null;
+        return mapping[basicRow] || null;
     }
     
     /**
@@ -450,42 +462,21 @@ class KanaListeningGame {
         // 准备选项列表
         let options = [];
         
-        // 单行练习：显示该行的所有假名
-        if (this.currentLevel.rows.length === 1) {
-            if (this.currentLevel.type === 'mixed') {
-                // 混合模式：同时显示平假名和片假名选项
-                this.kanaData[this.currentLevel.rows[0]].forEach(kana => {
-                    if (kana.char) options.push(kana.char);
-                    if (kana.katakana) options.push(kana.katakana);
-                });
-            } else if (this.currentLevel.type === 'katakana') {
-                // 片假名模式：只显示片假名
-                options = this.kanaData[this.currentLevel.rows[0]]
-                    .filter(kana => kana.katakana)
-                    .map(kana => kana.katakana);
-            } else {
-                // 平假名模式：只显示平假名
-                options = this.kanaData[this.currentLevel.rows[0]]
-                    .filter(kana => kana.char)
-                    .map(kana => kana.char);
-            }
-        } 
-        // 多行混合练习：正确答案 + 随机干扰项
-        else {
-            // 首先添加正确答案
-            const correctChar = this.getKanaChar(this.currentKana);
-            options.push(correctChar);
+        // 首先添加正确答案
+        const correctChar = this.getKanaChar(this.currentKana);
+        options.push(correctChar);
+        
+        // 从当前关卡的所有假名中随机选择干扰项
+        // 确保干扰项与正确答案不同，并且不重复
+        const maxOptions = Math.min(6, this.levelKanas.length); // 最多显示6个选项，但不超过当前关卡总假名数
+        
+        while (options.length < maxOptions) {
+            const randomKana = this.getRandomKana(this.levelKanas);
+            const kanaChar = this.getKanaChar(randomKana);
             
-            // 随机选择不同的干扰项，总共显示6个选项
-            const maxOptions = Math.min(6, this.levelKanas.length);
-            
-            while (options.length < maxOptions) {
-                const randomKana = this.getRandomKana(this.levelKanas);
-                const kanaChar = this.getKanaChar(randomKana);
-                
-                if (kanaChar && !options.includes(kanaChar)) {
-                    options.push(kanaChar);
-                }
+            // 确保干扰项存在且与正确答案不同，并且不重复
+            if (kanaChar && kanaChar !== correctChar && !options.includes(kanaChar)) {
+                options.push(kanaChar);
             }
         }
         
@@ -557,8 +548,11 @@ class KanaListeningGame {
         if (isCorrect) {
             this.score++;
             audioManager.playCorrect(); // 播放正确音效
+            this.showMessage(window.langData[window.currentLang]?.listening_feedback_correct || '正确！', 'success');
         } else {
             audioManager.playIncorrect(); // 播放错误音效
+            const feedbackText = (window.langData[window.currentLang]?.listening_feedback_incorrect || '错误，正确答案是') + ` ${correctChar}`;
+            this.showMessage(feedbackText, 'error');
         }
         
         // 更新分数显示
@@ -624,6 +618,11 @@ class KanaListeningGame {
             this.updateScoreDisplay();
             this.updateNextLevelButton();
             this.nextQuestion();
+        } else {
+            // 所有关卡完成，需要多语言化
+            this.showMessage((window.langData && window.langData.all_levels_complete_message) || '恭喜你，完成了所有关卡！', 'info');
+            this.disableGameControls();
+            // 隐藏下一关按钮
         }
     }
     
@@ -631,10 +630,14 @@ class KanaListeningGame {
      * 更新关卡显示
      */
     updateLevelDisplay() {
+        // 显示当前关卡名称 (使用多语言)
         if (this.currentLevel) {
-            this.levelDisplay.querySelector('span').textContent = this.currentLevel.name;
+            // 使用多语言关卡名称，增加健壮的 fallback 逻辑
+            const levelName = this.currentLevel.name?.[window.currentLang] || this.currentLevel.name?.zh || this.currentLevel.name?.en || this.currentLevel.name?.ja || '未知关卡名称';
+            this.levelDisplay.textContent = levelName;
         } else {
-            this.levelDisplay.querySelector('span').textContent = "未开始";
+            // 使用多语言加载中文本或默认值
+            this.levelDisplay.textContent = window.langData?.[window.currentLang]?.loading || '加载中...';
         }
     }
     
@@ -642,7 +645,10 @@ class KanaListeningGame {
      * 更新分数显示
      */
     updateScoreDisplay() {
-        this.scoreDisplay.textContent = `正答数/回答数: ${this.score}/${this.totalQuestions} (目標: ${this.currentLevel ? this.currentLevel.requiredScore : 0})`;
+        if (this.scoreValueDisplay && this.totalQuestionsDisplay) {
+            this.scoreValueDisplay.textContent = this.score;
+            this.totalQuestionsDisplay.textContent = this.totalQuestions;
+        }
     }
     
     /**
@@ -688,7 +694,21 @@ class KanaListeningGame {
      * @param {string} type 消息类型 (info, error, success)
      */
     showMessage(message, type = 'info') {
-        this.feedbackArea.innerHTML = `<div class="message ${type}">${message}</div>`;
+        // 显示多语言消息 (message 可能已经是多语言文本，或者是一个key)
+        let displayMessage = message;
+        if (window.langData[window.currentLang]?.[message]) {
+             displayMessage = window.langData[window.currentLang][message];
+        }
+
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('feedback-message', type);
+        messageElement.textContent = displayMessage;
+        this.feedbackArea.appendChild(messageElement);
+
+        // 自动移除消息
+        setTimeout(() => {
+            messageElement.remove();
+        }, 3000);
     }
 
     /**
@@ -710,33 +730,58 @@ class KanaListeningGame {
      * @param {string} category 关卡分类
      */
     generateLevelList(category = 'all') {
-        const filteredLevels = category === 'all' 
-            ? this.levels 
-            : this.levels.filter(level => level.category === category);
+        const levelListContent = document.createElement('div');
+        levelListContent.classList.add('level-list-content');
 
-        this.levelList.innerHTML = filteredLevels.map((level, index) => `
-            <div class="level-item ${level.id === this.currentLevel?.id ? 'current' : ''}" 
-                 data-level="${level.id - 1}">
-                <div class="level-type ${level.type}">
-                    ${this.getLevelTypeText(level.type)}
-                </div>
-                <h4>${level.name}</h4>
-                <p>${level.description}</p>
-                <div class="level-progress">
-                    <i class="fas fa-star"></i>
-                    目標分数：${level.requiredScore}分
-                </div>
-            </div>
-        `).join('');
-
-        // 添加关卡点击事件
-        this.levelList.querySelectorAll('.level-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const levelIndex = parseInt(item.dataset.level);
-                this.switchLevel(levelIndex);
-                this.hideLevelSelector();
+        // 添加分类标签 (如果需要)
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 更新标签状态
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // 更新关卡列表
+                const category = tab.dataset.category;
+                this.generateLevelList(category);
             });
         });
+
+        // 生成关卡列表项
+        this.levels.forEach((level, index) => {
+            // 检查关卡是否属于当前分类
+            const filteredLevels = category === 'all' 
+                ? this.levels 
+                : this.levels.filter(l => l.category === category);
+
+            if (filteredLevels.includes(level)) {
+                const levelItem = document.createElement('div');
+                levelItem.classList.add('level-item');
+                if (index === this.currentLevelIndex) {
+                    levelItem.classList.add('active');
+                }
+                // 使用多语言关卡名称和描述，增加健壮的 fallback 逻辑
+                const levelName = level.name?.[window.currentLang] || level.name?.zh || level.name?.en || level.name?.ja || '未知关卡名称';
+                const levelDescription = level.description?.[window.currentLang] || level.description?.zh || level.description?.en || level.description?.ja || '无描述';
+
+                console.log(`Rendering level: ${level.id}, type: ${level.type}, category: ${level.category}`, { lang: window.currentLang, name: levelName, description: levelDescription });
+
+                levelItem.innerHTML = `
+                    <h4>${levelName}</h4>
+                    <p>${levelDescription}</p>
+                    <span class="level-type">${this.getLevelTypeText(level.type)}</span>
+                `;
+                levelItem.addEventListener('click', () => {
+                    this.switchLevel(index);
+                    this.hideLevelSelector();
+                });
+                levelListContent.appendChild(levelItem);
+            }
+        });
+
+        // 清空并添加新的列表
+        this.levelList.innerHTML = '';
+        this.levelList.appendChild(levelListContent);
     }
 
     /**
@@ -745,12 +790,19 @@ class KanaListeningGame {
      * @returns {string} 显示文本
      */
     getLevelTypeText(type) {
-        const types = {
-            'hiragana': 'ひらがな',
-            'katakana': 'カタカナ',
-            'mixed': 'ミックス'
-        };
-        return types[type] || '';
+        // 根据类型返回多语言文本
+        switch (type) {
+            case 'basic':
+                return window.langData[window.currentLang]?.level_type_basic || '基本';
+            case 'dakuon':
+                return window.langData[window.currentLang]?.level_type_dakuon || '浊音/半浊音';
+            case 'youon':
+                return window.langData[window.currentLang]?.level_type_youon || '拗音';
+            case 'mixed':
+                return window.langData[window.currentLang]?.level_type_mixed || '混合';
+            default:
+                return window.langData[window.currentLang]?.level_type_unknown || '未知';
+        }
     }
 
     /**
@@ -895,4 +947,21 @@ function celebrateLevelComplete() {
 document.addEventListener('DOMContentLoaded', () => {
     // 创建游戏实例
     const game = new KanaListeningGame();
+
+    // 监听语言数据加载完成事件，然后更新UI
+    document.addEventListener('langDataLoaded', () => {
+        console.log('Event: langDataLoaded triggered', { currentLang: window.currentLang, langDataExists: !!window.langData, langDataKeys: window.langData ? Object.keys(window.langData).length : 0 });
+        // 检查 game 实例是否已成功创建且数据已加载，然后更新UI
+        if (game && game.levels && game.kanaData) {
+             console.log('langDataLoaded: Calling updateGameUIForLang');
+             game.updateGameUIForLang();
+        }
+    });
+
+    // 首次加载时，如果语言数据已经就绪，也要更新UI
+    // 检查 window.langData 是否已存在（由i18n.js在DOMContentLoaded之前加载）
+    if (window.langData && Object.keys(window.langData).length > 0) {
+        console.log('DOMContentLoaded: window.langData already exists, calling updateGameUIForLang');
+        game.updateGameUIForLang();
+    }
 }); 

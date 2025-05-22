@@ -1,19 +1,19 @@
-id,category,type,name,rows,description,required_score,use_katakana,use_mixed
-1,basic,hiragana,あ行平假名,a,学习あ行五个基本平假名,5,false,false
-2,basic,katakana,ア行片假名,a,学习ア行五个基本片假名,5,true,false
-3,basic,mixed,あ/ア行混合,a,混合练习あ/ア行假名,8,false,true
-4,basic,hiragana,か行平假名,ka,学习か行五个基本平假名,5,false,false
-5,basic,katakana,カ行片假名,ka,学习カ行五个基本片假名,5,true,false
-6,intermediate,hiragana,あ～か行平假名,a ka,混合练习あ行和か行平假名,8,false,false
-7,intermediate,katakana,ア～カ行片假名,a ka,混合练习ア行和カ行片假名,8,true,false
-8,intermediate,mixed,あ～か行混合挑战,a ka,综合练习平假名和片假名,10,false,true
-9,intermediate,hiragana,さ～な行平假名,sa ta na,学习さ、た、な行平假名,12,false,false
-10,intermediate,katakana,サ～ナ行片假名,sa ta na,学习サ、タ、ナ行片假名,12,true,false
-11,intermediate,mixed,さ～な行混合挑战,sa ta na,混合练习平假名和片假名,15,false,true
-12,intermediate,hiragana,は～わ行平假名,ha ma ya ra wa,学习は～わ行平假名,15,false,false
-13,intermediate,katakana,ハ～ワ行片假名,ha ma ya ra wa,学习ハ～ワ行片假名,15,true,false
-14,intermediate,mixed,は～わ行混合挑战,ha ma ya ra wa,混合练习平假名和片假名,18,false,true
-15,advanced,hiragana,平假名综合练习,a ka sa ta na ha ma ya ra wa,练习所有平假名,20,false,false
-16,advanced,katakana,片假名综合练习,a ka sa ta na ha ma ya ra wa,练习所有片假名,20,true,false
-17,advanced,mixed,综合假名挑战,a ka sa ta na ha ma ya ra wa,混合练习所有平假名和片假名,25,false,true
-18,master,mixed,假名大师挑战,a ka sa ta na ha ma ya ra wa,终极挑战：完全掌握所有假名,30,false,true 
+id,category,type,name_zh,name_ja,name_en,rows,description_zh,description_ja,description_en,required_score,use_katakana,use_mixed
+1,basic,hiragana,あ行平假名,あ行平仮名,A-Row Hiragana,a,学习あ行五个基本平假名,あ行の5つの基本平仮名を学ぶ,Learn the five basic hiragana of the A-row,5,false,false
+2,basic,katakana,ア行片假名,ア行片仮名,A-Row Katakana,a,学习ア行五个基本片假名,ア行の5つの基本片仮名を学ぶ,Learn the five basic katakana of the A-row,5,true,false
+3,basic,mixed,あ/ア行混合,あ/ア行混合,A-Row Mixed,a,混合练习あ/ア行假名,あ/ア行仮名を混ぜて練習,Mixed practice of A-row hiragana and katakana,8,false,true
+4,basic,hiragana,か行平假名,か行平仮名,Ka-Row Hiragana,ka,学习か行五个基本平假名,か行の5つの基本平仮名を学ぶ,Learn the five basic hiragana of the Ka-row,5,false,false
+5,basic,katakana,カ行片假名,カ行片仮名,Ka-Row Katakana,ka,学习カ行五个基本片假名,カ行の5つの基本片仮名を学ぶ,Learn the five basic katakana of the Ka-row,5,true,false
+6,intermediate,hiragana,あ～か行平假名,あ～か行平仮名,A- to Ka-Row Hiragana,a ka,混合练习あ行和か行平假名,あ行とか行の平仮名を混ぜて練習,Mixed practice of A-row and Ka-row hiragana,8,false,false
+7,intermediate,katakana,ア～カ行片假名,ア～カ行片仮名,A- to Ka-Row Katakana,a ka,混合练习ア行和カ行片假名,ア行とカ行の片仮名を混ぜて練習,Mixed practice of A-row and Ka-row katakana,8,true,false
+8,intermediate,mixed,あ～か行混合挑战,あ～か行混合チャレンジ,A- to Ka-Row Mixed Challenge,a ka,综合练习平假名和片假名,平仮名と片仮名の総合練習,Comprehensive practice of hiragana and katakana,10,false,true
+9,intermediate,hiragana,さ～な行平假名,さ～な行平仮名,Sa- to Na-Row Hiragana,sa ta na,学习さ、た、な行平假名,さ、た、な行の平仮名を学ぶ,Learn Sa-, Ta-, and Na-row hiragana,12,false,false
+10,intermediate,katakana,サ～ナ行片假名,サ～ナ行片仮名,Sa- to Na-Row Katakana,sa ta na,学习サ、タ、ナ行片假名,サ、タ、ナ行の片仮名を学ぶ,Learn Sa-, Ta-, and Na-row katakana,12,true,false
+11,intermediate,mixed,さ～な行混合挑战,さ～な行混合チャレンジ,Sa- to Na-Row Mixed Challenge,sa ta na,混合练习平假名和片假名,平仮名と片仮名を混ぜて練習,Mixed practice of hiragana and katakana,15,false,true
+12,intermediate,hiragana,は～わ行平假名,は～わ行平仮名,Ha- to Wa-Row Hiragana,ha ma ya ra wa,学习は～わ行平假名,は～わ行の平仮名を学ぶ,Learn Ha- to Wa-row hiragana,15,false,false
+13,intermediate,katakana,ハ～ワ行片假名,ハ～ワ行片仮名,Ha- to Wa-Row Katakana,ha ma ya ra wa,学习ハ～ワ行片假名,ハ～ワ行の片仮名を学ぶ,Learn Ha- to Wa-row katakana,15,true,false
+14,intermediate,mixed,は～わ行混合挑战,は～わ行混合チャレンジ,Ha- to Wa-Row Mixed Challenge,ha ma ya ra wa,混合练习平假名和片假名,平仮名と片仮名を混ぜて練習,Mixed practice of hiragana and katakana,18,false,true
+15,advanced,hiragana,平假名综合练习,平仮名総合練習,Comprehensive Hiragana Practice,a ka sa ta na ha ma ya ra wa,练习所有平假名,全ての平仮名を練習,Practice all hiragana,20,false,false
+16,advanced,katakana,片假名综合练习,片仮名総合練習,Comprehensive Katakana Practice,a ka sa ta na ha ma ya ra wa,练习所有片假名,全ての片仮名を練習,Practice all katakana,20,true,false
+17,advanced,mixed,综合假名挑战,総合仮名チャレンジ,Comprehensive Kana Challenge,a ka sa ta na ha ma ya ra wa,混合练习所有平假名和片假名,全ての平仮名と片仮名を混ぜて練習,Mixed practice of all hiragana and katakana,25,false,true
+18,master,mixed,假名大师挑战,仮名マスターチャレンジ,Kana Master Challenge,a ka sa ta na ha ma ya ra wa,终极挑战：完全掌握所有假名,究極のチャレンジ：全ての仮名を完全にマスター,Ultimate challenge: Master all kana completely,30,false,true 

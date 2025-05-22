@@ -62,9 +62,17 @@ class DataLoader {
                     id: parseInt(item.id),
                     category: item.category,
                     type: item.type,
-                    name: item.name,
+                    name: {
+                        zh: item.name_zh || item.name,
+                        ja: item.name_ja || item.name,
+                        en: item.name_en || item.name
+                    },
                     rows: rows,
-                    description: item.description,
+                    description: {
+                        zh: item.description_zh || item.description,
+                        ja: item.description_ja || item.description,
+                        en: item.description_en || item.description
+                    },
                     requiredScore: parseInt(item.required_score),
                     useKatakana: item.use_katakana === 'true',
                     useMixed: item.use_mixed === 'true'

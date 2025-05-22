@@ -1,0 +1,266 @@
+[
+  {
+    "id": "listen",
+    "title": { "zh": "听音选字", "ja": "聞き取り選択", "en": "Kana Listening" },
+    "desc": {
+      "zh": "通过听力练习学习日语假名发音，提高听力识别能力",
+      "ja": "音声を聞いて正しいかなを選び、リスニング力を高める",
+      "en": "Practice listening to Japanese kana and improve your recognition skills."
+    },
+    "icon": "fa-headphones",
+    "url": "games/listening.html",
+    "status": "normal"
+  },
+  {
+    "id": "match",
+    "title": { "zh": "假名消消乐", "ja": "かなマッチング", "en": "Kana Match" },
+    "desc": {
+      "zh": "通过配对记忆和听音消除，巩固假名认知，支持多种难度和模式",
+      "ja": "ペアを記憶し音声で消す、様々な難易度とモード対応",
+      "en": "Match and clear kana by memory and sound, with multiple modes and difficulties."
+    },
+    "icon": "fa-th",
+    "url": "games/match.html",
+    "status": "normal"
+  },
+  {
+    "id": "whack",
+    "title": { "zh": "假名打地鼠", "ja": "かなモグラ叩き", "en": "Kana Whack-a-Mole" },
+    "desc": {
+      "zh": "听音写假名打地鼠游戏",
+      "ja": "音声を聞いてかなを入力するモグラ叩きゲーム",
+      "en": "Type the kana you hear in this whack-a-mole game."
+    },
+    "icon": "fa-gamepad",
+    "url": "games/whack-a-kana.html",
+    "status": "normal"
+  },
+  {
+    "id": "typing",
+    "title": { "zh": "假名打字练习", "ja": "かなタイピング練習", "en": "Kana Typing Practice" },
+    "desc": {
+      "zh": "提高假名输入速度，熟悉日语键盘布局",
+      "ja": "かな入力速度を上げ、日本語キーボードに慣れる",
+      "en": "Increase your kana typing speed and get familiar with the Japanese keyboard."
+    },
+    "icon": "fa-keyboard",
+    "url": "games/typing.html",
+    "status": "normal"
+  },
+  {
+    "id": "jump",
+    "title": { "zh": "五十音跳一跳", "ja": "五十音ジャンプ", "en": "Kana Jump" },
+    "desc": {
+      "zh": "根据五十音顺序跳跃，强化假名记忆",
+      "ja": "五十音順にジャンプして、かな記憶を強化",
+      "en": "Jump in gojyuon order to strengthen kana memory."
+    },
+    "icon": "fa-shoe-prints",
+    "url": "games/jump.html",
+    "status": "normal"
+  },
+  {
+    "id": "memory",
+    "title": { "zh": "记忆配对", "ja": "記憶ペア", "en": "Memory Match" },
+    "desc": {
+      "zh": "通过记忆配对游戏加强对假名的记忆和识别",
+      "ja": "記憶ペアゲームでかなの記憶力を強化",
+      "en": "Strengthen kana memory with memory match games."
+    },
+    "icon": "fa-brain",
+    "url": "#",
+    "status": "coming"
+  },
+  {
+    "id": "link",
+    "title": { "zh": "五十音连连看", "ja": "五十音連結", "en": "Kana Link" },
+    "desc": {
+      "zh": "通过连连看游戏配对假名，提高记忆效果。",
+      "ja": "連結ゲームでかなをペアにして記憶力アップ。",
+      "en": "Pair kana in link game to improve memory."
+    },
+    "icon": "fa-link",
+    "url": "#",
+    "status": "pending"
+  },
+  {
+    "id": "flip",
+    "title": { "zh": "五十音翻翻乐", "ja": "五十音めくり", "en": "Kana Flip" },
+    "desc": {
+      "zh": "翻牌记忆游戏，记住假名和对应读音。",
+      "ja": "カードをめくって、かなとその読み方を覚える記憶ゲーム。",
+      "en": "Flip cards to match kana and readings in this memory game."
+    },
+    "icon": "fa-clone",
+    "url": "games/flip.html",
+    "status": "pending"
+  },
+  {
+    "id": "puzzle",
+    "title": { "zh": "五十音拼图", "ja": "五十音パズル", "en": "Kana Puzzle" },
+    "desc": {
+      "zh": "拼图游戏，将打乱的假名拼回正确位置。",
+      "ja": "バラバラになったかなを正しい位置に戻すパズルゲーム。",
+      "en": "Put scrambled kana back in order in this puzzle game."
+    },
+    "icon": "fa-puzzle-piece",
+    "url": "games/puzzle.html",
+    "status": "pending"
+  },
+  {
+    "id": "chain",
+    "title": { "zh": "五十音接龙", "ja": "五十音しりとり", "en": "Kana Chain" },
+    "desc": {
+      "zh": "接龙游戏，按照读音顺序连接假名。",
+      "ja": "読みに従ってかなをつなぐしりとりゲーム。",
+      "en": "Connect kana in order by their sounds in this word chain game."
+    },
+    "icon": "fa-random",
+    "url": "games/chain.html",
+    "status": "pending"
+  },
+  {
+    "id": "typing-race",
+    "title": { "zh": "五十音打字比赛", "ja": "五十音タイピングレース", "en": "Kana Typing Race" },
+    "desc": {
+      "zh": "打字速度比赛，看谁最快输入正确的假名。",
+      "ja": "正しいかなを一番早く打てるか競うタイピングレース。",
+      "en": "Race to see who can type the correct kana fastest."
+    },
+    "icon": "fa-keyboard",
+    "url": "games/typing-race.html",
+    "status": "pending"
+  },
+  {
+    "id": "listening-challenge",
+    "title": { "zh": "五十音听力挑战", "ja": "五十音リスニングチャレンジ", "en": "Kana Listening Challenge" },
+    "desc": {
+      "zh": "听力游戏，听录音选择正确的假名。",
+      "ja": "音声を聞いて正しいかなを選ぶリスニングチャレンジ。",
+      "en": "Listen to the audio and choose the correct kana."
+    },
+    "icon": "fa-volume-up",
+    "url": "games/listening-challenge.html",
+    "status": "pending"
+  },
+  {
+    "id": "find-differences",
+    "title": { "zh": "五十音找茬", "ja": "五十音まちがい探し", "en": "Kana Find Differences" },
+    "desc": {
+      "zh": "找茬游戏，找出两幅图中不同的假名。",
+      "ja": "二つの画像から違うかなを探す間違い探しゲーム。",
+      "en": "Spot the different kana between two images."
+    },
+    "icon": "fa-search",
+    "url": "games/find-differences.html",
+    "status": "pending"
+  },
+  {
+    "id": "fill-in-the-blank",
+    "title": { "zh": "五十音填空", "ja": "五十音穴埋め", "en": "Kana Fill in the Blank" },
+    "desc": {
+      "zh": "填空游戏，根据上下文填写正确的假名。",
+      "ja": "文脈から正しいかなを記入する穴埋めゲーム。",
+      "en": "Fill in the correct kana based on context."
+    },
+    "icon": "fa-pen",
+    "url": "games/fill-in-the-blank.html",
+    "status": "pending"
+  },
+  {
+    "id": "memory-challenge",
+    "title": { "zh": "五十音记忆大挑战", "ja": "五十音記憶チャレンジ", "en": "Kana Memory Challenge" },
+    "desc": {
+      "zh": "记忆游戏，记住假名位置并进行复现。",
+      "ja": "かなの位置を覚えて再現する記憶ゲーム。",
+      "en": "Remember the kana positions and reproduce them."
+    },
+    "icon": "fa-brain",
+    "url": "games/memory-challenge.html",
+    "status": "pending"
+  },
+  {
+    "id": "spell-game",
+    "title": { "zh": "五十音拼字游戏", "ja": "五十音つづりゲーム", "en": "Kana Spelling Game" },
+    "desc": {
+      "zh": "拼字游戏，用假名拼出单词。",
+      "ja": "かなを使って単語をつづるゲーム。",
+      "en": "Spell words using kana in this game."
+    },
+    "icon": "fa-spell-check",
+    "url": "games/spell-game.html",
+    "status": "pending"
+  },
+  {
+    "id": "sort-game",
+    "title": { "zh": "五十音排序", "ja": "五十音並べ", "en": "Kana Sorting Game" },
+    "desc": {
+      "zh": "排序游戏，按照假名顺序排列。",
+      "ja": "かなを正しい順番に並べるゲーム。",
+      "en": "Sort kana in the correct order."
+    },
+    "icon": "fa-sort-alpha-down",
+    "url": "games/sort-game.html",
+    "status": "pending"
+  },
+  {
+    "id": "friends-game",
+    "title": { "zh": "五十音找朋友", "ja": "五十音フレンド探し", "en": "Kana Find Friends" },
+    "desc": {
+      "zh": "配对游戏，找到读音相同的假名。",
+      "ja": "同じ発音のかなを見つけるペアゲーム。",
+      "en": "Match kana with the same pronunciation."
+    },
+    "icon": "fa-user-friends",
+    "url": "games/friends-game.html",
+    "status": "pending"
+  },
+  {
+    "id": "maze",
+    "title": { "zh": "五十音迷宫", "ja": "五十音迷路", "en": "Kana Maze" },
+    "desc": {
+      "zh": "迷宫游戏，通过识别假名走出迷宫。",
+      "ja": "かなを認識して迷路を抜けるゲーム。",
+      "en": "Navigate the maze by recognizing kana."
+    },
+    "icon": "fa-map-signs",
+    "url": "games/maze.html",
+    "status": "pending"
+  },
+  {
+    "id": "bubble-game",
+    "title": { "zh": "五十音泡泡龙", "ja": "五十音バブル", "en": "Kana Bubble Shooter" },
+    "desc": {
+      "zh": "泡泡龙游戏，射出击破相同假名的泡泡。",
+      "ja": "同じかなをぶつけて割るバブルゲーム。",
+      "en": "Shoot and pop bubbles with matching kana."
+    },
+    "icon": "fa-circle",
+    "url": "games/bubble-game.html",
+    "status": "pending"
+  },
+  {
+    "id": "tetris",
+    "title": { "zh": "五十音俄罗斯方块", "ja": "五十音テトリス", "en": "Kana Tetris" },
+    "desc": {
+      "zh": "俄罗斯方块游戏，用假名代替方块。",
+      "ja": "かなブロックで遊ぶテトリスゲーム。",
+      "en": "Play Tetris with kana blocks."
+    },
+    "icon": "fa-tetris",
+    "url": "games/tetris.html",
+    "status": "pending"
+  },
+  {
+    "id": "draw",
+    "title": { "zh": "五十音涂鸦", "ja": "五十音お絵描き", "en": "Kana Drawing" },
+    "desc": {
+      "zh": "涂鸦游戏，用假名画出图案。",
+      "ja": "かなを使って絵を描くゲーム。",
+      "en": "Draw pictures using kana."
+    },
+    "icon": "fa-paint-brush",
+    "url": "games/draw.html",
+    "status": "pending"
+  }
+] 

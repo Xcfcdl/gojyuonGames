@@ -7,27 +7,36 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/games/match.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="../index.html"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+                <h1><a href="../index.html" data-i18n="title"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
             </div>
             <div class="nav-links">
                     
-                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> 返回首页</a>
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
+                <a href="../index.html" class="back-link" data-i18n="back_home"><i class="fas fa-home"></i> 返回首页</a>
             </div>
         </nav>
     </header>
     <main>
         <section class="match-hero-section">
-            <h2><i class="fas fa-th"></i> 假名消消乐</h2>
-            <p>通过配对记忆和听音消除，巩固假名认知，支持多种难度和模式</p>
+            <h2 data-i18n="game_match_title"><i class="fas fa-th"></i> 假名消消乐</h2>
+            <p data-i18n="game_match_desc">通过配对记忆和听音消除，巩固假名认知，支持多种难度和模式</p>
         </section>
         <section class="match-controls">
             <div class="difficulty-group">
-                <label>难度：</label>
+                <label data-i18n="match_difficulty">难度：</label>
                 <select id="difficulty-select">
                     <option value="3">3x3</option>
                     <option value="5">5x5</option>
@@ -36,16 +45,16 @@
                 </select>
             </div>
             <div class="mode-group">
-                <label>模式：</label>
+                <label data-i18n="match_mode">模式：</label>
                 <select id="mode-select">
-                    <option value="hiragana">平假名</option>
-                    <option value="katakana">片假名</option>
-                    <option value="mixed">混合</option>
+                    <option value="hiragana" data-i18n="match_mode_hiragana">平假名</option>
+                    <option value="katakana" data-i18n="match_mode_katakana">片假名</option>
+                    <option value="mixed" data-i18n="match_mode_mixed">混合</option>
                 </select>
             </div>
-            <button id="restart-match" class="start-button"><i class="fas fa-redo"></i> 重新开始</button>
-            <button id="fullscreen-btn" class="start-button" title="全屏棋盘"><i class="fas fa-expand"></i> 全屏</button>
-            <button id="exit-fullscreen-btn" class="start-button" style="display:none;" title="退出全屏"><i class="fas fa-compress"></i> 恢复</button>
+            <button id="restart-match" class="start-button" data-i18n="match_restart_button"><i class="fas fa-redo"></i> 重新开始</button>
+            <button id="fullscreen-btn" class="start-button" data-i18n="match_fullscreen_button_title" title="全屏棋盘"><i class="fas fa-expand"></i> 全屏</button>
+            <button id="exit-fullscreen-btn" class="start-button" style="display:none;" data-i18n="match_exit_fullscreen_button_title" title="退出全屏"><i class="fas fa-compress"></i> 恢复</button>
 
         </section>
         <section class="match-board-section">
@@ -54,10 +63,11 @@
         <section class="match-feedback" id="match-feedback"></section>
     </main>
     <footer>
-        <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+        <p><i class="far fa-copyright"></i> <span data-i18n="copyright">2025 五十音図ゲーム - 版权所有</span></p>
     </footer>
     <audio id="audio-correct" src="../assets/audio/correct.mp3" preload="auto"></audio>
     <audio id="audio-incorrect" src="../assets/audio/incorrect.mp3" preload="auto"></audio>
-    <script type="module" src="../assets/js/games/match.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script type="module" src="../assets/js/games/match.js?v=${new Date().getTime()}"></script>
 </body>
 </html>
