@@ -433,34 +433,49 @@ footer {
         font-size: 0.95rem;
         box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
     }
+    .nav-aux-game-btn {
+        font-size: 0.98rem;
+        padding: 0.38em 0.8em;
+        border-radius: 1px;
+        min-width: unset;
+        box-shadow: 0 2px 8px rgba(230,162,60,0.13), 0 1px 4px rgba(76,159,112,0.08);
+    }
+    .nav-aux-game-btn i {
+        font-size: 1em;
+        margin-right: 0.18em;
+    }
 }
 
 .nav-aux-game-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    background: linear-gradient(90deg, var(--secondary-color) 60%, var(--primary-color) 100%);
-    color: #fff !important;
+    background: linear-gradient(90deg, var(--secondary-color) 60%, var(--accent-color) 100%);
+    color: var(--white) !important;
     font-weight: bold;
     font-size: 1.08rem;
     padding: 0.55em 1.4em;
     border-radius: 30px;
-    box-shadow: 0 4px 16px rgba(230,162,60,0.18), 0 2px 8px rgba(76,159,112,0.10);
+    box-shadow: 0 4px 16px rgba(216,140,154,0.18), 0 2px 8px rgba(76,159,112,0.10);
     transition: var(--transition);
-    border: 2px solid var(--primary-color);
+    border: 2.5px solid var(--primary-color);
     position: relative;
     z-index: 2;
+    letter-spacing: 0.5px;
 }
 
 .nav-aux-game-btn i {
     font-size: 1.15em;
     margin-right: 0.3em;
+    color: var(--primary-color);
+    filter: drop-shadow(0 1px 0 var(--secondary-color));
 }
 
 .nav-aux-game-btn:hover, .nav-aux-game-btn:focus {
-    background: linear-gradient(90deg, var(--primary-color) 60%, var(--secondary-color) 100%);
-    color: #fff !important;
-    box-shadow: 0 6px 20px rgba(76,159,112,0.18), 0 2px 12px rgba(230,162,60,0.12);
-    transform: scale(1.06) translateY(-2px);
+    background: linear-gradient(90deg, var(--accent-color) 40%, var(--primary-color) 100%);
+    color: var(--white) !important;
+    box-shadow: 0 8px 24px rgba(76,159,112,0.18), 0 2px 12px rgba(216,140,154,0.15);
+    border-color: var(--secondary-color);
+    transform: scale(1.07) translateY(-2px);
     text-decoration: none;
 }
