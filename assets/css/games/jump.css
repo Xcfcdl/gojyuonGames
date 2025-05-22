@@ -56,22 +56,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.jump-kana-btn, .jump-kana-box {
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 2.2rem;
-  border: 2px solid #90caf9;
-  border-radius: 1rem;
-  background: #fff;
-  color: #1976d2;
-  margin: 0.2rem 0;
-  box-shadow: 0 2px 8px rgba(33,150,243,0.08);
-  transition: transform 0.15s, box-shadow 0.15s;
-  line-height: 1;
-}
 .jump-kana-btn {
   cursor: pointer;
-  background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+  background: linear-gradient(180deg, #e3f2fd 0%, var(--white, #fff) 100%);
+  border-radius: var(--border-radius-sm, 1rem);
+  color: var(--primary-color, #1976d2);
+  border: 2px solid #90caf9;
+  transition: var(--transition, transform 0.15s, box-shadow 0.15s);
 }
 .jump-kana-btn:active {
   transform: scale(0.95);
@@ -139,11 +130,26 @@
   text-align: center;
   width: 100%;
 }
-.jump-kana-btn[data-chars="2"], .jump-kana-box[data-chars="2"], .jump-kana-current[data-chars="2"] {
-  font-size: 1.5rem;
+.jump-kana-btn[data-chars="2"], .jump-kana-box[data-chars="2"] {
+  font-size: 1rem;
 }
 .jump-kana-current[data-chars="2"] {
-  font-size: 2rem;
+  font-size: 1.2rem;
+}
+.jump-mode-btn {
+  font-size: 0.85rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.8rem;
+  min-width: 2.2rem;
+}
+.jump-mode-select {
+  gap: 0.3rem;
+}
+.jump-kana-btn, .jump-kana-box, .jump-kana-current {
+  min-width: 60vw;
+  max-width: 60vw;
+  width: 60vw;
+  box-sizing: border-box;
 }
 @media (max-width: 600px) {
   .jump-kana-btn, .jump-kana-box {
@@ -152,22 +158,69 @@
     font-size: 1.3rem;
     border-radius: 0.6rem;
   }
-  .jump-header {
-    font-size: 1rem;
-  }
   .jump-kana-current {
     width: 2.8rem;
     height: 2.8rem;
     font-size: 1.6rem;
     border-radius: 0.7rem;
   }
-  .jump-candidate-row, .jump-future-row {
-    gap: 0.5rem;
-  }
-  .jump-kana-btn[data-chars="2"], .jump-kana-box[data-chars="2"] {
+  .jump-header {
     font-size: 1rem;
   }
-  .jump-kana-current[data-chars="2"] {
-    font-size: 1.2rem;
+  .jump-mode-btn {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.8rem;
+    min-width: 2.2rem;
+  }
+  .jump-mode-select {
+    gap: 0.3rem;
+  }
+  .jump-kana-btn, .jump-kana-box, .jump-kana-current {
+    min-width: 60vw;
+    max-width: 60vw;
+    width: 60vw;
+    box-sizing: border-box;
+  }
+  .jump-candidate-row {
+    gap: 0.7rem;
+  }
+  .jump-candidate-row .jump-kana-btn {
+    min-width: 25vw;
+    max-width: 25vw;
+    width: 25vw;
+    height: 3.2rem;
+    font-size: 1.6rem;
+    border-radius: 0.8rem;
+  }
+}
+@media (max-width: 1024px) {
+  .jump-kana-btn, .jump-kana-box {
+    min-width: 18vw;
+    max-width: 18vw;
+    width: 18vw;
+    height: 3.5rem;
+    font-size: 2rem;
+    border-radius: 1rem;
+  }
+  .jump-kana-current {
+    min-width: 28vw;
+    max-width: 28vw;
+    width: 28vw;
+    height: 4.2rem;
+    font-size: 2.5rem;
+    border-radius: 1.2rem;
+  }
+  .jump-mode-btn {
+    font-size: 1.1rem;
+    padding: 0.3rem 1.1rem;
+    border-radius: 1rem;
+    min-width: 3.2rem;
+  }
+  .jump-mode-select {
+    gap: 0.5rem;
+  }
+  .jump-candidate-row {
+    gap: 1rem;
   }
 } 
