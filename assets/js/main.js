@@ -70,9 +70,15 @@ async function renderGames() {
       <article class=\"game-card${game.status ? ' ' + game.status : ''}\">
         <div class=\"${badgeClass}\">${badge}</div>
         <div class=\"game-card-content\">
-          <h2>${icon} <span>${title}</span></h2>
+          <div class="game-card-header">
+            <div class="game-card-icon">${icon}</div>
+            <h2><span>${title}</span></h2>
+          </div>
           <p>${desc}</p>
-          <a href=\"${url}\" class=\"${btnClass}\" ${disabled} ${extraAttrs}>${btnText} <i class=\"fas fa-arrow-right\"></i></a>
+          <a href=\"${url}\" class=\"${btnClass}\" ${disabled} ${extraAttrs}>
+            <span>${btnText}</span>
+            <i class=\"fas fa-arrow-right\"></i>
+          </a>
         </div>
       </article>
     `;
