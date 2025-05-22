@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>日语单词消消乐 - 双人模式</title>
+    <style>
+        :root {
+            --main-green: #4CAF50;
+            --light-green: #C8E6C9;
+            --dark-green: #388E3C;
+        }
+
+        body {
+            background-color: var(--light-green);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+       .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            max-width: 1200px;
+            width: 90%;
+            text-align: center;
+        }
+
+       .game-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+        }
+
+       .player-game {
+            border: 2px solid var(--main-green);
+            border-radius: 15px;
+            padding: 20px;
+            width: 50%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+       .player-name {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 2px solid var(--main-green);
+            font-weight: bold;
+        }
+
+       .game-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+       .card-container {
+            display: grid;
+            width: 100%;
+            justify-items: center;
+        }
+
+       .card {
+            background: radial-gradient(ellipse at 50% 50%, #f1f8e9 30%, #dcedc8 100%);
+            border: 2px solid var(--main-green);
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-all;
+            line-height: 1.4;
+            width: 70px;
+            height: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: perspective(1000px) rotateX(10deg) rotateY(10deg);
+        }
+
+       .card:hover {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.1);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+       .selected {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(0.95);
+            box-shadow: 0 0 8px var(--main-green);
+            background-color: #E8F5E9 !important;
+        }
+
+       .correct {
+            animation: correctAnim 0.8s forwards;
+        }
+
+        @keyframes correctAnim {
+            50% {
+                background-color: #66BB6A;
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        button {
+            background: var(--main-green);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+            font-size: 16px;
+            width: auto;
+            min-width: 160px;
+        }
+
+       .success-message {
+            color: var(--dark-green);
+            margin: 15px 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid var(--main-green);
+            border-radius: 25px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+       .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+       .stats-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            font-size: 1.2em;
+            color: var(--dark-green);
+            margin: 15px 0;
+        }
+
+        /* 模态框样式 */
+       .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+       .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 15px;
+        }
+
+       .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+       .close:hover,
+       .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 成绩记录下拉菜单样式 */
+       .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+       .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+       .dropdown-content p {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+       .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+           .game-container {
+                flex-direction: column;
+                align-items: center;
+            }
+           .player-game {
+                width: 100%;
+            }
+           .card {
+                font-size: 12px;
+                width: 60px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="color: var(--dark-green);">日本語単字マッチング - 二人プレイ</h1>
+
+        <div class="button-group">
+            <input type="text" id="player1Name" placeholder="プレイヤー1名を入力">
+            <input type="text" id="player2Name" placeholder="プレイヤー2名を入力">
+            <button onclick="document.getElementById('fileInput').click()">📁 単語をインポート</button>
+            <button id="startBtn" onclick="startGame()">▶ ゲームスタート</button>
+        </div>
+
+        <div id="importSuccess" class="success-message" style="display: none;"></div>
+
+        <div class="game-container">
+            <div class="player-game">
+                <div class="player-name" id="player1NameDisplay"></div>
+                <div class="game-controls">
+                    <div class="stats-container">
+                        <span>🕒 倒计时: <span id="timer1">02:00</span></span>
+                        <span>✅ 正解数: <span id="correctCount1">0</span></span>
+                    </div>
+                </div>
+                <div id="gameBoard1" class="card-container"></div>
+            </div>
+            <div class="player-game">
+                <div class="player-name" id="player2NameDisplay"></div>
+                <div class="game-controls">
+                    <div class="stats-container">
+                        <span>🕒 倒计时: <span id="timer2">02:00</span></span>
+                        <span>✅ 正解数: <span id="correctCount2">0</span></span>
+                    </div>
+                </div>
+                <div id="gameBoard2" class="card-container"></div>
+            </div>
+        </div>
+
+        <input type="file" id="fileInput" accept=".txt,.csv" hidden>
+        <audio id="correctSound" src="data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"></audio>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="winnerTitle"></h2>
+            <p id="winnerInfo"></p>
+        </div>
+    </div>
+
+    <!-- 浮动下载按钮区域 -->
+    <div style="position:fixed;right:2vw;bottom:2vw;z-index:999;display:flex;flex-direction:column;gap:0.7rem;">
+        <a href="导入单词测试文本.csv" download class="start-button">下载单词文本模板</a>
+        <a href="导入单词测试2.txt" download class="start-button">下载单词文本模板</a>
+    </div>
+
+    <!-- 游戏说明区域 -->
+    <div id="game-desc" style="width:75%;margin:2rem auto 0 auto;text-align:left;">
+        <h3 style="text-align:center;">游戏说明</h3>
+        <p>
+            本游戏为日语单词消消乐双人模式。两位玩家分别在各自区域内进行单词配对，导入单词表后，点击卡片配对日语和中文释义。<br>
+            正确配对会消除卡片，统计正确数和用时。支持导入自定义单词表，适合日语课堂互动和词汇记忆练习。
+        </p>
+    </div>
+
+    <script>
+        // 初始化本地存储的游戏记录
+        if (!localStorage.getItem('wordGameRecords')) {
+            localStorage.setItem('wordGameRecords', JSON.stringify([]));
+        }
+
+        let wordPairs = [];
+        let selectedCards1 = [];
+        let selectedCards2 = [];
+        let correctCount1 = 0;
+        let correctCount2 = 0;
+        let timer1Interval;
+        let timer2Interval;
+        let totalSeconds = 120;
+
+        const defaultWords = [
+            { word: "ありがとう", meaning: "谢谢" },
+            { word: "こんにちは", meaning: "你好" },
+            { word: "さようなら", meaning: "再见" }
+        ];
+
+        // 监听文件选择事件
+        document.getElementById('fileInput').addEventListener('change', handleFile);
+
+        // 处理文件导入
+        function handleFile(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                try {
+                    const text = e.target.result;
+                    const lines = text.split('\n');
+                    const validLines = lines.map(line => line.trim()).filter(line => line);
+
+                    if (file.name.endsWith('.csv')) {
+                        wordPairs = parseCSV(validLines);
+                    } else if (file.name.endsWith('.txt')) {
+                        wordPairs = parseTXT(validLines);
+                    } else {
+                        throw new Error('只支持CSV和TXT文件');
+                    }
+
+                    if (wordPairs.length === 0) {
+                        throw new Error('未找到有效数据');
+                    }
+
+                    showImportedWords();
+                } catch (error) {
+                    alert(`文件导入失败：${error.message}`);
+                }
+            };
+
+            reader.readAsText(file);
+        }
+
+        // 解析CSV文件
+        function parseCSV(lines) {
+            return lines.map(line => {
+                const [word, meaning] = line.split(',');
+                return {
+                    word: sanitizeText(word),
+                    meaning: sanitizeText(meaning)
+                };
+            }).filter(p => p.word && p.meaning);
+        }
+
+        // 解析TXT文件（每行两列用空格分隔）
+        function parseTXT(lines) {
+            return lines.map(line => {
+                const parts = line.split(/\s+/);
+                return {
+                    word: sanitizeText(parts[0]),
+                    meaning: sanitizeText(parts.slice(1).join(' '))
+                };
+            }).filter(p => p.word && p.meaning);
+        }
+
+        // 文本清理函数
+        function sanitizeText(text) {
+            return text.toString()
+               .replace(/^\uFEFF/, '')
+               .replace(/[\u0000-\u001F]/g, '')
+               .trim();
+        }
+
+        // 显示导入的单词
+        function showImportedWords() {
+            const successDiv = document.getElementById('importSuccess');
+            successDiv.textContent = `成功导入 ${wordPairs.length} 组单词！`;
+            successDiv.style.display = 'block';
+        }
+
+        // 开始游戏
+        function startGame() {
+            if (!wordPairs.length) {
+                wordPairs = [...defaultWords];
+            }
+            const numCards = wordPairs.length * 2;
+            const columns = Math.min(numCards, 5);
+            const gap = numCards > 5 ? 12 : 20;
+
+            // 玩家1的游戏初始化
+            resetGame(1);
+            const gameBoard1 = document.getElementById('gameBoard1');
+            gameBoard1.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+            gameBoard1.style.gap = `${gap}px`;
+            const gameData1 = shuffleArray([...wordPairs.flatMap(p => [
+                { type: 'word', value: p.word, pair: p },
+                { type: 'meaning', value: p.meaning, pair: p }
+            ])]);
+            const cards1 = gameData1.map(item => `
+                <div class="card" 
+                     data-type="${item.type}"
+                     data-pair="${item.pair.word}|${item.pair.meaning}"
+                     onclick="handleClick(this, 1)">
+                    ${item.value}
+                </div>
+            `).join('');
+            gameBoard1.innerHTML = cards1;
+            startTimer(1);
+            const player1Name = document.getElementById('player1Name').value || '匿名玩家1';
+            document.getElementById('player1NameDisplay').textContent = player1Name;
+
+            // 玩家2的游戏初始化
+            resetGame(2);
+            const gameBoard2 = document.getElementById('gameBoard2');
+            gameBoard2.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+            gameBoard2.style.gap = `${gap}px`;
+            const gameData2 = shuffleArray([...wordPairs.flatMap(p => [
+                { type: 'word', value: p.word, pair: p },
+                { type: 'meaning', value: p.meaning, pair: p }
+            ])]);
+            const cards2 = gameData2.map(item => `
+                <div class="card" 
+                     data-type="${item.type}"
+                     data-pair="${item.pair.word}|${item.pair.meaning}"
+                     onclick="handleClick(this, 2)">
+                    ${item.value}
+                </div>
+            `).join('');
+            gameBoard2.innerHTML = cards2;
+            startTimer(2);
+            const player2Name = document.getElementById('player2Name').value || '匿名玩家2';
+            document.getElementById('player2NameDisplay').textContent = player2Name;
+
+            var desc = document.getElementById('game-desc');
+            if(desc) desc.style.display = 'none';
+        }
+
+        // 处理卡片点击事件
+        function handleClick(card, player) {
+            let selectedCards, correctCountElement, correctSound;
+            if (player === 1) {
+                selectedCards = selectedCards1;
+                correctCountElement = document.getElementById('correctCount1');
+            } else {
+                selectedCards = selectedCards2;
+                correctCountElement = document.getElementById('correctCount2');
+            }
+
+            if (card.classList.contains('correct') || selectedCards.includes(card)) return;
+
+            card.classList.add('selected');
+            selectedCards.push(card);
+
+            if (selectedCards.length === 1) {
+                new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU').play();
+            }
+
+            if (selectedCards.length === 2) {
+                const [card1, card2] = selectedCards;
+                const pair1 = card1.dataset.pair.split('|');
+                const pair2 = card2.dataset.pair.split('|');
+
+                if (pair1[0] === pair2[0] && pair1[1] === pair2[1]) {
+                    handleCorrect(card1, card2, player);
+                } else {
+                    handleWrong(selectedCards, player);
+                }
+            }
+        }
+
+        // 处理正确匹配
+        function handleCorrect(card1, card2, player) {
+            let selectedCards, correctCount, correctCountElement;
+            if (player === 1) {
+                selectedCards = selectedCards1;
+                correctCount = correctCount1;
+                correctCountElement = document.getElementById('correctCount1');
+            } else {
+                selectedCards = selectedCards2;
+                correctCount = correctCount2;
+                correctCountElement = document.getElementById('correctCount2');
+            }
+
+            [card1, card2].forEach(card => {
+                card.classList.add('correct');
+                card.style.pointerEvents = 'none';
+            });
+            if (player === 1) {
+                correctCount1++;
+            } else {
+                correctCount2++;
+            }
+            document.getElementById('correctSound').play();
+            correctCountElement.textContent = correctCount + 1;
+            selectedCards.length = 0;
+            checkGameEnd(player);
+        }
+
+        // 处理错误匹配
+        function handleWrong(selectedCards, player) {
+            setTimeout(() => {
+                selectedCards.forEach(card => card.classList.remove('selected'));
+                if (player === 1) {
+                    selectedCards1.length = 0;
+                } else {
+                    selectedCards2.length = 0;
+                }
+            }, 800);
+        }
+
+        // 保存游戏记录
+        function saveGameRecord() {
+            const player1Name = document.getElementById('player1Name').value || '匿名玩家1';
+            const player2Name = document.getElementById('player2Name').value || '匿名玩家2';
+            const time1 = document.getElementById('timer1').textContent;
+            const time2 = document.getElementById('timer2').textContent;
+
+            const records = JSON.parse(localStorage.getItem('wordGameRecords'));
+            records.push({
+                player1: {
+                    name: player1Name,
+                    score: correctCount1,
+                    time: time1
+                },
+                player2: {
+                    name: player2Name,
+                    score: correctCount2,
+                    time: time2
+                }
+            });
+            localStorage.setItem('wordGameRecords', JSON.stringify(records));
+        }
+
+        // 洗牌函数
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // 开始计时
+        function startTimer(player) {
+            let seconds = totalSeconds;
+            let timerElement;
+            if (player === 1) {
+                timerElement = document.getElementById('timer1');
+                clearInterval(timer1Interval);
+                timer1Interval = setInterval(() => {
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = seconds % 60;
+                    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+                    if (seconds === 0) {
+                        clearInterval(timer1Interval);
+                        checkGameEnd(player);
+                    }
+                    seconds--;
+                }, 1000);
+            } else {
+                timerElement = document.getElementById('timer2');
+                clearInterval(timer2Interval);
+                timer2Interval = setInterval(() => {
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = seconds % 60;
+                    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+                    if (seconds === 0) {
+                        clearInterval(timer2Interval);
+                        checkGameEnd(player);
+                    }
+                    seconds--;
+                }, 1000);
+            }
+        }
+
+        // 重置游戏
+        function resetGame(player) {
+            if (player === 1) {
+                correctCount1 = 0;
+                selectedCards1.length = 0;
+                const cards = document.querySelectorAll('#gameBoard1 .card');
+                cards.forEach(c => c.remove());
+                document.getElementById('correctCount1').textContent = '0';
+                clearInterval(timer1Interval);
+                document.getElementById('timer1').textContent = '02:00';
+            } else {
+                correctCount2 = 0;
+                selectedCards2.length = 0;
+                const cards = document.querySelectorAll('#gameBoard2 .card');
+                cards.forEach(c => c.remove());
+                document.getElementById('correctCount2').textContent = '0';
+                clearInterval(timer2Interval);
+                document.getElementById('timer2').textContent = '02:00';
+            }
+        }
+
+        // 检查游戏是否结束
+        function checkGameEnd(player) {
+            let remainingCards1 = document.querySelectorAll('#gameBoard1 .card:not(.correct)');
+            let remainingCards2 = document.querySelectorAll('#gameBoard2 .card:not(.correct)');
+            let timer1 = document.getElementById('timer1').textContent;
+            let timer2 = document.getElementById('timer2').textContent;
+
+            if (remainingCards1.length === 0 || remainingCards2.length === 0 || timer1 === '00:00' || timer2 === '00:00') {
+                clearInterval(timer1Interval);
+                clearInterval(timer2Interval);
+                saveGameRecord();
+                showWinnerModal();
+            }
+        }
+
+        // 显示获胜者模态框
+        function showWinnerModal() {
+            const player1Name = document.getElementById('player1Name').value || '匿名玩家1';
+            const player2Name = document.getElementById('player2Name').value || '匿名玩家2';
+            const time1 = document.getElementById('timer1').textContent;
+            const time2 = document.getElementById('timer2').textContent;
+
+            let winnerTitle, winnerInfo;
+            if (correctCount1 > correctCount2) {
+                winnerTitle = `🎉 ${player1Name} 勝利！`;
+                winnerInfo = `${player1Name} 正解数: ${correctCount1}, 時間: ${time1}\n${player2Name} 正解数: ${correctCount2}, 時間: ${time2}`;
+            } else if (correctCount2 > correctCount1) {
+                winnerTitle = `🎉 ${player2Name} 勝利！`;
+                winnerInfo = `${player1Name} 正解数: ${correctCount1}, 時間: ${time1}\n${player2Name} 正解数: ${correctCount2}, 時間: ${time2}`;
+            } else {
+                if (time1 < time2) {
+                    winnerTitle = `🎉 ${player1Name} 勝利！`;
+                    winnerInfo = `${player1Name} 正解数: ${correctCount1}, 時間: ${time1}\n${player2Name} 正解数: ${correctCount2}, 時間: ${time2}`;
+                } else if (time2 < time1) {
+                    winnerTitle = `🎉 ${player2Name} 勝利！`;
+                    winnerInfo = `${player1Name} 正解数: ${correctCount1}, 時間: ${time1}\n${player2Name} 正解数: ${correctCount2}, 時間: ${time2}`;
+                } else {
+                    winnerTitle = `🎉 引き分け！`;
+                    winnerInfo = `${player1Name} 正解数: ${correctCount1}, 時間: ${time1}\n${player2Name} 正解数: ${correctCount2}, 時間: ${time2}`;
+                }
+            }
+
+            if (correctCount1 < wordPairs.length && correctCount2 < wordPairs.length) {
+                winnerTitle = `⌛ 时间到，挑战失败！`;
+                winnerInfo = `${player1Name} 正解数: ${correctCount1}, 時間: ${time1}\n${player2Name} 正解数: ${correctCount2}, 時間: ${time2}`;
+            }
+
+            document.getElementById('winnerTitle').textContent = winnerTitle;
+            document.getElementById('winnerInfo').textContent = winnerInfo;
+
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+
+            const closeBtn = document.getElementsByClassName('close')[0];
+            closeBtn.onclick = function () {
+                modal.style.display = 'none';
+            };
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        }
+
+    </script>
+</body>
+
+</html>
+    

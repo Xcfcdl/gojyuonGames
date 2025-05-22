@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>日语单词大作战</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <style>
+        :root {
+            --primary: #6EC4DB;
+            --secondary: #FFB6B9;
+            --accent: #A8E6CF;
+            --text: #4A4A4A;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Hiragino Kaku Gothic Pro', sans-serif;
+            background: linear-gradient(135deg, #F0F7FF, #E6FFE9);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+       .container {
+            width: 90%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 20px auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 0 #FFF;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+       .btn-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+       .btn {
+            background: var(--primary);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(110, 196, 219, 0.4);
+        }
+
+       .btn-secondary {
+            background: var(--secondary);
+        }
+
+        /* 游戏页面 */
+        #gamePage {
+            display: none;
+        }
+
+       .word-display {
+            font-size: 3rem;
+            color: var(--primary);
+            margin: 3rem 0;
+            text-shadow: 2px 2px 0 #FFF;
+            text-align: center; /* 题目居中 */
+        }
+
+       .options-container {
+            display: grid;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+       .option-btn {
+            background: #FFF;
+            color: var(--text);
+            padding: 1.5rem;
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+       .option-btn:hover {
+            background: var(--accent);
+        }
+
+       .option-btn.selected {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* 排行榜 */
+        #ranking {
+            margin: 2rem 0;
+            background: rgba(168, 230, 207, 0.2);
+            border-radius: 15px;
+            padding: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 2px solid var(--accent);
+            text-align: center;
+        }
+
+        /* 计时器 */
+       .timer {
+            font-size: 1.5rem;
+            color: var(--primary);
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+       .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        /* 控制栏样式 */
+       .control-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* 返回首页按钮样式 */
+        #returnHomeBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 首页 -->
+    <div class="container" id="homePage">
+        <h1>🎌日语单词大作战🎌</h1>
+
+        <div class="btn-group">
+            <button class="btn" onclick="document.getElementById('wordFile').click()">
+                📚 导入单词表
+            </button>
+            <button class="btn" onclick="document.getElementById('studentFile').click()">
+                👥 导入学生名单
+            </button>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="startGame()">
+                🎮 开始游戏
+            </button>
+            <button class="btn btn-secondary" onclick="clearRanking()">
+                🗑️ 排行榜清零
+            </button>
+        </div>
+
+        <div id="ranking">
+            <h2>🏆 排行榜</h2>
+            <table id="rankTable">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>学生</th>
+                        <th>用时</th>
+                        <th>正确率</th>
+                    </tr>
+                </thead>
+                <tbody id="rankBody"></tbody>
+            </table>
+        </div>
+
+        <input type="file" id="wordFile" accept=".xlsx,.csv,.txt,.json" onchange="handleFile(this, 'word')"
+            hidden>
+        <input type="file" id="studentFile" accept=".xlsx,.csv,.txt,.json" onchange="handleFile(this,'student')"
+            hidden>
+    </div>
+
+    <!-- 游戏说明区域 -->
+    <div id="game-desc" style="width:75%;margin:2rem auto 0 auto;text-align:left;">
+        <h3 style="text-align:center;">游戏说明</h3>
+        <p>
+            本游戏为日语单词四选一小游戏。导入单词表和学生名单后，系统会随机抽取单词作为题目，学生需在四个选项中选择正确的中文释义。<br>
+            支持错题导出、排行榜等功能，适合日语课堂测验和自测练习。
+        </p>
+    </div>
+
+    <!-- 游戏页面 -->
+    <div class="container" id="gamePage">
+        <div class="word-display" id="currentWord"></div>
+        <div class="options-container" id="options"></div>
+        <div class="control-bar">
+            <button class="btn" onclick="prevQuestion()">⏮️ 上一题</button>
+            <button class="btn" onclick="togglePause()">⏯️ 暂停</button>
+            <button class="btn" onclick="nextQuestion()">⏭️ 下一题</button>
+        </div>
+        <button class="btn btn-secondary" id="returnHomeBtn" onclick="returnHome()">🏠 返回首页</button>
+        <div class="timer" id="timer">00:00</div>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="studentModal" class="modal">
+        <h2>🎉 当前玩家：<span id="studentName"></span></h2>
+        <button class="btn" onclick="startGamePage()">确定</button>
+    </div>
+
+    <div id="endModal" class="modal">
+        <h2>🎉 游戏结束！</h2>
+        <p>用时：<span id="finalTime"></span></p>
+        <p>正确率：<span id="accuracyRate"></span>%</p>
+        <div class="btn-group">
+            <button class="btn" onclick="exportWrong()">📤 导出错题</button>
+            <button class="btn" onclick="returnHome()">🏠 返回首页</button>
+        </div>
+    </div>
+
+    <!-- 浮动下载按钮区域 -->
+    <div style="position:fixed;right:2vw;bottom:2vw;z-index:999;display:flex;flex-direction:column;gap:0.7rem;">
+        <a href="单词测试中日 .csv" download class="start-button">单词中日模板</a>
+        <a href="学生姓名 .csv" download class="start-button">学生姓名模板</a>
+        <a href="单词测试日中 .csv" download class="start-button">单词日中模板</a>
+    </div>
+
+    <script>
+        let words = [];
+        let students = [];
+        let currentIndex = 0;
+        let wrongAnswers = [];
+        let timer;
+        let startTime;
+        let isPaused = false;
+        let totalTime = 0;
+        let currentStudent = '';
+        let rankList = [];
+        // 用于记录已使用的题目索引
+        let usedIndices = [];
+        // 用于记录每道题的选择情况，格式为 {questionIndex: selectedAnswer}
+        let selectedOptions = {};
+        // 用于存储每道题的选项顺序
+        let optionOrders = {};
+
+        // 页面加载时尝试恢复游戏状态
+        window.onload = function () {
+            const savedState = localStorage.getItem('gameState');
+            if (savedState) {
+                const { words, students, currentIndex, wrongAnswers, startTime, isPaused, totalTime, currentStudent, rankList, usedIndices, selectedOptions, optionOrders } = JSON.parse(savedState);
+                this.words = words;
+                this.students = students;
+                this.currentIndex = currentIndex;
+                this.wrongAnswers = wrongAnswers;
+                this.startTime = startTime;
+                this.isPaused = isPaused;
+                this.totalTime = totalTime;
+                this.currentStudent = currentStudent;
+                this.rankList = rankList;
+                this.usedIndices = usedIndices;
+                this.selectedOptions = selectedOptions;
+                this.optionOrders = optionOrders;
+
+                if (document.getElementById('gamePage').style.display === 'block') {
+                    if (!isPaused) {
+                        timer = setInterval(updateTimer, 1000);
+                    }
+                    showQuestion();
+                }
+            }
+        }
+
+        // 保存游戏状态到本地存储
+        function saveGameState() {
+            const gameState = {
+                words,
+                students,
+                currentIndex,
+                wrongAnswers,
+                startTime,
+                isPaused,
+                totalTime,
+                currentStudent,
+                rankList,
+                usedIndices,
+                selectedOptions,
+                optionOrders
+            };
+            localStorage.setItem('gameState', JSON.stringify(gameState));
+        }
+
+        // 文件处理
+        function handleFile(input, type) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onerror = function () {
+                alert('读取文件时发生错误，请检查文件格式和权限。');
+            };
+
+            reader.onload = function (e) {
+                const data = e.target.result;
+                try {
+                    if (file.name.endsWith('.xlsx')) {
+                        const workbook = XLSX.read(data, { type: 'binary' });
+                        const result = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+                        if (type === 'word') words = result;
+                        else students = result.map(s => s.姓名 || s.name);
+                    } else if (file.name.endsWith('.json')) {
+                        const jsonData = JSON.parse(data);
+                        if (type === 'word') words = jsonData;
+                        else students = jsonData.map(s => s.姓名 || s.name);
+                    } else {
+                        const text = data.split('\n').map(line => line.trim());
+                        if (type === 'word') {
+                            words = [];
+                            text.forEach(line => {
+                                const parts = line.split(/[,\t]/);
+                                if (parts.length >= 2) {
+                                    const [japanese, chinese] = parts;
+                                    words.push({ japanese, chinese });
+                                }
+                            });
+                        } else {
+                            students = text.filter(line => line.length > 0);
+                        }
+                    }
+                    alert('🎉 导入成功！');
+                    saveGameState();
+                } catch (error) {
+                    alert(`解析文件时发生错误：${error.message}`);
+                }
+            };
+
+            if (file.name.endsWith('.xlsx')) {
+                reader.readAsBinaryString(file);
+            } else {
+                reader.readAsText(file);
+            }
+        }
+
+        // 开始游戏
+        function startGame() {
+            if (words.length === 0 || students.length === 0) {
+                alert('请先导入单词表和学生名单！');
+                return;
+            }
+            currentStudent = students[Math.floor(Math.random() * students.length)];
+            document.getElementById('studentName').textContent = currentStudent;
+            showModal('studentModal');
+            var desc = document.getElementById('game-desc');
+            if(desc) desc.style.display = 'none';
+        }
+
+        // 开始游戏页面
+        function startGamePage() {
+            document.getElementById('studentModal').style.display = 'none';
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('gamePage').style.display = 'block';
+
+            // 重置游戏状态
+            currentIndex = 0;
+            wrongAnswers = [];
+            totalTime = 0;
+            isPaused = false;
+            usedIndices = [];
+            selectedOptions = {};
+            optionOrders = {};
+
+            startTime = Date.now();
+            clearInterval(timer);
+            timer = setInterval(updateTimer, 1000);
+            showQuestion();
+            saveGameState();
+        }
+
+        // 显示题目
+        function showQuestion() {
+            // 检查是否所有题目都已使用
+            if (usedIndices.length === words.length) {
+                endGame();
+                return;
+            }
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * words.length);
+            } while (usedIndices.includes(randomIndex));
+
+            usedIndices.push(randomIndex);
+            currentIndex = usedIndices.length - 1;
+
+            const currentWord = words[randomIndex];
+            document.getElementById('currentWord').textContent = currentWord.japanese;
+
+            const options = document.getElementById('options');
+            options.innerHTML = '';
+
+            // 生成选项
+            let answerArray;
+            if (optionOrders[randomIndex]) {
+                answerArray = optionOrders[randomIndex];
+            } else {
+                const answers = new Set([currentWord.chinese]);
+                const maxAttempts = 100;
+                let attempts = 0;
+
+                while (answers.size < 4 && attempts < maxAttempts) {
+                    const randomWord = words[Math.floor(Math.random() * words.length)].chinese;
+                    answers.add(randomWord);
+                    attempts++;
+                }
+
+                // 确保有4个选项
+                answerArray = Array.from(answers);
+                while (answerArray.length < 4) {
+                    const additionalWord = words[Math.floor(Math.random() * words.length)].chinese;
+                    answerArray.push(additionalWord);
+                }
+
+                // 随机排序
+                answerArray.sort(() => Math.random() - 0.5);
+                optionOrders[randomIndex] = answerArray;
+            }
+
+            // 创建选项按钮
+            answerArray.forEach(answer => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = answer;
+                button.onclick = () => {
+                    const currentQuestionIndex = usedIndices[currentIndex];
+                    selectedOptions[currentQuestionIndex] = answer;
+                    const optionButtons = document.querySelectorAll('.option-btn');
+                    optionButtons.forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                    button.classList.add('selected');
+                    checkAnswer(answer, currentWord.chinese);
+                    saveGameState();
+                };
+                const currentQuestionIndex = usedIndices[currentIndex];
+                if (selectedOptions[currentQuestionIndex] === answer) {
+                    button.classList.add('selected');
+                }
+                options.appendChild(button);
+            });
+            saveGameState();
+        }
+
+        // 检查答案
+        function checkAnswer(selectedAnswer, correctAnswer) {
+            const currentQuestionIndex = usedIndices[currentIndex];
+            if (selectedAnswer!== correctAnswer) {
+                wrongAnswers.push(words[currentQuestionIndex]);
+            }
+            currentIndex++;
+            if (usedIndices.length === words.length) {
+                endGame();
+            } else {
+                showQuestion();
+            }
+            saveGameState();
+        }
+
+        // 返回首页
+        function returnHome() {
+            document.getElementById('homePage').style.display = 'block';
+            document.getElementById('gamePage').style.display = 'none';
+            document.getElementById('studentModal').style.display = 'none';
+            document.getElementById('endModal').style.display = 'none';
+            clearInterval(timer);
+
+            // 记录成绩
+            if (currentIndex > 0) {
+                const accuracy = Math.round(
+                    ((currentIndex - wrongAnswers.length) / currentIndex) * 100
+                );
+                rankList.push({
+                    name: currentStudent,
+                    time: totalTime,
+                    accuracy: accuracy
+                });
+                updateRanking();
+            }
+            saveGameState();
+        }
+
+        // 更新排行榜
+        function updateRanking() {
+            const tbody = document.getElementById('rankBody');
+            tbody.innerHTML = '';
+
+            rankList.sort((a, b) => a.time - b.time);
+
+            rankList.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${formatTime(item.time)}</td>
+                    <td>${item.accuracy}%</td>
+                `;
+                tbody.appendChild(tr);
+            });
+            saveGameState();
+        }
+
+        // 清空排行榜
+        function clearRanking() {
+            rankList = [];
+            updateRanking();
+            saveGameState();
+        }
+
+        // 结束游戏
+        function endGame() {
+            clearInterval(timer);
+            const accuracy = Math.round(
+                ((currentIndex - wrongAnswers.length) / currentIndex) * 100
+            );
+            document.getElementById('finalTime').textContent = formatTime(totalTime);
+            document.getElementById('accuracyRate').textContent = accuracy;
+            showModal('endModal');
+            saveGameState();
+        }
+
+        // 显示模态框
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        // 隐藏模态框
+        function hideModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // 暂停游戏
+        function togglePause() {
+            const pauseButton = document.querySelector('button[onclick="togglePause()"]');
+            if (isPaused) {
+                startTime = Date.now() - totalTime;
+                timer = setInterval(updateTimer, 1000);
+                isPaused = false;
+                pauseButton.textContent = '⏯️ 暂停';
+            } else {
+                clearInterval(timer);
+                totalTime = Date.now() - startTime;
+                isPaused = true;
+                pauseButton.textContent = '▶️ 开始';
+            }
+            saveGameState();
+        }
+
+        // 更新计时器
+        function updateTimer() {
+            if (!isPaused) {
+                totalTime = Date.now() - startTime;
+                document.getElementById('timer').textContent = formatTime(totalTime);
+            }
+            saveGameState();
+        }
+
+        // 时间格式化函数
+        function formatTime(milliseconds) {
+            const totalSeconds = Math.floor(milliseconds / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // 导出错题
+        function exportWrong() {
+            try {
+                if (wrongAnswers.length === 0) {
+                    alert('没有错题可导出！');
+                    return;
+                }
+                const csvContent = wrongAnswers.map(item => `${item.japanese},${item.chinese}`).join('\n');
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', 'wrong_answers.csv');
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            } catch (error) {
+                alert(`导出错题时发生错误：${error.message}`);
+            }
+        }
+
+        // 上一题
+        function prevQuestion() {
+            if (currentIndex === 0) {
+                alert('没有上一题啦！');
+                return;
+            }
+            currentIndex--;
+            const prevIndex = usedIndices[currentIndex];
+            const currentWord = words[prevIndex];
+            document.getElementById('currentWord').textContent = currentWord.japanese;
+
+            const options = document.getElementById('options');
+            options.innerHTML = '';
+
+            const answerArray = optionOrders[prevIndex];
+
+            // 创建选项按钮
+            answerArray.forEach(answer => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = answer;
+                button.onclick = () => {
+                    const currentQuestionIndex = usedIndices[currentIndex];
+                    selectedOptions[currentQuestionIndex] = answer;
+                    const optionButtons = document.querySelectorAll('.option-btn');
+                    optionButtons.forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                    button.classList.add('selected');
+                    checkAnswer(answer, currentWord.chinese);
+                    saveGameState();
+                };
+                if (selectedOptions[prevIndex] === answer) {
+                    button.classList.add('selected');
+                }
+                options.appendChild(button);
+            });
+            saveGameState();
+        }
+
+        // 下一题
+        function nextQuestion() {
+            if (usedIndices.length === words.length && currentIndex === usedIndices.length - 1) {
+                alert('已经是最后一题啦！');
+                return;
+            }
+            currentIndex++;
+            if (currentIndex < usedIndices.length) {
+                const nextIndex = usedIndices[currentIndex];
+                const currentWord = words[nextIndex];
+                document.getElementById('currentWord').textContent = currentWord.japanese;
+
+                const options = document.getElementById('options');
+                options.innerHTML = '';
+
+                const answerArray = optionOrders[nextIndex];
+
+                // 创建选项按钮
+                answerArray.forEach(answer => {
+                    const button = document.createElement('button');
+                    button.className = 'option-btn';
+                    button.textContent = answer;
+                    button.onclick = () => {
+                        const currentQuestionIndex = usedIndices[currentIndex];
+                        selectedOptions[currentQuestionIndex] = answer;
+                        const optionButtons = document.querySelectorAll('.option-btn');
+                        optionButtons.forEach(btn => {
+                            btn.classList.remove('selected');
+                        });
+                        button.classList.add('selected');
+                        checkAnswer(answer, currentWord.chinese);
+                        saveGameState();
+                    };
+                    if (selectedOptions[nextIndex] === answer) {
+                        button.classList.add('selected');
+                    }
+                    options.appendChild(button);
+                });
+            } else {
+                showQuestion();
+            }
+            saveGameState();
+        }
+    </script>
+</body>
+
+</html>
+    

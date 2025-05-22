@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>🌸五十音连连看🎴</title>
+    <style>
+        /* 粉色与浅绿色主题 */
+        :root {
+            --main-pink: #fff0f6;    /* 主背景色 */
+            --mint-green: #e0fef2;   /* 辅助色 */
+            --accent-pink: #ff9fcf;  /* 强调色 */
+            --button-start: #ff85b8; /* 按钮渐变色起始 */
+            --button-end: #87f2d0;   /* 按钮渐变色结束 */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--main-pink) 0%, var(--mint-green) 100%);
+            color: #ff69b4;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .game-name {
+            font-size: 2.8em;
+            color: #ff1493;
+            text-shadow: 2px 2px 4px rgba(255,105,180,0.2);
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .control-panel {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: 2px solid #ffb3d9;
+            border-radius: 25px;
+            background: linear-gradient(145deg, var(--button-start), var(--button-end));
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 6px;
+            padding: 15px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid #ffd1e6;
+        }
+
+        .card {
+            width: 50px;
+            height: 50px;
+            background: #e0fef2;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #ff69b4;
+            border: 2px solid #ffb3d9;
+        }
+
+        .card.selected {
+            background: #ff9fcf;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255,159,207,0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffe4f1 0%, #e0fef2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            z-index: 100;
+            text-align: center;
+            border: 2px solid #ffb3d9;
+        }
+
+        .progress {
+            font-size: 28px;
+            color: #3cb371;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(60,179,113,0.2);
+            margin-bottom: 20px;
+        }
+
+        .confirm-modal {
+            background: rgba(255,255,255,0.97);
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .deco-sakura {
+            position: absolute;
+            opacity: 0.4;
+            pointer-events: none;
+            font-size: 24px;
+            color: #ff69b4;
+        }
+
+        /* 添加新样式 */
+        .timer-stat {
+            text-align: center;
+            font-size: 18px;
+            color: #ff69b4;
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        .stats-table th, .stats-table td {
+            border: 1px solid #ffb3d9;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .stats-table th {
+            background-color: var(--accent-pink);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="deco-sakura" style="top:10%;left:5%">🌸</div>
+    <div class="deco-sakura" style="top:30%;right:8%">✨</div>
+    <div class="deco-sakura" style="bottom:20%;left:15%">🎌</div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="game-name">🌸五十音连连看🎴</h1>
+            <div class="control-panel">
+                <button onclick="startGame()">🎮 开始游戏</button>
+                <button id="pauseBtn" onclick="togglePause()">⏸️ 暂停</button>
+                <button onclick="showConfirmModal()">🔄 重新开始</button>
+                <input type="file" id="studentFile" style="display:none;" accept=".csv,.txt">
+                <button onclick="document.getElementById('studentFile').click()">📁 导入学生</button>
+                <button onclick="showStats()">📊 成绩统计</button>
+            </div>
+            <div class="progress">❤️ 关卡 <span id="currentLevel">0</span>/10</div>
+            <div class="timer-stat">
+                ⏱️ 时间: <span id="timer">0</span>秒 | 
+                ❌ 错误: <span id="errors">0</span> | 
+                🏆 得分: <span id="score">0</span>
+            </div>
+        </div>
+        <div id="gameBoard" class="game-board"></div>
+    </div>
+
+    <!-- 学生匹配弹窗 -->
+    <div id="studentModal" class="modal">
+        <h2>🎌 第<span id="displayLevel">1</span>关 🎌</h2>
+        <h3 id="studentName" style="margin:15px 0"></h3>
+        <p>同学进行挑战！✨</p>
+        <button onclick="startChallenge()">🎯 开始挑战</button>
+    </div>
+
+    <!-- 确认弹窗 -->
+    <div id="confirmModal" class="modal confirm-modal">
+        <h3>⚠️ 确定要重新开始吗？</h3>
+        <p>当前进度将会丢失！😢</p>
+        <div style="margin-top:20px;display:flex;gap:12px;justify-content:center">
+            <button onclick="confirmRestart()">✅ 确定</button>
+            <button onclick="closeConfirmModal()">❌ 取消</button>
+        </div>
+    </div>
+
+    <!-- 添加统计结果弹窗 -->
+    <div id="statsModal" class="modal confirm-modal">
+        <h3>📊 学生成绩统计</h3>
+        <div id="statsContent" style="max-height:400px;overflow-y:auto;margin:15px 0"></div>
+        <button onclick="exportStats()">📥 导出CSV</button>
+        <button onclick="closeStatsModal()">❌ 关闭</button>
+    </div>
+
+    <!-- 浮动下载按钮区域 -->
+    <div style="position:fixed;right:2vw;bottom:2vw;z-index:999;display:flex;flex-direction:column;gap:0.7rem;">
+        <a href="学生姓名.txt" download class="start-button">学生姓名模板</a>
+        <a href="学生姓名.csv" download class="start-button">学生姓名模板</a>
+        <a href="五十音连连看 .txt" download class="start-button">五十音连连看模板</a>
+    </div>
+
+    <!-- 游戏说明区域 -->
+    <div id="game-desc" style="width:75%;margin:2rem auto 0 auto;text-align:left;">
+        <h3 style="text-align:center;">游戏说明</h3>
+        <p>
+            本游戏为日语五十音连连看配对游戏。每一关会出现若干假名卡片，卡片上可能是平假名、片假名或罗马音。<br>
+            玩家每次需要依次点击三张卡片，若三张卡片代表的是同一个假名（即平假名、片假名、罗马音完全对应），则配对成功并消除。<br>
+            配对错误会增加错误次数。全部卡片配对完成后进入下一关。<br>
+            游戏支持学生名单导入、成绩统计等功能，适合日语课堂互动练习。
+        </p>
+    </div>
+
+    <script>
+        const hiraganaData = [
+            // 清音（50音）
+            { hiragana: "あ", katakana: "ア", romaji: "a" },
+            { hiragana: "い", katakana: "イ", romaji: "i" },
+            { hiragana: "う", katakana: "ウ", romaji: "u" },
+            { hiragana: "え", katakana: "エ", romaji: "e" },
+            { hiragana: "お", katakana: "オ", romaji: "o" },
+
+            { hiragana: "か", katakana: "カ", romaji: "ka" },
+            { hiragana: "き", katakana: "キ", romaji: "ki" },
+            { hiragana: "く", katakana: "ク", romaji: "ku" },
+            { hiragana: "け", katakana: "ケ", romaji: "ke" },
+            { hiragana: "こ", katakana: "コ", romaji: "ko" },
+
+            { hiragana: "さ", katakana: "サ", romaji: "sa" },
+            { hiragana: "し", katakana: "シ", romaji: "shi" },
+            { hiragana: "す", katakana: "ス", romaji: "su" },
+            { hiragana: "せ", katakana: "セ", romaji: "se" },
+            { hiragana: "そ", katakana: "ソ", romaji: "so" },
+
+            { hiragana: "た", katakana: "タ", romaji: "ta" },
+            { hiragana: "ち", katakana: "チ", romaji: "chi" },
+            { hiragana: "つ", katakana: "ツ", romaji: "tsu" },
+            { hiragana: "て", katakana: "テ", romaji: "te" },
+            { hiragana: "と", katakana: "ト", romaji: "to" },
+
+            { hiragana: "な", katakana: "ナ", romaji: "na" },
+            { hiragana: "に", katakana: "ニ", romaji: "ni" },
+            { hiragana: "ぬ", katakana: "ヌ", romaji: "nu" },
+            { hiragana: "ね", katakana: "ネ", romaji: "ne" },
+            { hiragana: "の", katakana: "ノ", romaji: "no" },
+
+            { hiragana: "は", katakana: "ハ", romaji: "ha" },
+            { hiragana: "ひ", katakana: "ヒ", romaji: "hi" },
+            { hiragana: "ふ", katakana: "フ", romaji: "fu" },
+            { hiragana: "へ", katakana: "ヘ", romaji: "he" },
+            { hiragana: "ほ", katakana: "ホ", romaji: "ho" },
+
+            { hiragana: "ま", katakana: "マ", romaji: "ma" },
+            { hiragana: "み", katakana: "ミ", romaji: "mi" },
+            { hiragana: "む", katakana: "ム", romaji: "mu" },
+            { hiragana: "め", katakana: "メ", romaji: "me" },
+            { hiragana: "も", katakana: "モ", romaji: "mo" },
+
+            { hiragana: "や", katakana: "ヤ", romaji: "ya" },
+            { hiragana: "ゆ", katakana: "ユ", romaji: "yu" },
+            { hiragana: "よ", katakana: "ヨ", romaji: "yo" },
+
+            { hiragana: "ら", katakana: "ラ", romaji: "ra" },
+            { hiragana: "り", katakana: "リ", romaji: "ri" },
+            { hiragana: "る", katakana: "ル", romaji: "ru" },
+            { hiragana: "れ", katakana: "レ", romaji: "re" },
+            { hiragana: "ろ", katakana: "ロ", romaji: "ro" },
+
+            { hiragana: "わ", katakana: "ワ", romaji: "wa" },
+            { hiragana: "を", katakana: "ヲ", romaji: "wo" },
+            { hiragana: "ん", katakana: "ン", romaji: "n" },
+
+            // 浊音（20音）
+            { hiragana: "が", katakana: "ガ", romaji: "ga" },
+            { hiragana: "ぎ", katakana: "ギ", romaji: "gi" },
+            { hiragana: "ぐ", katakana: "グ", romaji: "gu" },
+            { hiragana: "げ", katakana: "ゲ", romaji: "ge" },
+            { hiragana: "ご", katakana: "ゴ", romaji: "go" },
+
+            { hiragana: "ざ", katakana: "ザ", romaji: "za" },
+            { hiragana: "じ", katakana: "ジ", romaji: "ji" },
+            { hiragana: "ず", katakana: "ズ", romaji: "zu" },
+            { hiragana: "ぜ", katakana: "ゼ", romaji: "ze" },
+            { hiragana: "ぞ", katakana: "ゾ", romaji: "zo" },
+
+            { hiragana: "だ", katakana: "ダ", romaji: "da" },
+            { hiragana: "ぢ", katakana: "ヂ", romaji: "ji" },
+            { hiragana: "づ", katakana: "ヅ", romaji: "zu" },
+            { hiragana: "で", katakana: "デ", romaji: "de" },
+            { hiragana: "ど", katakana: "ド", romaji: "do" },
+
+            { hiragana: "ば", katakana: "バ", romaji: "ba" },
+            { hiragana: "び", katakana: "ビ", romaji: "bi" },
+            { hiragana: "ぶ", katakana: "ブ", romaji: "bu" },
+            { hiragana: "べ", katakana: "ベ", romaji: "be" },
+            { hiragana: "ぼ", katakana: "ボ", romaji: "bo" },
+
+            // 半浊音（5音）
+            { hiragana: "ぱ", katakana: "パ", romaji: "pa" },
+            { hiragana: "ぴ", katakana: "ピ", romaji: "pi" },
+            { hiragana: "ぷ", katakana: "プ", romaji: "pu" },
+            { hiragana: "ぺ", katakana: "ペ", romaji: "pe" },
+            { hiragana: "ぽ", katakana: "ポ", romaji: "po" },
+
+            // 常用拗音（36音）
+            { hiragana: "きゃ", katakana: "キャ", romaji: "kya" },
+            { hiragana: "きゅ", katakana: "キュ", romaji: "kyu" },
+            { hiragana: "きょ", katakana: "キョ", romaji: "kyo" },
+
+            { hiragana: "しゃ", katakana: "シャ", romaji: "sha" },
+            { hiragana: "しゅ", katakana: "シュ", romaji: "shu" },
+            { hiragana: "しょ", katakana: "ショ", romaji: "sho" },
+
+            { hiragana: "ちゃ", katakana: "チャ", romaji: "cha" },
+            { hiragana: "ちゅ", katakana: "チュ", romaji: "chu" },
+            { hiragana: "ちょ", katakana: "チョ", romaji: "cho" },
+
+            { hiragana: "にゃ", katakana: "ニャ", romaji: "nya" },
+            { hiragana: "にゅ", katakana: "ニュ", romaji: "nyu" },
+            { hiragana: "にょ", katakana: "ニョ", romaji: "nyo" },
+
+            { hiragana: "ひゃ", katakana: "ヒャ", romaji: "hya" },
+            { hiragana: "ひゅ", katakana: "ヒュ", romaji: "hyu" },
+            { hiragana: "ひょ", katakana: "ヒョ", romaji: "hyo" },
+
+            { hiragana: "みゃ", katakana: "ミャ", romaji: "mya" },
+            { hiragana: "みゅ", katakana: "ミュ", romaji: "myu" },
+            { hiragana: "みょ", katakana: "ミョ", romaji: "myo" },
+
+            { hiragana: "りゃ", katakana: "リャ", romaji: "rya" },
+            { hiragana: "りゅ", katakana: "リュ", romaji: "ryu" },
+            { hiragana: "りょ", katakana: "リョ", romaji: "ryo" },
+
+            // 浊音拗音
+            { hiragana: "ぎゃ", katakana: "ギャ", romaji: "gya" },
+            { hiragana: "ぎゅ", katakana: "ギュ", romaji: "gyu" },
+            { hiragana: "ぎょ", katakana: "ギョ", romaji: "gyo" },
+
+            { hiragana: "じゃ", katakana: "ジャ", romaji: "ja" },
+            { hiragana: "じゅ", katakana: "ジュ", romaji: "ju" },
+            { hiragana: "じょ", katakana: "ジョ", romaji: "jo" },
+
+            { hiragana: "びゃ", katakana: "ビャ", romaji: "bya" },
+            { hiragana: "びゅ", katakana: "ビュ", romaji: "byu" },
+            { hiragana: "びょ", katakana: "ビョ", romaji: "byo" },
+
+            { hiragana: "ぴゃ", katakana: "ピャ", romaji: "pya" },
+            { hiragana: "ぴゅ", katakana: "ピュ", romaji: "pyu" },
+            { hiragana: "ぴょ", katakana: "ピョ", romaji: "pyo" }
+        ];
+
+        let currentLevel = 0;
+        let selectedCards = [];
+        let isPaused = false;
+        let usedStudents = [];
+        let gameData = JSON.parse(localStorage.getItem('gameData')) || { 
+            level: 0,
+            usedHiragana: []
+        };
+        let usedHiragana = gameData.usedHiragana || [];
+
+        // 新增变量
+        let startTime;
+        let timerInterval;
+        let currentStudent = null;
+        let errorCount = 0;
+        let studentStats = JSON.parse(localStorage.getItem('studentStats')) || {};
+
+        // 计时器函数
+        function startTimer() {
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                document.getElementById('timer').textContent = Math.floor((Date.now() - startTime) / 1000);
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').textContent = 0;
+            errorCount = 0;
+            document.getElementById('errors').textContent = 0;
+        }
+
+        // 成绩统计相关函数
+        function updateStats(success) {
+            if (!currentStudent) return;
+            
+            const timeUsed = Math.floor((Date.now() - startTime) / 1000);
+            const score = calculateScore(timeUsed, errorCount);
+            
+            studentStats[currentStudent] = studentStats[currentStudent] || {
+                levelsCompleted: 0,
+                totalTime: 0,
+                totalErrors: 0,
+                bestScore: 0
+            };
+            
+            const stats = studentStats[currentStudent];
+            stats.levelsCompleted = currentLevel;
+            stats.totalTime += timeUsed;
+            stats.totalErrors += errorCount;
+            stats.bestScore = Math.max(stats.bestScore, score);
+            
+            document.getElementById('score').textContent = score;
+            localStorage.setItem('studentStats', JSON.stringify(studentStats));
+        }
+
+        function calculateScore(time, errors) {
+            // 百分制计算逻辑
+            const maxScore = 100;
+            const timePenalty = Math.min(time * 0.2, 50); 
+            const errorPenalty = Math.min(errors * 2, 50); 
+            return Math.max(0, maxScore - timePenalty - errorPenalty);
+        }
+
+        function showStats() {
+            const statsContent = document.getElementById('statsContent');
+            statsContent.innerHTML = `
+                <table class="stats-table">
+                    <tr>
+                        <th>姓名</th>
+                        <th>完成关卡</th>
+                        <th>总用时</th>
+                        <th>总错误</th>
+                        <th>最高得分</th>
+                    </tr>
+                    ${Object.entries(studentStats).map(([name, stats]) => `
+                        <tr>
+                            <td>${name}</td>
+                            <td>${stats.levelsCompleted}</td>
+                            <td>${stats.totalTime}s</td>
+                            <td>${stats.totalErrors}</td>
+                            <td>${stats.bestScore}</td>
+                        </tr>
+                    `).join('')}
+                </table>
+            `;
+            document.getElementById('statsModal').style.display = 'block';
+        }
+
+        function closeStatsModal() {
+            document.getElementById('statsModal').style.display = 'none';
+        }
+
+        function exportStats() {
+            const csvContent = [
+                '姓名,完成关卡,总用时(秒),总错误数,最高得分',
+                ...Object.entries(studentStats).map(([name, stats]) => 
+                    `${name},${stats.levelsCompleted},${stats.totalTime},${stats.totalErrors},${stats.bestScore}`)
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `学生成绩_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+
+        function startChallenge() {
+            currentStudent = document.getElementById('studentName').textContent;
+            resetTimer();
+            startTimer();
+            closeModal();
+            generateCards();
+            currentLevel = 1;
+            updateLevelDisplay();
+        }
+
+        function closeModal() {
+            document.getElementById('studentModal').style.display = 'none';
+        }
+
+        function generateCards() {
+            const board = document.getElementById('gameBoard');
+            board.innerHTML = '';
+
+            // 获取未使用假名
+            const availableChars = hiraganaData.filter(c => 
+                !usedHiragana.includes(c.hiragana)
+            );
+
+            let selectedChars = [];
+            let needsRefresh = false;
+
+            if (availableChars.length >= 10) {
+                selectedChars = shuffleArray(availableChars).slice(0, 10);
+                usedHiragana.push(...selectedChars.map(c => c.hiragana));
+            } else {
+                // 先添加所有未使用的
+                selectedChars = shuffleArray(availableChars);
+                const remaining = 10 - selectedChars.length;
+                usedHiragana.push(...selectedChars.map(c => c.hiragana));
+
+                // 从全部假名中补足剩余数量（排除当前已选）
+                const remainingPool = hiraganaData.filter(c => 
+                    !selectedChars.some(s => s.hiragana === c.hiragana)
+                );
+                
+                if (remainingPool.length >= remaining) {
+                    selectedChars.push(...shuffleArray(remainingPool).slice(0, remaining));
+                } else {
+                    // 极端情况处理：当总假名不足时循环使用
+                    selectedChars.push(...Array.from({length: remaining}, (_,i) => 
+                        remainingPool[i % remainingPool.length]
+                    ));
+                }
+            }
+
+            // 生成卡片
+            let cards = [];
+            selectedChars.forEach(char => {
+                cards.push({...char, type: 'hiragana'});
+                cards.push({...char, type: 'katakana'});
+                cards.push({...char, type: 'romaji'});
+            });
+            
+            shuffleArray(cards).forEach(char => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.textContent = char[char.type];
+                card.dataset.char = JSON.stringify(char);
+                card.onclick = () => selectCard(card);
+                board.appendChild(card);
+            });
+
+            // 保存游戏状态
+            gameData.usedHiragana = usedHiragana;
+            localStorage.setItem('gameData', JSON.stringify(gameData));
+        }
+
+        function selectCard(card) {
+            if (isPaused) return;
+            if (card.classList.contains('selected')) return; 
+
+            card.classList.add('selected');
+            selectedCards.push(card);
+            
+            if (selectedCards.length === 3) {
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const chars = selectedCards.map(c => JSON.parse(c.dataset.char));
+            const isValid = chars.every(c => 
+                c.hiragana === chars[0].hiragana &&
+                c.katakana === chars[0].katakana &&
+                c.romaji === chars[0].romaji
+            );
+
+            if (!isValid) {
+                errorCount++;
+                document.getElementById('errors').textContent = errorCount;
+                selectedCards.forEach(c => c.classList.remove('selected'));
+            } else {
+                selectedCards.forEach(c => c.style.visibility = 'hidden');
+                checkLevelComplete();
+            }
+            selectedCards = [];
+        }
+
+        function checkLevelComplete() {
+            const remaining = document.querySelectorAll('.card:not([style*="visibility: hidden"])').length;
+            if (remaining === 0) {
+                updateStats(true);
+                currentLevel++;
+                gameData.level = currentLevel;
+                localStorage.setItem('gameData', JSON.stringify(gameData));
+                updateLevelDisplay();
+                
+                if (currentLevel <= 10) {
+                    showStudentModal();
+                } else {
+                    alert('🎉 恭喜通关！所有关卡已完成！🌸');
+                }
+            }
+        }
+
+        function getUniqueStudent() {
+            const students = JSON.parse(localStorage.getItem('students')) || [];
+            const available = students.filter(s => !usedStudents.includes(s));
+            
+            if (available.length === 0) {
+                alert('所有学生都已参与过游戏，请重新导入学生名单！');
+                return null;
+            }
+            
+            const student = available[Math.floor(Math.random() * available.length)];
+            usedStudents.push(student);
+            return student;
+        }
+
+        function showStudentModal() {
+            const student = getUniqueStudent();
+            if (!student) {
+                return;
+            }
+            document.getElementById('studentName').textContent = student;
+            document.getElementById('displayLevel').textContent = currentLevel;
+            document.getElementById('studentModal').style.display = 'block';
+        }
+
+        function startGame() {
+            currentLevel = gameData.level || 0;
+            updateLevelDisplay();
+            if(currentLevel === 0) {
+                showStudentModal();
+            } else {
+                generateCards();
+            }
+            var desc = document.getElementById('game-desc');
+            if(desc) desc.style.display = 'none';
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            if (isPaused) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+            const pauseBtn = document.getElementById('pauseBtn');
+            pauseBtn.innerHTML = isPaused ? "▶️ 再開" : "⏸️ 暂停";
+            alert(isPaused ? "⏸️ 游戏已暂停" : "▶️ 游戏继续 🎮");
+        }
+
+        function updateLevelDisplay() {
+            document.getElementById('currentLevel').textContent = currentLevel;
+            document.getElementById('displayLevel').textContent = currentLevel;
+        }
+
+        function showConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'block';
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+
+        function confirmRestart() {
+            resetTimer();
+            try {
+                localStorage.removeItem('gameData');
+                localStorage.removeItem('studentStats'); 
+            } catch (error) {
+                console.error('Error removing data from localStorage:', error);
+            }
+            currentLevel = 0;
+            usedStudents = [];
+            usedHiragana = [];
+            gameData = { level: 0, usedHiragana: [] };
+            studentStats = {}; 
+            updateLevelDisplay();
+            showStudentModal();
+            closeConfirmModal();
+        }
+
+        document.getElementById('studentFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                try {
+                    let text = e.target.result;
+                    if (text.charCodeAt(0) === 0xFEFF) text = text.substr(1);
+                    const students = text.split('\n').map(s => s.trim()).filter(s => s);
+                    localStorage.setItem('students', JSON.stringify(students));
+                    alert('🎉 学生名单导入成功！✨');
+                } catch (error) {
+                    console.error('文件导入出错:', error);
+                    alert('😢 学生名单导入失败，请检查文件格式。');
+                }
+            };
+
+            reader.onerror = function() {
+                console.error('文件读取出错:', reader.error);
+                alert('😢 读取文件时发生错误，请重试。');
+            };
+
+            reader.readAsText(file, 'UTF-8');
+        });
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        updateLevelDisplay();
+    </script>
+</body>
+</html>
+    

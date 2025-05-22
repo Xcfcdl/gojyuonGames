@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>日本語形容詞チャレンジ！</title>
+    <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff3e6;
+            font-family: 'Yomogi', 'Hachi Maru Pop', cursive;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff9f0;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #ffd699;
+        }
+        h1 {
+            color: #ff9933;
+            text-shadow: 2px 2px #ffd699;
+            font-family: 'Hachi Maru Pop', cursive;
+        }
+        .player-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 3px solid #ffcc99;
+            width: 250px;
+            margin: 20px auto;
+            font-size: 1.2em;
+        }
+        button {
+            background-color: #ffcc99;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            margin: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Hachi Maru Pop', cursive;
+        }
+        button:hover {
+            background-color: #ff9933;
+            transform: scale(1.1);
+        }
+        #question-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px;
+            border: 3px solid #ffcc99;
+        }
+        .option-btn {
+            width: 45%;
+            margin: 5px;
+            font-size: 18px;
+            font-family: 'Yomogi', cursive;
+        }
+        .option-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #timer {
+            font-size: 26px;
+            color: #ff6666;
+            margin: 15px;
+            font-family: 'Hachi Maru Pop', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐾日本語形容詞バトル！</h1>
+        
+        <div>
+            <button onclick="document.getElementById('adj-file').click()">📁 形容詞をインポート</button>
+            <button onclick="document.getElementById('student-file').click()">👤 学生リスト</button>
+            <button onclick="randomStudent()">🎲 ランダム選択</button>
+            <button onclick="startGame()">🎮 ゲームスタート</button>
+        </div>
+
+        <div class="player-box" id="player">プレイヤー</div>
+        <div id="timer">残り時間：60秒 ⏳</div>
+
+        <div id="question-box" style="display:none;">
+            <h2 id="question-text"></h2>
+            <div id="options-container"></div>
+        </div>
+
+        <input type="file" id="adj-file" hidden accept=".txt,.csv,.xls,.xlsx">
+        <input type="file" id="student-file" hidden accept=".txt,.csv,.xls,.xlsx">
+    </div>
+
+    <!-- 浮动下载按钮区域 -->
+    <div style="position:fixed;right:2vw;bottom:2vw;z-index:999;display:flex;flex-direction:column;gap:0.7rem;">
+        <a href="导入单词测试文本.txt" download class="start-button">下载单词文本模板</a>
+        <a href="学生姓名.txt" download class="start-button">下载学生姓名模板</a>
+    </div>
+
+    <script>
+        let adjectives = [];
+        let students = [];
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let correctCount = 0;
+        let wrongAnswers = [];
+        let timeLeft = 60;
+        let timerId;
+
+        // 形容詞活用ルール
+        const conjugations = {
+            'イ形': {
+                'present': 'い',
+                'past': 'かった',
+                'negative-present': 'くない',
+                'negative-past': 'くなかった'
+            },
+            'ナ形': {
+                'present': 'だ',
+                'past': 'だった',
+                'negative-present': 'ではない',
+                'negative-past': 'ではなかった'
+            }
+        };
+
+        // ファイル読み込み
+        document.getElementById('adj-file').addEventListener('change', handleFile('adj'));
+        document.getElementById('student-file').addEventListener('change', handleFile('student'));
+
+        function handleFile(type) {
+            return function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const data = this.result.split('\n').map(line => line.trim());
+                    if(type === 'adj') {
+                        adjectives = data;
+                        alert('形容詞ファイルが正常にインポートされました！');
+                    } else {
+                        students = data;
+                        alert('学生リストファイルが正常にインポートされました！');
+                    }
+                }
+                reader.readAsText(file);
+            }
+        }
+
+        function randomStudent() {
+            if(students.length === 0) return alert("学生リストを先にインポートしてください！");
+            document.getElementById('player').textContent = students[Math.floor(Math.random()*students.length)];
+        }
+
+        function startGame() {
+            if(adjectives.length === 0) return alert("形容詞ファイルを先にインポートしてください！");
+            if(document.getElementById('player').textContent === "プレイヤー") return alert("プレイヤーを選択してください！");
+
+            currentQuestions = [];
+            const usedAdjectives = [];
+            for(let i = 0; i < adjectives.length; i++) {
+                let adj;
+                do {
+                    adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+                } while (usedAdjectives.includes(adj));
+                usedAdjectives.push(adj);
+                currentQuestions.push(generateQuestion(adj));
+            }
+            
+            currentQuestionIndex = 0;
+            correctCount = 0;
+            wrongAnswers = [];
+            timeLeft = 60;
+            updateTimer();
+            
+            document.getElementById('question-box').style.display = 'block';
+            showQuestion();
+            startTimer();
+        }
+
+        function startTimer() {
+            timerId = setInterval(() => {
+                timeLeft--;
+                updateTimer();
+                if(timeLeft <= 0) endGame();
+            }, 1000);
+        }
+
+        function updateTimer() {
+            const timerElement = document.getElementById('timer');
+            timerElement.innerHTML = `残り時間：${timeLeft}秒 ${timeLeft > 10 ? '⏳' : '⌛'}`;
+            timerElement.style.color = timeLeft > 10 ? '#ff6666' : '#ff3333';
+        }
+
+        function generateQuestion(adj) {
+            let type;
+            if (adj.endsWith('い') && !['きれい', '嫌い'].includes(adj)) {
+                type = 'イ形';
+            } else {
+                type = 'ナ形';
+            }
+            const tenses = ['present', 'past', 'negative-present', 'negative-past'];
+            const correctTense = tenses[Math.floor(Math.random() * tenses.length)];
+
+            const stem = type === 'イ形' ? adj.slice(0, -1) : adj;
+            const correctAnswer = stem + conjugations[type][correctTense];
+
+            // 誤答生成
+            let options = [correctAnswer];
+            while (options.length < 4) {
+                const wrongType = Math.random() > 0.5 ? type : (type === 'イ形' ? 'ナ形' : 'イ形');
+                const wrongTense = tenses[Math.floor(Math.random() * tenses.length)];
+                const wrongStem = wrongType === 'イ形' ? adj.slice(0, -1) : adj;
+                const wrongAnswer = wrongStem + conjugations[wrongType][wrongTense];
+                if (!options.includes(wrongAnswer)) options.push(wrongAnswer);
+            }
+
+            return {
+                question: `「${adj}」の${getTenseJapanese(correctTense)}形を選んでください：`,
+                options: options.sort(() => Math.random() - 0.5),
+                correct: correctAnswer
+            };
+        }
+
+        function getTenseJapanese(tense) {
+            const map = {
+                'present': '現在',
+                'past': '過去',
+                'negative-present': '否定現在',
+                'negative-past': '否定過去'
+            };
+            return map[tense];
+        }
+
+        function showQuestion() {
+            const q = currentQuestions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = q.question;
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            for (let i = 0; i < q.options.length; i += 2) {
+                const row = document.createElement('div');
+                row.className = 'option-row';
+
+                const btn1 = document.createElement('button');
+                btn1.className = 'option-btn';
+                btn1.textContent = q.options[i];
+                btn1.onclick = () => checkAnswer(q.options[i], q.correct);
+                row.appendChild(btn1);
+
+                if (i + 1 < q.options.length) {
+                    const btn2 = document.createElement('button');
+                    btn2.className = 'option-btn';
+                    btn2.textContent = q.options[i + 1];
+                    btn2.onclick = () => checkAnswer(q.options[i + 1], q.correct);
+                    row.appendChild(btn2);
+                }
+
+                optionsContainer.appendChild(row);
+            }
+        }
+
+        function checkAnswer(selected, correct) {
+            clearInterval(timerId);
+
+            if (selected === correct) {
+                correctCount++;
+            } else {
+                wrongAnswers.push({
+                    question: currentQuestions[currentQuestionIndex].question,
+                    correct: correct,
+                    selected: selected
+                });
+            }
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuestions.length && timeLeft > 0) {
+                startTimer();
+                showQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            clearInterval(timerId);
+            const answered = currentQuestionIndex;
+            alert(`タイムアップ！\n正解数：${correctCount}/${answered}`);
+            document.getElementById('question-box').style.display = 'none';
+            exportWrongAnswers();
+        }
+
+        function exportWrongAnswers() {
+            const csvContent = "問題,正解,選択肢\n" +
+                wrongAnswers.map(e => `${e.question},${e.correct},${e.selected}`).join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '間違えた問題.csv';
+            a.click();
+        }
+    </script>
+</body>
+</html>
+    
