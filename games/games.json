@@ -1,5 +1,17 @@
 [
   {
+    "id": "type-kana",
+    "title": { "zh": "Type Kana", "ja": "Type Kana", "en": "Type Kana" },
+    "desc": {
+      "zh": "通过打字练习提高假名阅读速度，100个随机假名的打字挑战",
+      "ja": "タイピングでかな読み取り速度を向上、100個のランダムかなに挑戦",
+      "en": "Speed up reading kana with typing practice, challenge with 100 random kana"
+    },
+    "icon": "fa-keyboard",
+    "url": "games/type-kana.html",
+    "status": "normal"
+  },
+  {
     "id": "listen",
     "title": { "zh": "听音选字", "ja": "聞き取り選択", "en": "Kana Listening" },
     "desc": {
@@ -263,4 +275,4 @@
     "url": "games/draw.html",
     "status": "pending"
   }
-] 
+]

@@ -53,5 +53,11 @@
   "confirm_level_switch": "关卡切换将丢失当前进度，确定要切换吗？",
   "confirm_yes": "确定",
   "confirm_no": "取消",
-  "confirm_clear_wrong_list": "确定要清空错题本吗？"
+  "confirm_clear_wrong_list": "确定要清空错题本吗？",
+
+  "type_kana_title": "Type Kana - 假名打字游戏",
+  "type_kana_desc_title": "游戏说明",
+  "type_kana_desc": "Type Kana 是一个帮助你加快平假名/片假名阅读速度的游戏。在这个游戏中，你需要阅读100个随机的平假名/片假名字符，并输入它们的罗马音标注。游戏会跟踪你的速度（经过的时间）和准确性。",
+  "type_kana_desc_2": "如果你正在学习日语，不妨试一试，看看你能取得什么样的成绩！",
+  "type_kana_credit": "此游戏来自 <a href=\"https://github.com/fleon/type-kana\" target=\"_blank\" rel=\"noopener noreferrer\">@fleon</a>，感谢原作者的贡献。"
 }

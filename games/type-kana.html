@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Kana - 日语假名打字游戏</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .iframe-container {
+            width: 100%;
+            max-width: 800px; /* 限制最大宽度 */
+            height: 500px; /* 固定高度 */
+            margin: 0 auto 20px; /* 居中显示 */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .game-description {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative; /* 确保定位上下文 */
+            z-index: 1; /* 确保在正常文档流中 */
+        }
+
+        .game-description h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .game-description p {
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .game-credit {
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 8px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .game-credit a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .game-credit a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 0 15px;
+            overflow-x: hidden; /* 防止水平滚动 */
+            max-width: 100%;
+        }
+
+        main {
+            min-height: calc(100vh - 150px); /* 确保主内容区域有足够的高度 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            .iframe-container {
+                height: 400px; /* 移动设备上的固定高度 */
+                max-width: 100%; /* 在移动设备上占满宽度 */
+            }
+
+            /* 确保页面可以正常滚动 */
+            body, html {
+                height: auto;
+                overflow-y: auto;
+            }
+
+            /* 移动设备上游戏说明更紧凑 */
+            .game-description {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .game-description p {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+
+            h2[data-i18n="type_kana_title"] {
+                font-size: 1.3rem !important;
+                margin: 10px 0 !important;
+            }
+
+            .back-text {
+                display: none;
+            }
+
+            .back-link {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 0;
+            }
+
+            .back-link i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="../index.html" data-i18n="title"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+            </div>
+            <div class="nav-links">
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span class="back-text" data-i18n="back_home">返回首页</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 data-i18n="type_kana_title" style="font-size: 1.5rem; margin: 15px 0; text-align: center;">Type Kana - 假名打字游戏</h2>
+
+            <div class="game-description">
+                <h3 data-i18n="type_kana_desc_title">游戏说明</h3>
+                <p data-i18n="type_kana_desc">
+                    Type Kana 是一个帮助你加快平假名/片假名阅读速度的游戏。在这个游戏中，你需要阅读100个随机的平假名/片假名字符，并输入它们的罗马音标注。游戏会跟踪你的速度（经过的时间）和准确性。
+                </p>
+                <p data-i18n="type_kana_desc_2">
+                    如果你正在学习日语，不妨试一试，看看你能取得什么样的成绩！
+                </p>
+                <p class="game-credit">
+                    <span id="type-kana-credit">此游戏来自 <a href="https://github.com/fleon/type-kana" target="_blank" rel="noopener noreferrer">@fleon</a>，感谢原作者的贡献。</span>
+                </p>
+            </div>
+
+            <div class="iframe-container">
+                <iframe src="https://lab.fleon.org/type-kana/" allowfullscreen allow="fullscreen" scrolling="yes"></iframe>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> <span data-i18n="copyright">2025 五十音図ゲーム - 版权所有</span></p>
+    </footer>
+    <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

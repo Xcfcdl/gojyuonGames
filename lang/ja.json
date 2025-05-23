@@ -53,5 +53,11 @@
   "confirm_level_switch": "レベルを切り替えると現在の進行状況が失われます。切り替えますか？",
   "confirm_yes": "はい",
   "confirm_no": "いいえ",
-  "confirm_clear_wrong_list": "間違いリストを空にしてもよろしいですか？"
+  "confirm_clear_wrong_list": "間違いリストを空にしてもよろしいですか？",
+
+  "type_kana_title": "Type Kana - かなタイピングゲーム",
+  "type_kana_desc_title": "ゲーム説明",
+  "type_kana_desc": "Type Kanaはひらがな/カタカナの読み取り速度を向上させるためのゲームです。このゲームでは、100個のランダムなひらがな/カタカナ文字を読み、そのローマ字読みを入力します。ゲームはあなたの速度（経過時間）と正確さを追跡します。",
+  "type_kana_desc_2": "日本語を勉強している方は、ぜひ挑戦してみてください！",
+  "type_kana_credit": "このゲームは <a href=\"https://github.com/fleon/type-kana\" target=\"_blank\" rel=\"noopener noreferrer\">@fleon</a> によって作成されました。作者に感謝します。"
 }

@@ -34,6 +34,20 @@
       const key = el.getAttribute('data-i18n');
       if (langData[key]) el.textContent = langData[key];
     });
+
+    // 处理特定ID的HTML内容
+    const specialElements = {
+      'type-kana-credit': 'type_kana_credit'
+    };
+
+    // 遍历特殊元素并设置HTML内容
+    for (const [id, key] of Object.entries(specialElements)) {
+      const el = document.getElementById(id);
+      if (el && langData[key]) {
+        el.innerHTML = langData[key];
+      }
+    }
+
     if(langData.title) document.title = langData.title;
     updateLangLabel();
   }

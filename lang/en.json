@@ -53,5 +53,11 @@
   "confirm_level_switch": "Switching levels will lose your current progress. Are you sure you want to switch?",
   "confirm_yes": "Yes",
   "confirm_no": "No",
-  "confirm_clear_wrong_list": "Are you sure you want to clear your wrong answers list?"
+  "confirm_clear_wrong_list": "Are you sure you want to clear your wrong answers list?",
+
+  "type_kana_title": "Type Kana - Kana Typing Game",
+  "type_kana_desc_title": "Game Description",
+  "type_kana_desc": "Type Kana is a game to help you speed up reading Hiragana/Katakana. In this game, you are given to read 100 random Hiragana/Katakana characters, and you type in their Romaji pronunciation. It tracks your speed (time elapsed) and accuracy.",
+  "type_kana_desc_2": "If you are learning Japanese, give it a try and see what scores you can achieve!",
+  "type_kana_credit": "This game is created by <a href=\"https://github.com/fleon/type-kana\" target=\"_blank\" rel=\"noopener noreferrer\">@fleon</a>. Thanks to the original author for their contribution."
 }
