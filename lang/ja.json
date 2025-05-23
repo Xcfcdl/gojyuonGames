@@ -49,5 +49,9 @@
   "next_level": "次のレベルへ",
   "match_complete_title": "クリアしました！",
   "match_complete_message": "全てのペアを消しました！",
-  "match_play_again_button": "もう一度"
-} 
+  "match_play_again_button": "もう一度",
+  "confirm_level_switch": "レベルを切り替えると現在の進行状況が失われます。切り替えますか？",
+  "confirm_yes": "はい",
+  "confirm_no": "いいえ",
+  "confirm_clear_wrong_list": "間違いリストを空にしてもよろしいですか？"
+}

@@ -49,5 +49,9 @@
   "next_level": "下一关",
   "match_complete_title": "恭喜完成本局！",
   "match_complete_message": "全部配对完成！",
-  "match_play_again_button": "再来一局"
-} 
+  "match_play_again_button": "再来一局",
+  "confirm_level_switch": "关卡切换将丢失当前进度，确定要切换吗？",
+  "confirm_yes": "确定",
+  "confirm_no": "取消",
+  "confirm_clear_wrong_list": "确定要清空错题本吗？"
+}

@@ -330,7 +330,9 @@ function updateWrongList() {
 // 清空错题本按钮
 if (clearWrongListBtn) {
     clearWrongListBtn.onclick = () => {
-        if (confirm('确定要清空错题本吗？')) {
+        // 使用多语言支持的确认对话框
+        const confirmMessage = (window.langData && window.langData.confirm_clear_wrong_list) || '确定要清空错题本吗？';
+        if (confirm(confirmMessage)) {
             stats.wrongList = [];
             saveWrongListToStorage();
             updateWrongList();
@@ -368,4 +370,4 @@ if (goHomeBtn) {
 
 if (endGameBtn) {
     endGameBtn.onclick = endGameAndReturnToSelect;
-} 
+}

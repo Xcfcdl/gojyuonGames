@@ -49,5 +49,9 @@
   "next_level": "Next Level",
   "match_complete_title": "Level Complete!",
   "match_complete_message": "All pairs matched!",
-  "match_play_again_button": "Play Again"
-} 
+  "match_play_again_button": "Play Again",
+  "confirm_level_switch": "Switching levels will lose your current progress. Are you sure you want to switch?",
+  "confirm_yes": "Yes",
+  "confirm_no": "No",
+  "confirm_clear_wrong_list": "Are you sure you want to clear your wrong answers list?"
+}
