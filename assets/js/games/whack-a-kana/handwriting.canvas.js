@@ -1,11 +1,11 @@
 (function(window, document) {
 
-    // Establish the root object, `window` (`self`) in the browser, 
+    // Establish the root object, `window` (`self`) in the browser,
     // or `this` in some virtual machines. We use `self`
     // instead of `window` for `WebWorker` support.
     var root = typeof self === 'object' && self.self === self && self || this;
 
-    // Create a safe reference to the handwriting object for use below.        
+    // Create a safe reference to the handwriting object for use below.
     var handwriting = function(obj) {
         if (obj instanceof handwriting) return obj;
         if (!(this instanceof handwriting)) return new handwriting(obj);
@@ -199,6 +199,18 @@
             options = this.options;
             callback = this.callback;
         } else if (!options) options = {};
+
+        // 添加缓存机制，避免重复识别相同的笔画
+        var traceKey = JSON.stringify(trace);
+        if (handwriting.resultCache && handwriting.resultCache[traceKey]) {
+            console.log('Using cached recognition result');
+            setTimeout(function() {
+                callback(handwriting.resultCache[traceKey], undefined);
+            }, 10);
+            return;
+        }
+
+        // 优化请求参数
         var data = JSON.stringify({
             "options": "enable_pre_space",
             "requests": [{
@@ -207,27 +219,43 @@
                     "writing_area_height": options.height || this.width || undefined
                 },
                 "ink": trace,
-                "language": options.language || "zh_TW"
+                "language": options.language || "ja" // 默认使用日语
             }]
         });
+
         var xhr = new XMLHttpRequest();
+        // 设置超时
+        xhr.timeout = 5000; // 5秒超时
+
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === 4) {
                 switch (this.status) {
                     case 200:
                         var response = JSON.parse(this.responseText);
                         var results;
-                        if (response.length === 1) callback(undefined, new Error(response[0]));
-                        else results = response[1][0][1];
-                        if (!!options.numOfWords) {
-                            results = results.filter(function(result) {
-                                return (result.length == options.numOfWords);
-                            });
+                        if (response.length === 1) {
+                            callback(undefined, new Error(response[0]));
+                        } else {
+                            results = response[1][0][1];
+                            // 缓存结果
+                            if (!handwriting.resultCache) handwriting.resultCache = {};
+                            handwriting.resultCache[traceKey] = results;
+                            // 限制缓存大小
+                            var cacheKeys = Object.keys(handwriting.resultCache);
+                            if (cacheKeys.length > 100) { // 最多缓存100个结果
+                                delete handwriting.resultCache[cacheKeys[0]];
+                            }
+
+                            if (!!options.numOfWords) {
+                                results = results.filter(function(result) {
+                                    return (result.length == options.numOfWords);
+                                });
+                            }
+                            if (!!options.numOfReturn) {
+                                results = results.slice(0, options.numOfReturn);
+                            }
+                            callback(results, undefined);
                         }
-                        if (!!options.numOfReturn) {
-                            results = results.slice(0, options.numOfReturn);
-                        }
-                        callback(results, undefined);
                         break;
                     case 403:
                         callback(undefined, new Error("access denied"));
@@ -235,11 +263,20 @@
                     case 503:
                         callback(undefined, new Error("can't connect to recognition server"));
                         break;
+                    default:
+                        callback(undefined, new Error("recognition failed with status: " + this.status));
                 }
-
-
             }
         });
+
+        xhr.addEventListener("timeout", function() {
+            callback(undefined, new Error("recognition request timed out"));
+        });
+
+        xhr.addEventListener("error", function() {
+            callback(undefined, new Error("network error during recognition"));
+        });
+
         xhr.open("POST", "https://www.google.com.tw/inputtools/request?ime=handwriting&app=mobilesearch&cs=1&oe=UTF-8");
         xhr.setRequestHeader("content-type", "application/json");
         xhr.send(data);

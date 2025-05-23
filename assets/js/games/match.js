@@ -186,7 +186,7 @@ function showCompleteModal() {
     }
     audioSuccess.currentTime = 0;
     audioSuccess.volume = 0.1;
-   
+
     audioSuccess.play();
     // 避免重复弹窗
     if (document.querySelector('.match-modal-mask')) return;
@@ -201,9 +201,9 @@ function showCompleteModal() {
     mask.className = 'match-modal-mask';
     mask.innerHTML = `
       <div class="match-modal">
-        <h3>🎉 ${window.langData[window.currentLang]?.match_complete_title || '恭喜完成本局！'}</h3>
-        <div style="margin-bottom:1.2rem;">${window.langData[window.currentLang]?.match_complete_message || '全部配对完成！'}</div>
-        <button class="modal-btn" id="modal-restart">${window.langData[window.currentLang]?.match_play_again_button || '再来一局'}</button>
+        <h3>🎉 ${window.langData && window.langData.match_complete_title || '恭喜完成本局！'}</h3>
+        <div style="margin-bottom:1.2rem;">${window.langData && window.langData.match_complete_message || '全部配对完成！'}</div>
+        <button class="modal-btn" id="modal-restart">${window.langData && window.langData.match_play_again_button || '再来一局'}</button>
       </div>
     `;
     document.body.appendChild(mask);
@@ -308,4 +308,51 @@ exitFullscreenBtn.addEventListener('click', () => {
     exitFullscreenBtn.style.display = 'none';
     // 恢复按钮移回controls区
     document.querySelector('.match-controls').appendChild(exitFullscreenBtn);
+});
+
+// 监听语言数据加载事件，确保多语言支持正常工作
+document.addEventListener('langDataLoaded', () => {
+    // 更新界面上的多语言文本
+    const difficultyLabel = document.querySelector('[data-i18n="match_difficulty"]');
+    if (difficultyLabel) {
+        difficultyLabel.textContent = window.langData?.match_difficulty || '难度：';
+    }
+
+    const modeLabel = document.querySelector('[data-i18n="match_mode"]');
+    if (modeLabel) {
+        modeLabel.textContent = window.langData?.match_mode || '模式：';
+    }
+
+    // 更新模式选项
+    const hiraganaOption = document.querySelector('[data-i18n="match_mode_hiragana"]');
+    if (hiraganaOption) {
+        hiraganaOption.textContent = window.langData?.match_mode_hiragana || '平假名';
+    }
+
+    const katakanaOption = document.querySelector('[data-i18n="match_mode_katakana"]');
+    if (katakanaOption) {
+        katakanaOption.textContent = window.langData?.match_mode_katakana || '片假名';
+    }
+
+    const mixedOption = document.querySelector('[data-i18n="match_mode_mixed"]');
+    if (mixedOption) {
+        mixedOption.textContent = window.langData?.match_mode_mixed || '混合';
+    }
+
+    // 更新重新开始按钮文本
+    const restartBtnText = document.querySelector('[data-i18n="match_restart_button"]');
+    if (restartBtnText) {
+        restartBtnText.textContent = window.langData?.match_restart_button || '重新开始';
+    }
+
+    // 更新全屏按钮标题
+    const fullscreenBtnText = document.querySelector('[data-i18n="match_fullscreen_button_title"]');
+    if (fullscreenBtnText) {
+        fullscreenBtnText.title = window.langData?.match_fullscreen_button_title || '全屏棋盘';
+    }
+
+    const exitFullscreenBtnText = document.querySelector('[data-i18n="match_exit_fullscreen_button_title"]');
+    if (exitFullscreenBtnText) {
+        exitFullscreenBtnText.title = window.langData?.match_exit_fullscreen_button_title || '退出全屏';
+    }
 });

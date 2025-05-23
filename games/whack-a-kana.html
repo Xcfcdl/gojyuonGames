@@ -23,7 +23,7 @@
                     <a href="#" onclick="setLang('en');return false;">English</a>
                   </div>
                 </div>
-                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span data-i18n="back_home">返回首页</span></a>
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span class="back-text" data-i18n="back_home">返回首页</span></a>
             </div>
         </nav>
     </header>
@@ -52,10 +52,15 @@
             <div class="writing-area">
                 <canvas id="writing-canvas" width="300" height="300"></canvas>
                 <div class="writing-controls">
-                    <button id="clear-canvas">清除</button>
-                    <button id="recognize-kana">识别</button>
+                    <button id="clear-canvas"><i class="fas fa-eraser"></i> 清除</button>
+                    <button id="recognize-kana"><i class="fas fa-search"></i> 识别</button>
                 </div>
-                <div id="recognition-result" class="recognition-result"></div>
+                <div id="recognition-result" class="recognition-result">
+                    <span>写一个假名来打地鼠</span>
+                </div>
+                <div class="writing-tip" style="margin-top: 5px; font-size: 0.9rem; color: #666;">
+                    提示: 写完假名后会自动识别
+                </div>
             </div>
         </main>
 
