@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日语课堂教学辅助游戏</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/games/jump.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1><i class="fas fa-language"></i> 五十音図ゲーム</h1>
+                <h1><a href="../index.html" data-i18n="title"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
             </div>
             <div class="nav-links">
-                <a href="../index.html">返回首页</a>
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span data-i18n="back_home">返回首页</span></a>
             </div>
         </nav>
     </header>
@@ -65,7 +73,8 @@
         </section>
     </main>
     <footer>
-        <p><i class="far fa-copyright"></i> 2025 五十音図ゲーム - 版权所有</p>
+        <p><i class="far fa-copyright"></i> <span data-i18n="copyright">2025 五十音図ゲーム - 版权所有</span></p>
     </footer>
+    <script src="../assets/js/i18n.js"></script> <!-- 引入i18n脚本 -->
 </body>
-</html> 
+</html>

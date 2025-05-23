@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>假名打地鼠 - 五十音图学习游戏</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/games/whack-a-kana.css">
 </head>
@@ -11,11 +12,18 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="../index.html"><i class="fas fa-language"></i> 五十音図游戏</a></h1>
+                <h1><a href="../index.html" data-i18n="title"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
             </div>
             <div class="nav-links">
-                    
-                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> 返回首页</a>
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span data-i18n="back_home">返回首页</span></a>
             </div>
         </nav>
     </header>
@@ -30,7 +38,7 @@
                 <div class="timer">时间: <span id="timer">--</span></div>
             </div>
         </div>
-        
+
         <main class="game-main">
             <div class="whack-area" id="whack-area">
                 <!-- 5个地鼠坑位 -->
@@ -40,7 +48,7 @@
                 <div class="hole" id="hole-4"></div>
                 <div class="hole" id="hole-5"></div>
             </div>
-            
+
             <div class="writing-area">
                 <canvas id="writing-canvas" width="300" height="300"></canvas>
                 <div class="writing-controls">
@@ -50,7 +58,7 @@
                 <div id="recognition-result" class="recognition-result"></div>
             </div>
         </main>
-        
+
         <footer class="game-footer">
             <div class="difficulty-selector">
                 <button class="difficulty-btn" data-level="easy">初级</button>
@@ -63,7 +71,7 @@
             <button id="instructions-btn">游戏说明</button>
             <button class="footer-expand-btn" style="display:none;">展开</button>
         </footer>
-        
+
         <!-- 游戏说明弹窗 -->
         <div class="modal-overlay" id="instructions-modal">
             <div class="modal-content">
@@ -82,11 +90,12 @@
             </div>
         </div>
     </div>
-    
+
     <!-- 引入handwriting.js库 -->
     <script src="../assets/js/games/whack-a-kana/handwriting.js"></script>
     <script src="../assets/js/games/whack-a-kana/handwriting.canvas.js"></script>
-    
+
+    <script src="../assets/js/i18n.js"></script> <!-- 引入i18n脚本 -->
     <script type="module" src="../assets/js/games/whack-a-kana/game.js"></script>
 </body>
 </html>

@@ -15,14 +15,28 @@ async function renderGames() {
   }
 
   // 确保 renderGames 总是使用当前的语言状态
-  const currentLanguage = window.currentLang || 'zh'; 
+  const currentLanguage = window.currentLang || 'zh';
 
   // **确保每次都 fetch 最新的 games.json 数据**
-  const res = await fetch('games/games.json?' + new Date().getTime()); // 添加时间戳避免缓存
-  const games = await res.json();
-  const grid = document.getElementById('gamesGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
+  try {
+    console.log('Fetching games data...');
+    // 检查当前页面路径，确定正确的相对路径
+    const gamesJsonPath = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')
+      ? 'games/games.json'
+      : '../games/games.json';
+    console.log('Games JSON path:', gamesJsonPath);
+    const res = await fetch(gamesJsonPath + '?' + new Date().getTime()); // 添加时间戳避免缓存
+    if (!res.ok) {
+      throw new Error(`Failed to fetch games.json: ${res.status} ${res.statusText}`);
+    }
+    const games = await res.json();
+    const grid = document.getElementById('gamesGrid');
+    if (!grid) {
+      console.error('Games grid element not found!');
+      return;
+    }
+    console.log(`Found ${games.length} games to render`);
+    grid.innerHTML = '';
 
   games.forEach(game => {
     let badge = '';
@@ -40,13 +54,13 @@ async function renderGames() {
     }
 
     // 使用 currentLanguage 来获取游戏卡片的多语言内容
-    const title = game.title?.[currentLanguage] || ''; 
-    const desc = game.desc?.[currentLanguage] || '';   
+    const title = game.title?.[currentLanguage] || '';
+    const desc = game.desc?.[currentLanguage] || '';
 
     const icon = game.icon ? `<i class=\"fas ${game.icon}\"></i>` : '';
-    
+
     // 按钮文本也从 window.langData 获取
-    let btnText = (window.langData && window.langData.start_game) || '开始游戏'; 
+    let btnText = (window.langData && window.langData.start_game) || '开始游戏';
     let btnClass = 'start-button';
     let url = game.url || '#';
     let disabled = '';
@@ -83,6 +97,9 @@ async function renderGames() {
       </article>
     `;
   });
+  } catch (error) {
+    console.error('Error rendering games:', error);
+  }
 }
 
 // 页面加载和语言切换时都渲染
@@ -98,4 +115,4 @@ window.setLang = function(lang) {
   return window._oldSetLang(lang).then(() => {
     renderGames();
   });
-} 
+}

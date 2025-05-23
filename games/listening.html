@@ -43,7 +43,7 @@
                     <p data-i18n="game_listen_desc">听取假名发音，选择对应的假名字符</p>
                 </div>
             </div>
-            
+
             <div id="game-panel">
                 <div id="game-status">
                     <button class="level-info" id="current-level">
@@ -54,7 +54,7 @@
                         <span data-i18n="score_label">得分:</span> <span id="score-value">0</span>/<span id="total-questions">0</span>
                     </div>
                 </div>
-                
+
                 <!-- 关卡选择器 -->
                 <div class="level-selector" id="level-selector">
                     <div class="level-selector-content">
@@ -64,7 +64,7 @@
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
-                        
+
                         <!-- 关卡分类导航 -->
                         <div class="level-categories" id="level-categories">
                             <button class="category-tab active" data-category="all" data-i18n="category_all">
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="game-area">
                     <div id="sound-control">
                         <button id="start-game" class="sound-button primary" disabled data-i18n="start_game">
@@ -102,19 +102,19 @@
                             <i class="fas fa-redo"></i> 聞き直す
                         </button>
                     </div>
-                    
+
                     <div id="options-area">
                         <!-- 选项会动态生成 -->
                         <div class="placeholder-text">
                             <p data-i18n="loading_game_data">ゲームデータを読み込んでいます...</p>
                         </div>
                     </div>
-                    
+
                     <div id="feedback-area">
                         <!-- 反馈信息会显示在这里 -->
                     </div>
                 </div>
-                
+
                 <div id="controls-area">
                     <button id="restart-game" class="control-button" disabled data-i18n="restart_game">
                         <i class="fas fa-redo-alt"></i> はじめから
@@ -136,6 +136,6 @@
     <script type="module" src="../assets/js/games/common/dataLoader.js"></script>
     <script type="module" src="../assets/js/games/common/audioManager.js"></script>
     <script type="module" src="../assets/js/games/common/speechManager.js"></script>
-    <script type="module" src="../assets/js/games/listening/game.js?v=${new Date().getTime()}"></script>
+    <script type="module" src="../assets/js/games/listening/game.js"></script>
 </body>
-</html> 
+</html>

@@ -6,8 +6,10 @@
   // 异步加载语言文件
   async function loadLangData(lang) {
     try {
-      // 使用绝对路径加载语言文件
-      const response = await fetch(`/lang/${lang}.json?v=${new Date().getTime()}`);
+      // 获取当前路径的基础URL
+      const baseUrl = window.location.pathname.includes('/games/') ? '../' : '';
+      // 使用相对路径加载语言文件
+      const response = await fetch(`${baseUrl}lang/${lang}.json?v=${new Date().getTime()}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -18,10 +20,10 @@
       window.currentLang = lang;
       localStorage.setItem('currentLang', lang);
       updateLang();
-      
+
       // 语言数据加载并更新后触发自定义事件
       document.dispatchEvent(new CustomEvent('langDataLoaded', { detail: { lang: currentLang, langData: langData } }));
-      
+
     } catch (error) {
       console.error('Error loading language data:', error);
     }
@@ -59,4 +61,4 @@
       await loadLangData(lang);
     }
   }
-})(); 
+})();
