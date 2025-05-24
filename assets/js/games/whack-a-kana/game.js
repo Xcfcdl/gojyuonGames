@@ -420,13 +420,21 @@ class WhackAKanaGame {
     }
 
     checkDevTools() {
-        // 检测开发者工具是否打开
-        const devtools = /./;
-        devtools.toString = function() {
-            console.warn('开发者工具已打开，某些功能可能受限');
-            return '';
-        };
-        console.log('%c', devtools);
+        // 检测开发者工具是否打开（简化版本，减少错误）
+        try {
+            const devtools = /./;
+            devtools.toString = function() {
+                if (typeof console !== 'undefined' && console.warn) {
+                    console.warn('开发者工具已打开，某些功能可能受限');
+                }
+                return '';
+            };
+            if (typeof console !== 'undefined' && console.log) {
+                console.log('%c', devtools);
+            }
+        } catch (error) {
+            // 忽略开发者工具检测错误
+        }
     }
 
     initInstructionsModal() {
@@ -449,7 +457,24 @@ class WhackAKanaGame {
 window.onload = () => {
     window.game = new WhackAKanaGame();
     // 初始化手写识别
-    window.writingCanvas = new WritingCanvas('writing-canvas');
+    try {
+        window.writingCanvas = new WritingCanvas('writing-canvas');
+        // 确保trace属性存在
+        if (window.writingCanvas && !window.writingCanvas.trace) {
+            window.writingCanvas.trace = [];
+        }
+    } catch (error) {
+        console.error('手写识别初始化失败:', error);
+        // 创建一个简单的fallback对象
+        window.writingCanvas = {
+            trace: [],
+            clear: function() { console.log('清除画布'); },
+            recognizeKana: function() { console.log('识别功能不可用'); },
+            setCallBack: function(callback) {
+                callback([], new Error('手写识别不可用'));
+            }
+        };
+    }
     // 绑定清除按钮
     const clearBtn = document.getElementById('clear-canvas');
     if (clearBtn) {
@@ -465,8 +490,8 @@ window.onload = () => {
         const canvas = document.getElementById('writing-canvas');
         if (canvas) {
             // 触摸结束或鼠标抬起时自动识别
-            canvas.addEventListener('mouseup', startAutoRecognize);
-            canvas.addEventListener('touchend', startAutoRecognize);
+            canvas.addEventListener('mouseup', startAutoRecognize, { passive: true });
+            canvas.addEventListener('touchend', startAutoRecognize, { passive: true });
 
             function startAutoRecognize() {
                 // 清除之前的定时器
@@ -474,12 +499,12 @@ window.onload = () => {
                     clearTimeout(autoRecognizeTimeout);
                 }
 
-                // 设置短暂延迟后自动识别
+                // 设置延迟后自动识别（降低识别速度，给用户更多绘制时间）
                 autoRecognizeTimeout = setTimeout(() => {
-                    if (window.writingCanvas && window.writingCanvas.trace.length > 0) {
+                    if (window.writingCanvas) {
                         performRecognition();
                     }
-                }, 300); // 300ms 延迟，可以根据需要调整
+                }, 800); // 800ms 延迟，给用户更多时间完成绘制
             }
         }
 
@@ -487,13 +512,27 @@ window.onload = () => {
         recognizeBtn.addEventListener('click', performRecognition);
 
         function performRecognition() {
+            // 检查writingCanvas是否存在
+            if (!window.writingCanvas) {
+                const resultDisplay = document.getElementById('recognition-result');
+                if (resultDisplay) {
+                    resultDisplay.textContent = '手写识别未初始化';
+                    resultDisplay.classList.add('error');
+                    setTimeout(() => resultDisplay.classList.remove('error'), 1500);
+                }
+                return;
+            }
+
             // 显示识别中状态
             const resultDisplay = document.getElementById('recognition-result');
-            resultDisplay.textContent = '识别中...';
-            resultDisplay.classList.remove('error', 'success');
+            if (resultDisplay) {
+                resultDisplay.textContent = '识别中...';
+                resultDisplay.classList.remove('error', 'success');
+            }
 
-            window.writingCanvas.recognizeKana();
-            window.writingCanvas.setCallBack((results, err) => {
+            try {
+                window.writingCanvas.recognizeKana();
+                window.writingCanvas.setCallBack((results, err) => {
                 if (err || !results || results.length === 0) {
                     resultDisplay.textContent = '无法识别，请重试';
                     resultDisplay.classList.add('error');
@@ -526,6 +565,15 @@ window.onload = () => {
                     setTimeout(() => window.writingCanvas.clear(), 500);
                 }
             });
+            } catch (error) {
+                console.error('手写识别错误:', error);
+                const resultDisplay = document.getElementById('recognition-result');
+                if (resultDisplay) {
+                    resultDisplay.textContent = '识别失败，请重试';
+                    resultDisplay.classList.add('error');
+                    setTimeout(() => resultDisplay.classList.remove('error'), 1500);
+                }
+            }
         }
     }
 };
