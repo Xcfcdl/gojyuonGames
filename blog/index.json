@@ -71,6 +71,30 @@
         "ja": ["発音", "会話", "練習方法"],
         "en": ["Pronunciation", "Speaking", "Practice Methods"]
       }
+    },
+    {
+      "id": "article-004",
+      "title": {
+        "zh": "平假名有多少个？完整的平假名字符数量解析",
+        "ja": "ひらがなはいくつある？完全なひらがな文字数の解析",
+        "en": "How Many Hiragana Are There? Complete Analysis of Hiragana Character Count"
+      },
+      "author": {
+        "zh": "日语专家",
+        "ja": "日本語専門家",
+        "en": "Japanese Expert"
+      },
+      "desc": {
+        "zh": "详细解析平假名的数量，包括基本假名、浊音、半浊音和拗音，帮助学习者全面了解平假名体系。",
+        "ja": "基本仮名、濁音、半濁音、拗音を含むひらがなの数を詳しく解析し、学習者がひらがなシステムを包括的に理解できるよう支援します。",
+        "en": "Detailed analysis of the number of hiragana characters, including basic kana, dakuten, handakuten, and yōon, helping learners comprehensively understand the hiragana system."
+      },
+      "updateTime": "2024-12-21",
+      "tags": {
+        "zh": ["平假名", "字符数量", "基础知识", "日语学习"],
+        "ja": ["ひらがな", "文字数", "基礎知識", "日本語学習"],
+        "en": ["Hiragana", "Character Count", "Basics", "Japanese Learning"]
+      }
     }
   ]
 }

@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初始化视差滚动效果
     initParallaxEffect();
+
+    // 加载最新文章
+    loadLatestArticles();
 });
 
 // 移动端菜单功能
@@ -308,5 +311,122 @@ window._oldSetLang = window.setLang;
 window.setLang = function(lang) {
   return window._oldSetLang(lang).then(() => {
     renderGames();
+    loadLatestArticles(); // 语言切换时也重新加载文章
   });
+}
+
+// 加载最新文章
+async function loadLatestArticles() {
+    try {
+        // 获取当前语言
+        const currentLanguage = window.currentLang || 'zh';
+
+        // 获取博客索引数据
+        const response = await fetch('blog/index.json?' + new Date().getTime());
+        if (!response.ok) {
+            throw new Error(`Failed to fetch blog index: ${response.status}`);
+        }
+
+        const blogData = await response.json();
+        const articles = blogData.articles || [];
+
+        // 按更新时间排序，获取最新的3篇文章
+        const latestArticles = articles
+            .sort((a, b) => new Date(b.updateTime) - new Date(a.updateTime))
+            .slice(0, 3);
+
+        // 渲染文章卡片
+        renderLatestArticles(latestArticles, currentLanguage);
+
+    } catch (error) {
+        console.error('Error loading latest articles:', error);
+        // 如果加载失败，隐藏整个区域
+        const articlesSection = document.querySelector('.latest-articles-section');
+        if (articlesSection) {
+            articlesSection.style.display = 'none';
+        }
+    }
+}
+
+// 渲染最新文章
+function renderLatestArticles(articles, language) {
+    const grid = document.getElementById('latestArticlesGrid');
+    if (!grid) return;
+
+    if (articles.length === 0) {
+        grid.innerHTML = `
+            <div class="no-articles">
+                <p data-i18n="no_articles">${getNoArticlesText(language)}</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = articles.map(article => {
+        // 获取当前语言的内容，如果不存在则回退到中文
+        const title = article.title?.[language] || article.title?.zh || '';
+        const desc = article.desc?.[language] || article.desc?.zh || '';
+        const author = article.author?.[language] || article.author?.zh || '';
+        const tags = article.tags?.[language] || article.tags?.zh || [];
+
+        // 获取标题首字符作为图标
+        const firstChar = title.charAt(0) || '文';
+
+        // 格式化日期
+        const formattedDate = formatDate(article.updateTime, language);
+
+        return `
+            <article class="article-card">
+                <div class="article-icon">${firstChar}</div>
+                <h3>${title}</h3>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> ${author}</span>
+                    <span><i class="fas fa-calendar"></i> ${formattedDate}</span>
+                </div>
+                <p class="article-desc">${desc}</p>
+                <div class="article-tags">
+                    ${tags.slice(0, 3).map(tag => `<span class="article-tag">${tag}</span>`).join('')}
+                </div>
+                <a href="blog-detail.html?id=${article.id}" class="article-link">
+                    <span data-i18n="read_more">${getReadMoreText(language)}</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </article>
+        `;
+    }).join('');
+}
+
+// 格式化日期
+function formatDate(dateString, language) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+
+    switch (language) {
+        case 'ja':
+            return date.toLocaleDateString('ja-JP', options);
+        case 'en':
+            return date.toLocaleDateString('en-US', options);
+        default:
+            return date.toLocaleDateString('zh-CN', options);
+    }
+}
+
+// 获取"阅读更多"文本
+function getReadMoreText(language) {
+    const texts = {
+        zh: '阅读更多',
+        ja: '続きを読む',
+        en: 'Read More'
+    };
+    return texts[language] || texts.zh;
+}
+
+// 获取"暂无文章"文本
+function getNoArticlesText(language) {
+    const texts = {
+        zh: '暂无文章',
+        ja: '記事がありません',
+        en: 'No articles available'
+    };
+    return texts[language] || texts.zh;
 }
