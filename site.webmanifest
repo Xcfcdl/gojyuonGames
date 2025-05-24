@@ -1,0 +1,30 @@
+{
+    "name": "五十音図ゲーム - 日语假名学习平台",
+    "short_name": "五十音図ゲーム",
+    "description": "免费在线五十音图学习游戏平台，通过互动游戏轻松掌握日语平假名和片假名",
+    "icons": [
+        {
+            "src": "/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#4C9F70",
+    "background_color": "#F4F1EA",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/",
+    "lang": "zh-CN",
+    "orientation": "portrait-primary",
+    "categories": ["education", "games", "language"]
+}

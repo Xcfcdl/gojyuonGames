@@ -77,5 +77,30 @@
   "no_articles_desc": "当前语言下还没有文章，请切换其他语言查看。",
   "article_not_found": "文章未找到",
   "article_not_found_desc": "抱歉，当前语言下没有找到该文章。",
-  "table_of_contents": "目录"
+  "table_of_contents": "目录",
+
+  "hero_features_interactive": "互动游戏",
+  "hero_features_mobile": "移动友好",
+  "hero_features_progressive": "循序渐进",
+  "hero_features_free": "完全免费",
+
+  "games_section_title": "学习游戏",
+  "games_section_desc": "选择适合你的学习方式，开始五十音图的学习之旅",
+
+  "features_section_title": "为什么选择我们？",
+  "feature_scientific_title": "科学记忆",
+  "feature_scientific_desc": "基于记忆曲线设计的学习方法，帮助你更有效地记住假名",
+  "feature_progress_title": "进度跟踪",
+  "feature_progress_desc": "实时记录学习进度，让你清楚了解自己的学习状况",
+  "feature_suitable_title": "适合所有人",
+  "feature_suitable_desc": "无论你是完全的初学者还是想要复习，都能找到适合的内容",
+
+  "tips_section_title": "学习建议",
+  "tip_1_title": "从平假名开始",
+  "tip_1_desc": "建议先学习平假名，因为它们在日语中使用更频繁",
+  "tip_2_title": "每天练习",
+  "tip_2_desc": "坚持每天练习15-20分钟，比一次性长时间学习更有效",
+  "tip_3_title": "多种方式结合",
+  "tip_3_desc": "结合不同的游戏模式，让学习过程更有趣且全面",
+  "cta_more_tips": "查看更多学习技巧"
 }

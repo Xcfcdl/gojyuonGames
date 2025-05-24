@@ -238,7 +238,7 @@ header {
     align-items: center;
 }
 
-.logo h1 {
+.logo-text {
     font-family: var(--mixed-font-stack);
     font-size: 1.62rem;
     color: var(--primary-color);
@@ -247,7 +247,7 @@ header {
     position: relative;
 }
 
-.logo h1::after {
+.logo-text::after {
     content: "";
     position: absolute;
     bottom: -3px;
@@ -698,7 +698,7 @@ footer {
     animation: fadeIn 1s ease-out;
 }
 
-.hero-section h2 {
+.hero-section h1 {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
@@ -714,7 +714,30 @@ footer {
     font-size: 1.3rem;
     color: #667;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
+}
+
+.hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .game-card-badge {
@@ -799,12 +822,12 @@ footer {
 }
 
 /* Logo链接样式 */
-.logo h1 a {
+.logo-text a {
     color: var(--primary-color);
     transition: var(--transition);
 }
 
-.logo h1 a:hover {
+.logo-text a:hover {
     opacity: 0.85;
 }
 
@@ -815,7 +838,7 @@ footer {
         box-shadow: 0 2px 6px rgba(0,0,0,0.04);
         border-bottom: 1.5px solid #e6e6e6;
     }
-    .logo h1 {
+    .logo-text {
         font-family: var(--mixed-font-stack);
         font-size: 1.05rem;
         letter-spacing: 0.1px;
@@ -1189,5 +1212,209 @@ footer {
 
     .nav-links {
         gap: 0.3rem;
+    }
+}
+
+/* 新增页面内容样式 */
+.section-title {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.games-section {
+    margin: 4rem 0;
+}
+
+/* Features Section */
+.features-section {
+    margin: 6rem 0;
+    padding: 4rem 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: var(--border-radius);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Tips Section */
+.tips-section {
+    margin: 6rem 0;
+    padding: 4rem 2rem;
+}
+
+.tips-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.tip-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--hover-shadow);
+}
+
+.tip-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.tip-content h4 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.tip-content p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.cta-section {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.cta-button:hover {
+    background: var(--primary-dark);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .hero-features {
+        gap: 1rem;
+    }
+
+    .feature-item {
+        font-size: 0.8rem;
+    }
+
+    .feature-item i {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-description {
+        font-size: 1rem;
+    }
+
+    .features-section,
+    .tips-section {
+        padding: 2rem 1rem;
+        margin: 3rem 0;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .tip-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .tip-number {
+        margin: 0 auto;
     }
 }

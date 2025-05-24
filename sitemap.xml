@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- 主页 -->
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/" />
+  </url>
+
+  <!-- 博客列表页 -->
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/blogs.html</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/blogs.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/blogs.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/blogs.html" />
+  </url>
+
+  <!-- 博客文章 -->
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/blog-detail.html?id=article-001</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/blog-detail.html?id=article-002</loc>
+    <lastmod>2024-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/blog-detail.html?id=article-003</loc>
+    <lastmod>2024-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 游戏页面 -->
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/五十音记忆游戏.html</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/假名打地鼠.html</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/假名消消乐.html</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/五十音听力练习.html</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/type-kana/index.html</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/日语课堂教学辅助游戏.html</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

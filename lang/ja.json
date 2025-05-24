@@ -77,5 +77,30 @@
   "no_articles_desc": "現在の言語では記事がありません。他の言語に切り替えてご覧ください。",
   "article_not_found": "記事が見つかりません",
   "article_not_found_desc": "申し訳ございませんが、現在の言語でその記事は見つかりませんでした。",
-  "table_of_contents": "目次"
+  "table_of_contents": "目次",
+
+  "hero_features_interactive": "インタラクティブゲーム",
+  "hero_features_mobile": "モバイル対応",
+  "hero_features_progressive": "段階的学習",
+  "hero_features_free": "完全無料",
+
+  "games_section_title": "学習ゲーム",
+  "games_section_desc": "あなたに合った学習方法を選んで、五十音図の学習を始めましょう",
+
+  "features_section_title": "なぜ私たちを選ぶのか？",
+  "feature_scientific_title": "科学的記憶法",
+  "feature_scientific_desc": "記憶曲線に基づいた学習方法で、より効果的に仮名を覚えることができます",
+  "feature_progress_title": "進捗追跡",
+  "feature_progress_desc": "学習進捗をリアルタイムで記録し、自分の学習状況を明確に把握できます",
+  "feature_suitable_title": "すべての人に適している",
+  "feature_suitable_desc": "完全な初心者でも復習したい方でも、適切なコンテンツを見つけることができます",
+
+  "tips_section_title": "学習のアドバイス",
+  "tip_1_title": "ひらがなから始める",
+  "tip_1_desc": "ひらがなは日本語でより頻繁に使用されるため、まずひらがなから学習することをお勧めします",
+  "tip_2_title": "毎日練習する",
+  "tip_2_desc": "毎日15-20分の練習を続けることが、一度に長時間学習するよりも効果的です",
+  "tip_3_title": "様々な方法を組み合わせる",
+  "tip_3_desc": "異なるゲームモードを組み合わせることで、学習プロセスをより楽しく包括的にします",
+  "cta_more_tips": "もっと学習のコツを見る"
 }

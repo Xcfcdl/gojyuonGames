@@ -77,5 +77,30 @@
   "no_articles_desc": "There are no articles in the current language. Please switch to another language to view.",
   "article_not_found": "Article Not Found",
   "article_not_found_desc": "Sorry, the article was not found in the current language.",
-  "table_of_contents": "Table of Contents"
+  "table_of_contents": "Table of Contents",
+
+  "hero_features_interactive": "Interactive Games",
+  "hero_features_mobile": "Mobile Friendly",
+  "hero_features_progressive": "Progressive Learning",
+  "hero_features_free": "Completely Free",
+
+  "games_section_title": "Learning Games",
+  "games_section_desc": "Choose the learning method that suits you and start your Gojuon journey",
+
+  "features_section_title": "Why Choose Us?",
+  "feature_scientific_title": "Scientific Memory",
+  "feature_scientific_desc": "Learning methods based on memory curves help you memorize kana more effectively",
+  "feature_progress_title": "Progress Tracking",
+  "feature_progress_desc": "Real-time recording of learning progress helps you clearly understand your learning status",
+  "feature_suitable_title": "Suitable for Everyone",
+  "feature_suitable_desc": "Whether you're a complete beginner or want to review, you can find suitable content",
+
+  "tips_section_title": "Learning Tips",
+  "tip_1_title": "Start with Hiragana",
+  "tip_1_desc": "We recommend starting with hiragana as they are used more frequently in Japanese",
+  "tip_2_title": "Practice Daily",
+  "tip_2_desc": "Practicing 15-20 minutes daily is more effective than long study sessions",
+  "tip_3_title": "Combine Different Methods",
+  "tip_3_desc": "Combining different game modes makes the learning process more fun and comprehensive",
+  "cta_more_tips": "View More Learning Tips"
 }
