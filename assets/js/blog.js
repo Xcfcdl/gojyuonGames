@@ -28,14 +28,14 @@
             if (!response.ok) {
                 throw new Error('Failed to load articles');
             }
-            
+
             const data = await response.json();
             articles = data.articles || [];
-            
+
             // 过滤当前语言的文章
             const filteredArticles = articles.filter(article => {
-                return article.title[currentLang] && 
-                       article.desc[currentLang] && 
+                return article.title[currentLang] &&
+                       article.desc[currentLang] &&
                        article.author[currentLang];
             });
 
@@ -48,7 +48,7 @@
             currentPage = 1;
             renderArticles();
             renderPagination();
-            
+
         } catch (error) {
             console.error('Error loading articles:', error);
             showNoArticles();
@@ -59,7 +59,7 @@
     function renderArticles() {
         const articlesGrid = document.getElementById('articlesGrid');
         const noArticles = document.getElementById('noArticles');
-        
+
         if (!articlesGrid) return;
 
         // 隐藏无文章提示
@@ -101,18 +101,16 @@
         card.innerHTML = `
             <div class="article-card-header">
                 <div class="article-icon">${icon}</div>
-                <div class="article-info">
-                    <h3 class="article-title">${article.title[currentLang] || ''}</h3>
-                    <div class="article-meta">
-                        <span class="author">
-                            <i class="fas fa-user"></i>
-                            ${article.author[currentLang] || ''}
-                        </span>
-                        <span class="update-time">
-                            <i class="fas fa-calendar-alt"></i>
-                            ${updateTime}
-                        </span>
-                    </div>
+                <h3 class="article-title">${article.title[currentLang] || ''}</h3>
+                <div class="article-meta">
+                    <span class="author">
+                        <i class="fas fa-user"></i>
+                        ${article.author[currentLang] || ''}
+                    </span>
+                    <span class="update-time">
+                        <i class="fas fa-calendar-alt"></i>
+                        ${updateTime}
+                    </span>
                 </div>
             </div>
             <p class="article-desc">${article.desc[currentLang] || ''}</p>
@@ -130,7 +128,7 @@
         if (!pagination) return;
 
         const totalPages = Math.ceil(articles.length / articlesPerPage);
-        
+
         if (totalPages <= 1) {
             pagination.innerHTML = '';
             return;
@@ -172,11 +170,11 @@
     window.changePage = function(page) {
         const totalPages = Math.ceil(articles.length / articlesPerPage);
         if (page < 1 || page > totalPages) return;
-        
+
         currentPage = page;
         renderArticles();
         renderPagination();
-        
+
         // 滚动到顶部
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -186,7 +184,7 @@
         const articlesGrid = document.getElementById('articlesGrid');
         const pagination = document.getElementById('pagination');
         const noArticles = document.getElementById('noArticles');
-        
+
         if (articlesGrid) articlesGrid.innerHTML = '';
         if (pagination) pagination.innerHTML = '';
         if (noArticles) noArticles.style.display = 'block';
