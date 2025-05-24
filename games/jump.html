@@ -20,9 +20,15 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="../index.html" data-i18n="title"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+                <a href="../index.html">
+                    <img src="../assets/images/logo126.png" alt="五十音図ゲーム" class="logo-image">
+                    <span class="logo-text">五十音図ゲーム</span>
+                </a>
             </div>
-            <div class="nav-links">
+
+            <!-- 桌面端导航 -->
+            <div class="nav-links desktop-nav">
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span data-i18n="back_home">返回首页</span></a>
                 <div class="lang-switch dropdown">
                   <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
                   <div class="dropdown-content lang-dropdown-content">
@@ -31,7 +37,34 @@
                     <a href="#" onclick="setLang('en');return false;">English</a>
                   </div>
                 </div>
-                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span data-i18n="back_home">返回首页</span></a>
+            </div>
+
+            <!-- 移动端汉堡菜单 -->
+            <div class="mobile-nav">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="菜单">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <!-- 移动端菜单内容 -->
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu-content">
+                    <a href="../index.html" class="mobile-menu-item" data-i18n="back_home">
+                        <i class="fas fa-home"></i>
+                        <span>返回首页</span>
+                    </a>
+                    <div class="mobile-menu-item lang-section">
+                        <i class="fas fa-globe"></i>
+                        <span>语言选择</span>
+                        <div class="mobile-lang-options">
+                            <button onclick="setLang('zh');closeMobileMenu();" class="mobile-lang-btn">中文</button>
+                            <button onclick="setLang('ja');closeMobileMenu();" class="mobile-lang-btn">日本語</button>
+                            <button onclick="setLang('en');closeMobileMenu();" class="mobile-lang-btn">English</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>

@@ -59,13 +59,29 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 视差背景容器 */
+.parallax-bg {
+    position: fixed;
+    top: -15vh;
+    left: 0;
+    width: 100%;
+    height: 130vh;
     background-image:
         linear-gradient(to bottom, rgba(244, 241, 234, 0.45), rgba(244, 241, 234, 0.45)),
-        url('../image/background.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+        url('../image/游戏-logo-设计.webp');
+    background-size: auto 100vh;
+    background-position: center top;
     background-repeat: no-repeat;
+    z-index: -1;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    contain: layout style paint;
 }
 
 /* 中文文本特殊字体 */
@@ -89,18 +105,28 @@ code, pre {
 }
 
 /* 为不支持webp的浏览器提供PNG回退方案 */
-@supports not (background-image: url('../image/background.webp')) {
-    body {
+@supports not (background-image: url('../image/游戏-logo-设计.webp')) {
+    .parallax-bg {
         background-image:
-            linear-gradient(to bottom, rgba(244, 241, 234, 0.95), rgba(244, 241, 234, 0.95)),
-            url('../image/backgroud.png');
+            linear-gradient(to bottom, rgba(244, 241, 234, 0.45), rgba(244, 241, 234, 0.45)),
+            url('../image/游戏 logo 设计.png');
     }
 }
 
 /* 优化移动端背景图片性能 */
 @media (max-width: 768px) {
-    body {
+    .parallax-bg {
+        top: 0;
+        height: 100vh;
+        background-size: cover;
         background-attachment: scroll;
+        transform: none !important;
+    }
+
+    /* 在移动端禁用视差效果以提高性能 */
+    body.mobile .parallax-bg {
+        position: fixed;
+        transform: none !important;
     }
 }
 
@@ -290,16 +316,31 @@ main {
     padding: 1.5rem 0;
     max-width: 1200px;
     margin: 0 auto;
+    animation: fadeIn 1s ease-out 0.3s both;
 }
 
-/* 大屏幕设备 (1200px以上) */
-.games-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-    padding: 1.5rem 0;
-    max-width: 1200px;
-    margin: 0 auto;
+/* 为游戏卡片添加交错动画 */
+.game-card {
+    animation: slideUpStagger 0.8s ease-out both;
+    position: relative;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.1s; }
+.game-card:nth-child(2) { animation-delay: 0.2s; }
+.game-card:nth-child(3) { animation-delay: 0.3s; }
+.game-card:nth-child(4) { animation-delay: 0.4s; }
+.game-card:nth-child(5) { animation-delay: 0.5s; }
+.game-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideUpStagger {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 平板电脑和小型笔记本 (768px - 1199px) */
@@ -485,22 +526,42 @@ main {
 
 /* 游戏卡片样式 */
 .game-card {
-    background: var(--whitet);
-    border-radius: var(--border-radius-sm);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transition: var(--transition);
-    position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(76, 159, 112, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative !important;
+    border: 2px solid rgba(76, 159, 112, 0.1);
+    overflow: hidden;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(76, 159, 112, 0.02), rgba(102, 187, 106, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+    opacity: 1;
 }
 
 .game-card-content {
     overflow: hidden;
-    border-radius: var(--border-radius-sm);
+    border-radius: 20px;
 }
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 12px 25px rgba(76, 159, 112, 0.12);
+    border-color: rgba(76, 159, 112, 0.2);
 }
 
 .game-card-content {
@@ -567,7 +628,7 @@ main {
 .start-button {
     display: inline-flex;
     align-items: center;
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
     color: var(--white);
     padding: 0.5rem 1rem;
     border-radius: 50px;
@@ -575,40 +636,60 @@ main {
     font-size: 0.85rem;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 5px rgba(74, 111, 165, 0.2);
+    box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
     overflow: hidden;
     z-index: 1;
     text-decoration: none;
     border: none;
+    position: relative;
+}
+
+.start-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.start-button:hover::before {
+    left: 100%;
 }
 
 .start-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 8px rgba(74, 111, 165, 0.3);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+    background: linear-gradient(135deg, #66BB6A, #4CAF50);
 }
 
 .start-button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(74, 111, 165, 0.2);
+    box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
 }
 
 /* 游戏卡片中的按钮特定样式 */
 .game-card .start-button {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    position: absolute !important;
+    bottom: 1.5rem !important;
+    right: 1.5rem !important;
     justify-content: center;
     min-width: 100px;
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+    transform: none !important;
 }
 
 .game-card .start-button:hover {
-    background-color: var(--primary-color-dark, #0056b3);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #66BB6A, #4CAF50) !important;
+    transform: translateY(-2px) !important;
 }
 
 .game-card .start-button:active {
-    transform: translateY(0);
+    transform: translateY(0) !important;
 }
 
 /* 语言切换按钮特定样式 - 使用更高优先级选择器 */
@@ -713,47 +794,50 @@ footer {
 .hero-section {
     text-align: center;
     padding: 3rem 1rem 4rem;
-    animation: fadeIn 1s ease-out;
+    animation: fadeInUp 1s ease-out;
     position: relative;
-    background: linear-gradient(135deg, rgba(76, 159, 112, 0.15), rgba(255, 193, 7, 0.15));
-    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
     margin: 2rem auto;
-    max-width: 900px;
+    max-width: 1000px;
     overflow: hidden;
+    box-shadow: 0 20px 60px rgba(76, 159, 112, 0.15);
+    border: 1px solid rgba(76, 159, 112, 0.1);
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.8) 0%,
-        rgba(255, 255, 255, 0.6) 50%,
-        rgba(255, 255, 255, 0.8) 100%
-    );
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    z-index: 1;
-}
-
-.hero-section > * {
-    position: relative;
-    z-index: 2;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-section h1 {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #66BB6A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
     letter-spacing: 0.5px;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        0 1px 2px rgba(255, 255, 255, 0.8);
-    font-weight: 700;
+    font-weight: 800;
+    line-height: 1.2;
+    animation: titleFloat 3s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .hero-section p {
@@ -781,37 +865,78 @@ footer {
     color: var(--primary-color);
     font-weight: 500;
     font-size: 0.9rem;
-    padding: 1.5rem 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: var(--border-radius);
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.1),
-        0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    min-width: 150px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(76, 159, 112, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(76, 159, 112, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 180px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.8s ease-out both;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.2s; }
+.feature-item:nth-child(2) { animation-delay: 0.4s; }
+.feature-item:nth-child(3) { animation-delay: 0.6s; }
+.feature-item:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(76, 159, 112, 0.05), rgba(102, 187, 106, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-item:hover::before {
+    opacity: 1;
 }
 
 .feature-item:hover {
     transform: translateY(-8px);
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.15),
-        0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(76, 159, 112, 0.12);
+    border-color: rgba(76, 159, 112, 0.2);
 }
 
 .feature-item i {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.feature-item:hover i {
+    transform: rotate(5deg) scale(1.1);
 }
 
 .game-card-badge {
     position: absolute;
-    top: -10px;
-    right: 20px;
-    transform: translateX(50%);
+    top: 5px;
+    right: 5px;
     background-color: var(--secondary-color-t);
     color: white;
     padding: 4px 10px;
@@ -819,7 +944,7 @@ footer {
     font-size: 0.7rem;
     font-weight: 600;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    z-index: 3;
+    z-index: 10;
     white-space: nowrap;
 }
 
@@ -854,13 +979,15 @@ footer {
 }
 
 .start-button.disabled {
-    background-color: #a0b0c9;
+    background: #a0b0c9 !important;
     cursor: not-allowed;
+    opacity: 0.7;
 }
 
 .start-button.disabled:hover {
-    box-shadow: 0 4px 6px rgba(74, 111, 165, 0.2);
-    transform: none;
+    background: #a0b0c9 !important;
+    box-shadow: 0 3px 8px rgba(160, 176, 201, 0.2) !important;
+    transform: none !important;
 }
 
 .start-button.disabled::before {
@@ -1458,10 +1585,25 @@ footer {
 /* 新增页面内容样式 */
 .section-title {
     font-size: 2.2rem;
-    color: var(--primary-color);
+    background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #66BB6A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
     margin-bottom: 1rem;
     font-weight: 700;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .section-description {

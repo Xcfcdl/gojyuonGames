@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初始化移动端菜单
     initMobileMenu();
+
+    // 初始化3D悬停效果
+    init3DCardEffects();
+
+    // 初始化视差滚动效果
+    initParallaxEffect();
 });
 
 // 移动端菜单功能
@@ -74,6 +80,123 @@ function closeMobileMenu() {
 
 // 全局函数，供HTML调用
 window.closeMobileMenu = closeMobileMenu;
+
+// 视差滚动效果
+function initParallaxEffect() {
+    const parallaxBg = document.getElementById('parallaxBg');
+    if (!parallaxBg) return;
+
+    // 检测移动设备和低性能设备
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    const isLowPerformance = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+    const hasReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (isMobile || isLowPerformance || hasReducedMotion) {
+        document.body.classList.add('mobile');
+        return; // 在移动端、低性能设备或用户偏好减少动画时禁用视差效果
+    }
+
+    // 预计算常量，避免重复计算
+    const windowHeight = window.innerHeight;
+    const parallaxSpeed = -0.15; // 进一步降低速度，减少计算频率
+    const bgMovableRange = windowHeight * 0.15; // 减少移动范围
+
+    let ticking = false;
+    let lastScrollY = 0;
+    let lastTransform = '';
+
+    function updateParallax() {
+        const scrolled = window.scrollY;
+
+        // 增加阈值，减少更新频率
+        if (Math.abs(scrolled - lastScrollY) < 3) {
+            ticking = false;
+            return;
+        }
+
+        // 计算视差偏移量
+        let parallaxOffset = scrolled * parallaxSpeed;
+
+        // 限制在可移动范围内
+        const clampedOffset = Math.max(Math.min(parallaxOffset, bgMovableRange), -bgMovableRange);
+
+        // 只有当transform值真正改变时才更新DOM
+        const newTransform = `translate3d(0, ${Math.round(clampedOffset)}px, 0)`;
+        if (newTransform !== lastTransform) {
+            parallaxBg.style.transform = newTransform;
+            lastTransform = newTransform;
+        }
+
+        lastScrollY = scrolled;
+        ticking = false;
+    }
+
+    // 简化的节流函数
+    let rafId;
+    function handleScroll() {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+        }
+
+        if (!ticking) {
+            rafId = requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    // 监听滚动事件，使用passive提高性能
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // 初始化位置
+    updateParallax();
+}
+
+// 3D悬停效果
+function init3DCardEffects() {
+    // 为特性卡片添加3D悬停效果
+    const featureCards = document.querySelectorAll('.feature-item');
+    featureCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+
+    // 为游戏卡片添加3D悬停效果
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 15;
+            const rotateY = (centerX - x) / 15;
+
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+}
 
 async function renderGames() {
   // 等待 window.langData 加载
