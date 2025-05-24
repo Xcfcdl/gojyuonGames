@@ -15,10 +15,43 @@
 
 .blog-header h1 {
     font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #66BB6A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
     font-weight: 700;
     text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 0.5px;
+    padding: 0 2rem;
+}
+
+.blog-header h1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -1rem;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--secondary-color));
+    border-radius: 1px;
+}
+
+.blog-header h1::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -1rem;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--secondary-color), transparent);
+    border-radius: 1px;
 }
 
 .blog-header p {
