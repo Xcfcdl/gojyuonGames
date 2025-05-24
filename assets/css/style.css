@@ -20,26 +20,33 @@
     /* 阴影效果 */
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     --hover-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-    
+
     /* 圆角 */
     --border-radius: 16px;
     --border-radius-sm: 8px;
-    
+
     /* 动画 */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* 字体栈 */
-    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                  "Helvetica Neue", Arial, "Noto Sans", sans-serif,
                  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --japanese-font-stack: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", 
-                          "メイリオ", "Meiryo", "游ゴシック", "Yu Gothic", 
+    --chinese-font-stack: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                         "微软雅黑", "Source Han Sans SC", "Noto Sans CJK SC",
+                         "WenQuanYi Micro Hei", sans-serif;
+    --japanese-font-stack: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3",
+                          "メイリオ", "Meiryo", "游ゴシック", "Yu Gothic",
                           "游ゴシック体", "YuGothic", "MS PGothic", sans-serif;
+    --mixed-font-stack: "PingFang SC", "Hiragino Kaku Gothic Pro", "Microsoft YaHei",
+                       "微软雅黑", "メイリオ", "Meiryo", "Source Han Sans SC",
+                       "Noto Sans CJK SC", -apple-system, BlinkMacSystemFont,
+                       "Segoe UI", Roboto, sans-serif;
     --code-font-stack: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 body {
-    font-family: var(--font-stack);
+    font-family: var(--mixed-font-stack);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--background-color);
@@ -48,7 +55,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-image: 
+    background-image:
         linear-gradient(to bottom, rgba(244, 241, 234, 0.45), rgba(244, 241, 234, 0.45)),
         url('../image/background.webp');
     background-size: cover;
@@ -57,9 +64,19 @@ body {
     background-repeat: no-repeat;
 }
 
+/* 中文文本特殊字体 */
+.chinese-text {
+    font-family: var(--chinese-font-stack);
+}
+
 /* 日语文本特殊字体 */
 .japanese-text {
     font-family: var(--japanese-font-stack);
+}
+
+/* 混合文本字体（中日英） */
+.mixed-text {
+    font-family: var(--mixed-font-stack);
 }
 
 /* 代码块字体 */
@@ -70,7 +87,7 @@ code, pre {
 /* 为不支持webp的浏览器提供PNG回退方案 */
 @supports not (background-image: url('../image/background.webp')) {
     body {
-        background-image: 
+        background-image:
             linear-gradient(to bottom, rgba(244, 241, 234, 0.95), rgba(244, 241, 234, 0.95)),
             url('../image/backgroud.png');
     }
@@ -175,7 +192,7 @@ input:focus, select:focus, textarea:focus {
         --border-radius: 12px;
         --border-radius-sm: 6px;
     }
-    
+
     .card {
         padding: 1rem;
     }
@@ -222,6 +239,7 @@ header {
 }
 
 .logo h1 {
+    font-family: var(--mixed-font-stack);
     font-size: 1.62rem;
     color: var(--primary-color);
     font-weight: 700;
@@ -339,26 +357,26 @@ main {
     .container {
         padding: 0 0.75rem;
     }
-    
+
     .section-title {
         font-size: 1.5rem;
         margin-bottom: 1rem;
     }
-    
+
     .section-subtitle {
         font-size: 0.9rem;
         margin-bottom: 1.25rem;
     }
-    
+
     /* 导航栏调整 */
     .navbar {
         padding: 0.5rem 0.75rem;
     }
-    
+
     .navbar-brand {
         font-size: 1.2rem;
     }
-    
+
     /* 游戏网格调整 */
     .games-grid {
         grid-template-columns: 1fr;
@@ -417,7 +435,7 @@ main {
             font-size: 0.7rem !important;
         }
     }
-    
+
     /* 页脚调整 */
     footer {
         padding: 1rem 0;
@@ -430,16 +448,16 @@ main {
     .game-card-content {
         min-height: 140px;
     }
-    
+
     .game-card h2 {
         font-size: 0.95rem;
     }
-    
+
     .game-card p {
         font-size: 0.75rem;
         -webkit-line-clamp: 2;
     }
-    
+
     .start-button {
         font-size: 0.7rem;
         padding: 0.3rem 0.7rem;
@@ -576,31 +594,40 @@ main {
 }
 
 /* 语言切换按钮特定样式 - 使用更高优先级选择器 */
-button.lang-dropdown-btn, 
+button.lang-dropdown-btn,
 .lang-dropdown-btn.start-button {
     position: relative !important;
     justify-content: space-between !important;
-    min-width: 120px !important;
-    padding: 0.5rem 0.8rem !important;
-    background-color: var(--primary-color) !important;
-    border: none !important;
+    min-width: 100px !important;
+    padding: 0.5em 0.8em !important;
+    background: rgba(76, 159, 112, 0.1) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid rgba(76, 159, 112, 0.2) !important;
+    border-radius: 1.5em !important;
+    box-shadow: 0 2px 6px rgba(76,159,112,0.1) !important;
+    font-family: var(--mixed-font-stack) !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
     cursor: pointer !important;
     bottom: auto !important;
     right: auto !important;
     transform: none !important;
+    transition: all 0.3s ease !important;
 }
 
-button.lang-dropdown-btn:hover, 
+button.lang-dropdown-btn:hover,
 .lang-dropdown-btn.start-button:hover {
-    background-color: var(--primary-color-dark, #0056b3) !important;
-    transform: none !important;
-    box-shadow: 0 3px 5px rgba(74, 111, 165, 0.2) !important;
+    background: rgba(76, 159, 112, 0.15) !important;
+    color: var(--primary-dark) !important;
+    border-color: rgba(76, 159, 112, 0.3) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 3px 8px rgba(76,159,112,0.15) !important;
 }
 
 button.lang-dropdown-btn:active,
 .lang-dropdown-btn.start-button:active {
-    transform: none !important;
-    background-color: var(--primary-color-darker, #004085) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(76,159,112,0.1) !important;
 }
 
 /* 确保语言切换按钮的图标样式正确 */
@@ -676,7 +703,7 @@ footer {
     color: var(--primary-color);
     margin-bottom: 1rem;
     letter-spacing: 0.5px;
-    text-shadow: 
+    text-shadow:
         -1px -1px 0 #fff,
         1px -1px 0 #fff,
         -1px 1px 0 #fff,
@@ -753,6 +780,7 @@ footer {
 .nav-links {
     display: flex;
     align-items: center;
+    gap: 0.8rem;
 }
 
 .back-link {
@@ -778,7 +806,7 @@ footer {
 
 .logo h1 a:hover {
     opacity: 0.85;
-} 
+}
 
 @media (max-width: 768px) {
     header {
@@ -788,9 +816,11 @@ footer {
         border-bottom: 1.5px solid #e6e6e6;
     }
     .logo h1 {
+        font-family: var(--mixed-font-stack);
         font-size: 1.05rem;
         letter-spacing: 0.1px;
         margin-left: 0.2rem;
+        font-weight: 600;
     }
     nav {
         padding: 0 0.3rem;
@@ -827,93 +857,72 @@ footer {
 .nav-aux-game-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    color: var(--white) !important;
-    font-weight: 600;
-    font-size: 1.1rem;
-    font-family: 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Arial', sans-serif;
-    padding: 0.6em 1.6em 0.6em 1.4em;
-    border-radius: 2.5em;
-    box-shadow: 0 4px 15px rgba(76,159,112,0.2), 0 2px 8px rgba(216,140,154,0.15);
-    border: 2px solid rgba(255,255,255,0.2);
-    letter-spacing: 0.05em;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 0.4em;
+    background: rgba(76, 159, 112, 0.1);
+    color: var(--primary-color) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-family: var(--mixed-font-stack);
+    padding: 0.5em 1.2em;
+    border-radius: 1.5em;
+    box-shadow: 0 2px 6px rgba(76,159,112,0.1);
+    border: 1px solid rgba(76, 159, 112, 0.2);
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
     position: relative;
-    z-index: 2;
     line-height: 1.2;
-    overflow: hidden;
-}
-
-.nav-aux-game-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: -1;
+    text-decoration: none;
 }
 
 .nav-aux-game-btn i {
-    font-size: 1.2em;
-    margin-right: 0.4em;
-    margin-left: -0.1em;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    font-size: 1em;
     transition: transform 0.3s ease;
 }
 
 .nav-aux-game-btn:hover, .nav-aux-game-btn:focus {
-    color: var(--white) !important;
-    box-shadow: 0 8px 25px rgba(216,140,154,0.25), 0 4px 10px rgba(76,159,112,0.2);
-    border-color: rgba(255,255,255,0.3);
-    transform: translateY(-2px);
+    background: rgba(76, 159, 112, 0.15);
+    color: var(--primary-dark) !important;
+    box-shadow: 0 3px 8px rgba(76,159,112,0.15);
+    border-color: rgba(76, 159, 112, 0.3);
+    transform: translateY(-1px);
     text-decoration: none;
 }
 
-.nav-aux-game-btn:hover::before {
-    opacity: 1;
-}
-
 .nav-aux-game-btn:hover i {
-    transform: scale(1.1) rotate(-5deg);
+    transform: scale(1.05);
 }
 
 .nav-aux-game-btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 4px 15px rgba(216,140,154,0.15), 0 2px 8px rgba(76,159,112,0.1);
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(76,159,112,0.1);
 }
 
 @media (max-width: 768px) {
     .nav-aux-game-btn {
-        font-size: 1rem;
-        padding: 0.5em 1.4em 0.5em 1.2em;
-        border-radius: 2.3em;
+        font-size: 0.85rem;
+        padding: 0.45em 1em;
+        border-radius: 1.3em;
     }
-    
+
     .nav-aux-game-btn i {
-        font-size: 1.1em;
+        font-size: 0.9em;
     }
 }
 
 @media (max-width: 480px) {
     .nav-aux-game-btn {
-        font-size: 0.95rem;
-        padding: 0.45em 1.2em 0.45em 1em;
-        border-radius: 2em;
+        font-size: 0.8rem;
+        padding: 0.4em 0.9em;
+        border-radius: 1.2em;
     }
-    
+
     .nav-aux-game-btn i {
-        font-size: 1em;
+        font-size: 0.85em;
     }
 }
 
 .lang-switch {
     position: relative;
-    margin-left: 1.2rem;
 }
 
 .lang-dropdown-btn {
@@ -969,16 +978,157 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .lang-switch {
-        margin-left: 0.5rem;
-    }
-    .lang-dropdown-btn {
-        min-width: 80px;
-        font-size: 0.95rem;
-        padding: 0.38em 0.7em 0.38em 0.9em;
+    button.lang-dropdown-btn,
+    .lang-dropdown-btn.start-button {
+        min-width: 80px !important;
+        font-size: 0.85rem !important;
+        padding: 0.45em 0.8em !important;
+        border-radius: 1.3em !important;
     }
     .lang-dropdown-content {
         min-width: 90px;
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Ko-fi 支持按钮样式 */
+.kofi-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    background: rgba(255, 95, 95, 0.1);
+    color: #d63384 !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-family: var(--mixed-font-stack);
+    padding: 0.5em 1.2em;
+    border-radius: 1.5em;
+    box-shadow: 0 2px 6px rgba(255, 95, 95, 0.1);
+    border: 1px solid rgba(255, 95, 95, 0.2);
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    position: relative;
+    text-decoration: none;
+}
+
+.kofi-btn i {
+    font-size: 1em;
+    transition: transform 0.3s ease;
+}
+
+.kofi-btn:hover {
+    background: rgba(255, 95, 95, 0.15);
+    color: #b02a5b !important;
+    box-shadow: 0 3px 8px rgba(255, 95, 95, 0.15);
+    border-color: rgba(255, 95, 95, 0.3);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+.kofi-btn:hover i {
+    transform: scale(1.05);
+}
+
+.kofi-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(255, 95, 95, 0.1);
+}
+
+/* 页脚 Ko-fi 按钮样式 */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.footer-support {
+    display: flex;
+    align-items: center;
+}
+
+.footer-kofi-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.4em 1em;
+    border-radius: 1.5em;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    backdrop-filter: blur(5px);
+}
+
+.footer-kofi-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--white) !important;
+    transform: translateY(-1px);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-kofi-btn i {
+    color: #ff5f5f;
+    font-size: 1em;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.1);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .kofi-btn {
+        font-size: 0.85rem;
+        padding: 0.45em 1em;
+        border-radius: 1.3em;
+    }
+
+    .kofi-text {
+        display: none;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0 1rem;
+    }
+
+    .footer-kofi-btn {
+        font-size: 0.8rem;
+        padding: 0.35em 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .kofi-btn {
+        font-size: 0.8rem;
+        padding: 0.4em 0.9em;
+        border-radius: 1.2em;
+    }
+
+    .nav-links {
+        gap: 0.3rem;
     }
 }

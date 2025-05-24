@@ -1,0 +1,76 @@
+{
+  "articles": [
+    {
+      "id": "article-001",
+      "title": {
+        "zh": "五十音记忆法：联想记忆技巧",
+        "ja": "五十音記憶法：連想記憶テクニック",
+        "en": "Gojuon Memory Method: Association Techniques"
+      },
+      "author": {
+        "zh": "学习助手",
+        "ja": "学習アシスタント",
+        "en": "Learning Assistant"
+      },
+      "desc": {
+        "zh": "通过联想记忆法快速掌握五十音的技巧和方法，让日语学习变得更加轻松有趣。",
+        "ja": "連想記憶法で五十音を素早くマスターするテクニックと方法で、日本語学習をより楽しく簡単にします。",
+        "en": "Techniques and methods to quickly master Gojuon through association memory, making Japanese learning easier and more fun."
+      },
+      "updateTime": "2024-12-20",
+      "tags": {
+        "zh": ["记忆法", "初学者", "五十音"],
+        "ja": ["記憶法", "初心者", "五十音"],
+        "en": ["Memory Method", "Beginner", "Gojuon"]
+      }
+    },
+    {
+      "id": "article-002",
+      "title": {
+        "zh": "平假名与片假名的区别和使用场景",
+        "ja": "ひらがなとカタカナの違いと使用場面",
+        "en": "Differences Between Hiragana and Katakana and Their Usage"
+      },
+      "author": {
+        "zh": "日语老师",
+        "ja": "日本語先生",
+        "en": "Japanese Teacher"
+      },
+      "desc": {
+        "zh": "详细解析平假名和片假名的区别，以及在什么情况下使用哪种假名。",
+        "ja": "ひらがなとカタカナの違いを詳しく解説し、どのような場合にどちらの仮名を使うかを説明します。",
+        "en": "Detailed analysis of the differences between Hiragana and Katakana, and when to use which kana."
+      },
+      "updateTime": "2024-12-18",
+      "tags": {
+        "zh": ["平假名", "片假名", "基础知识"],
+        "ja": ["ひらがな", "カタカナ", "基礎知識"],
+        "en": ["Hiragana", "Katakana", "Basics"]
+      }
+    },
+    {
+      "id": "article-003",
+      "title": {
+        "zh": "五十音发音技巧：如何练习标准发音",
+        "ja": "五十音発音テクニック：標準発音の練習方法",
+        "en": "Gojuon Pronunciation Tips: How to Practice Standard Pronunciation"
+      },
+      "author": {
+        "zh": "发音专家",
+        "ja": "発音専門家",
+        "en": "Pronunciation Expert"
+      },
+      "desc": {
+        "zh": "掌握正确的五十音发音方法，避免常见的发音错误，提高日语口语水平。",
+        "ja": "正しい五十音の発音方法をマスターし、よくある発音ミスを避けて日本語の会話レベルを向上させます。",
+        "en": "Master the correct pronunciation methods for Gojuon, avoid common pronunciation mistakes, and improve Japanese speaking skills."
+      },
+      "updateTime": "2024-12-15",
+      "tags": {
+        "zh": ["发音", "口语", "练习方法"],
+        "ja": ["発音", "会話", "練習方法"],
+        "en": ["Pronunciation", "Speaking", "Practice Methods"]
+      }
+    }
+  ]
+}

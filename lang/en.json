@@ -59,5 +59,10 @@
   "type_kana_desc_title": "Game Description",
   "type_kana_desc": "Type Kana is a game to help you speed up reading Hiragana/Katakana. In this game, you are given to read 100 random Hiragana/Katakana characters, and you type in their Romaji pronunciation. It tracks your speed (time elapsed) and accuracy.",
   "type_kana_desc_2": "If you are learning Japanese, give it a try and see what scores you can achieve!",
-  "type_kana_credit": "This game is created by <a href=\"https://github.com/fleon/type-kana\" target=\"_blank\" rel=\"noopener noreferrer\">@fleon</a>. Thanks to the original author for their contribution."
+  "type_kana_credit": "This game is created by <a href=\"https://github.com/fleon/type-kana\" target=\"_blank\" rel=\"noopener noreferrer\">@fleon</a>. Thanks to the original author for their contribution.",
+
+  "support": "Support Project",
+  "support_project": "Support Project",
+  "support_us": "Support Us",
+  "support_footer": "Support Us"
 }
