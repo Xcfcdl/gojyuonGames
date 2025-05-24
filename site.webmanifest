@@ -4,18 +4,18 @@
     "description": "免费在线五十音图学习游戏平台，通过互动游戏轻松掌握日语平假名和片假名",
     "icons": [
         {
-            "src": "/favicon-16x16.png",
+            "src": "/assets/images/logo16.png",
             "sizes": "16x16",
             "type": "image/png"
         },
         {
-            "src": "/favicon-32x32.png",
+            "src": "/assets/images/logo32.png",
             "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "/apple-touch-icon.png",
-            "sizes": "180x180",
+            "src": "/assets/images/logo126.png",
+            "sizes": "126x126",
             "type": "image/png"
         }
     ],

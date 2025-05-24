@@ -9,6 +9,7 @@
     /* 吉卜力配色方案 */
     --primary-color: #4C9F70;     /* 龙猫绿 */
     --primary-color-t: #4c9f70e4;
+    --primary-color-wt:#ffffffdf;
     --primary-dark: #3D7D59;      /* 深绿色 */
     --secondary-color: #E6A23C;   /* 温暖的黄色 */
     --secondary-color-t: #e6a23ce4;
@@ -42,6 +43,9 @@
                        "微软雅黑", "メイリオ", "Meiryo", "Source Han Sans SC",
                        "Noto Sans CJK SC", -apple-system, BlinkMacSystemFont,
                        "Segoe UI", Roboto, sans-serif;
+    --handwriting-font-stack: "Klee One", "Ma Shan Zheng", "Caveat", "Dancing Script",
+                             "Kalam", "Patrick Hand", "Indie Flower", "Comic Sans MS",
+                             cursive, sans-serif;
     --code-font-stack: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
@@ -238,24 +242,38 @@ header {
     align-items: center;
 }
 
-.logo-text {
-    font-family: var(--mixed-font-stack);
-    font-size: 1.62rem;
-    color: var(--primary-color);
-    font-weight: 700;
-    letter-spacing: 0.45px;
-    position: relative;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.logo-text::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background-color: var(--secondary-color);
-    border-radius: 2px;
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.logo a:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+
+.logo-image {
+    height: 32px;
+    width: auto;
+    transition: var(--transition);
+}
+
+.logo-text {
+    font-family: var(--handwriting-font-stack);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* 主要内容区域 */
@@ -696,6 +714,35 @@ footer {
     text-align: center;
     padding: 3rem 1rem 4rem;
     animation: fadeIn 1s ease-out;
+    position: relative;
+    background: linear-gradient(135deg, rgba(76, 159, 112, 0.15), rgba(255, 193, 7, 0.15));
+    border-radius: var(--border-radius);
+    margin: 2rem auto;
+    max-width: 900px;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.8) 100%
+    );
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    z-index: 1;
+}
+
+.hero-section > * {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-section h1 {
@@ -704,17 +751,18 @@ footer {
     margin-bottom: 1rem;
     letter-spacing: 0.5px;
     text-shadow:
-        -1px -1px 0 #fff,
-        1px -1px 0 #fff,
-        -1px 1px 0 #fff,
-        1px 1px 0 #fff;
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(255, 255, 255, 0.8);
+    font-weight: 700;
 }
 
 .hero-section p {
     font-size: 1.3rem;
-    color: #667;
+    color: #555;
     max-width: 600px;
     margin: 0 auto 2rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    font-weight: 500;
 }
 
 .hero-features {
@@ -733,11 +781,30 @@ footer {
     color: var(--primary-color);
     font-weight: 500;
     font-size: 0.9rem;
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    min-width: 150px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .feature-item i {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .game-card-badge {
@@ -821,29 +888,188 @@ footer {
     background-color: rgba(74, 111, 165, 0.1);
 }
 
-/* Logo链接样式 */
-.logo-text a {
-    color: var(--primary-color);
-    transition: var(--transition);
+
+
+/* 移动端导航样式 */
+.mobile-nav {
+    display: none;
 }
 
-.logo-text a:hover {
-    opacity: 0.85;
+.mobile-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-line {
+    width: 20px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.mobile-menu.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-top: 60px;
+}
+
+.mobile-menu-content {
+    background: var(--white);
+    width: 280px;
+    height: calc(100vh - 60px);
+    padding: 2rem 1rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-menu-item:hover {
+    background: var(--accent-color);
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+.mobile-menu-item i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.lang-section {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+}
+
+.mobile-lang-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.mobile-lang-btn {
+    background: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.mobile-lang-btn:hover {
+    background: var(--primary-color);
+    transform: translateX(5px);
 }
 
 @media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
+    }
+
+    .hero-section {
+        padding: 2rem 1rem 3rem;
+        margin: 1rem auto;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+
+    .hero-features {
+        gap: 1rem;
+    }
+
+    .feature-item {
+        padding: 1rem 0.8rem;
+        min-width: 120px;
+    }
+
+    .feature-item i {
+        font-size: 1.5rem;
+    }
+
     header {
         padding: 0.3rem 0 0.3rem 0;
         min-height: 48px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.04);
         border-bottom: 1.5px solid #e6e6e6;
     }
+    .logo-image {
+        height: 24px;
+    }
+
     .logo-text {
-        font-family: var(--mixed-font-stack);
-        font-size: 1.05rem;
-        letter-spacing: 0.1px;
-        margin-left: 0.2rem;
-        font-weight: 600;
+        font-size: 1.1rem;
+        letter-spacing: 0.2px;
+        font-weight: 500;
     }
     nav {
         padding: 0 0.3rem;
@@ -933,6 +1159,20 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .mobile-menu-content {
+        width: 100%;
+        padding: 1.5rem 1rem;
+    }
+
+    .mobile-menu-item {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .mobile-menu-item i {
+        font-size: 1rem;
+    }
+
     .nav-aux-game-btn {
         font-size: 0.8rem;
         padding: 0.4em 0.9em;
@@ -1308,7 +1548,7 @@ footer {
     display: flex;
     align-items: flex-start;
     gap: 1.5rem;
-    background: var(--white);
+    background: var(--primary-color-wt);
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);

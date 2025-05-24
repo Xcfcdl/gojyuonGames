@@ -2,7 +2,78 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 这里可以添加全局功能
     console.log('五十音図ゲーム 已加载');
+
+    // 初始化移动端菜单
+    initMobileMenu();
 });
+
+// 移动端菜单功能
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (!mobileMenuBtn || !mobileMenu) return;
+
+    // 点击汉堡菜单按钮
+    mobileMenuBtn.addEventListener('click', () => {
+        toggleMobileMenu();
+    });
+
+    // 点击菜单背景关闭菜单
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            closeMobileMenu();
+        }
+    });
+
+    // 点击菜单项后关闭菜单
+    const menuItems = mobileMenu.querySelectorAll('.mobile-menu-item:not(.lang-section)');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+}
+
+function toggleMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (!mobileMenuBtn || !mobileMenu) return;
+
+    const isActive = mobileMenu.classList.contains('active');
+
+    if (isActive) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
+function openMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (!mobileMenuBtn || !mobileMenu) return;
+
+    mobileMenuBtn.classList.add('active');
+    mobileMenu.classList.add('active');
+    document.body.style.overflow = 'hidden'; // 防止背景滚动
+}
+
+function closeMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (!mobileMenuBtn || !mobileMenu) return;
+
+    mobileMenuBtn.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = ''; // 恢复滚动
+}
+
+// 全局函数，供HTML调用
+window.closeMobileMenu = closeMobileMenu;
 
 async function renderGames() {
   // 等待 window.langData 加载
