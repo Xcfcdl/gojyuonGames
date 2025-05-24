@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="zh">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-93SBX04BC7"></script>
@@ -7,29 +7,24 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-93SBX04BC7');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>五十音图游戏集 - 日语假名学习</title>
+    <title data-i18n="blog_title">五十音学习的小技巧 - 五十音图游戏集</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- 多语言资源文件后续由JS动态加载 -->
+    <link rel="stylesheet" href="assets/css/blog.css">
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1><i class="fas fa-language"></i> 五十音図ゲーム</h1>
+                <h1><a href="index.html"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
             </div>
             <div class="nav-links">
-                <a href="games/日语课堂教学辅助游戏.html" class="nav-aux-game-btn" data-i18n="aux_game"><i class="fas fa-chalkboard-teacher"></i> 课堂游戏</a>
-                <a href="blogs.html" class="nav-blog-btn" data-i18n="learning_tips">
-                    <i class="fas fa-lightbulb"></i> <span class="blog-text" data-i18n="learning_tips_text">学习技巧</span>
-                </a>
-                <a href="https://ko-fi.com/donyleaf" target="_blank" class="kofi-btn" data-i18n="support_project">
-                    <i class="fas fa-coffee"></i> <span class="kofi-text" data-i18n="support">支持项目</span>
+                <a href="index.html" class="back-link" data-i18n="back_home">
+                    <i class="fas fa-arrow-left"></i> 返回首页
                 </a>
                 <div class="lang-switch dropdown">
                   <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
@@ -39,18 +34,34 @@
                     <a href="#" onclick="setLang('en');return false;">English</a>
                   </div>
                 </div>
-                <!-- 预留导航链接位置 -->
             </div>
         </nav>
     </header>
 
-    <main>
-        <div class="hero-section">
-            <h2 data-i18n="desc">通过游戏学习日语假名</h2>
-            <p data-i18n="desc_sub">有趣、互动的方式掌握五十音图</p>
+    <main class="blog-main">
+        <div class="blog-header">
+            <h1 data-i18n="blog_main_title">五十音学习的小技巧</h1>
+            <p data-i18n="blog_subtitle">分享实用的日语学习方法和技巧</p>
         </div>
 
-        <section class="games-grid" id="gamesGrid"></section>
+        <div class="blog-container">
+            <!-- 文章列表 -->
+            <div class="articles-grid" id="articlesGrid">
+                <!-- 文章卡片将通过 JavaScript 动态生成 -->
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination" id="pagination">
+                <!-- 分页按钮将通过 JavaScript 动态生成 -->
+            </div>
+
+            <!-- 无文章提示 -->
+            <div class="no-articles" id="noArticles" style="display: none;">
+                <i class="fas fa-file-alt"></i>
+                <h3 data-i18n="no_articles">暂无文章</h3>
+                <p data-i18n="no_articles_desc">当前语言下还没有文章，请切换其他语言查看。</p>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -63,8 +74,8 @@
             </div>
         </div>
     </footer>
-    <script src="assets/js/i18n.js"></script>
-    <script src="assets/js/main.js"></script>
 
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/blog.js"></script>
 </body>
 </html>

@@ -64,5 +64,18 @@
   "support": "支持项目",
   "support_project": "支持项目",
   "support_us": "支持我们",
-  "support_footer": "支持我们"
+  "support_footer": "支持我们",
+
+  "learning_tips": "学习技巧",
+  "learning_tips_text": "学习技巧",
+  "blog_title": "五十音学习的小技巧 - 五十音图游戏集",
+  "blog_main_title": "五十音学习的小技巧",
+  "blog_subtitle": "分享实用的日语学习方法和技巧",
+  "back_to_blog": "返回博客",
+  "back_to_blog_list": "返回文章列表",
+  "no_articles": "暂无文章",
+  "no_articles_desc": "当前语言下还没有文章，请切换其他语言查看。",
+  "article_not_found": "文章未找到",
+  "article_not_found_desc": "抱歉，当前语言下没有找到该文章。",
+  "table_of_contents": "目录"
 }

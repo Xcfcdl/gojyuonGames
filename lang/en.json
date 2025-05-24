@@ -64,5 +64,18 @@
   "support": "Support Project",
   "support_project": "Support Project",
   "support_us": "Support Us",
-  "support_footer": "Support Us"
+  "support_footer": "Support Us",
+
+  "learning_tips": "Learning Tips",
+  "learning_tips_text": "Learning Tips",
+  "blog_title": "Gojuon Learning Tips - Gojuon Games",
+  "blog_main_title": "Gojuon Learning Tips",
+  "blog_subtitle": "Share practical Japanese learning methods and techniques",
+  "back_to_blog": "Back to Blog",
+  "back_to_blog_list": "Back to Article List",
+  "no_articles": "No Articles",
+  "no_articles_desc": "There are no articles in the current language. Please switch to another language to view.",
+  "article_not_found": "Article Not Found",
+  "article_not_found_desc": "Sorry, the article was not found in the current language.",
+  "table_of_contents": "Table of Contents"
 }

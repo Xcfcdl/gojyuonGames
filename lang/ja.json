@@ -64,5 +64,18 @@
   "support": "プロジェクトを支援",
   "support_project": "プロジェクトを支援",
   "support_us": "私たちを支援",
-  "support_footer": "私たちを支援"
+  "support_footer": "私たちを支援",
+
+  "learning_tips": "学習のコツ",
+  "learning_tips_text": "学習のコツ",
+  "blog_title": "五十音学習の小技巧 - 五十音図ゲーム集",
+  "blog_main_title": "五十音学習の小技巧",
+  "blog_subtitle": "実用的な日本語学習方法とテクニックを共有",
+  "back_to_blog": "ブログに戻る",
+  "back_to_blog_list": "記事一覧に戻る",
+  "no_articles": "記事がありません",
+  "no_articles_desc": "現在の言語では記事がありません。他の言語に切り替えてご覧ください。",
+  "article_not_found": "記事が見つかりません",
+  "article_not_found_desc": "申し訳ございませんが、現在の言語でその記事は見つかりませんでした。",
+  "table_of_contents": "目次"
 }

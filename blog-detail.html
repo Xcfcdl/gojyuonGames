@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93SBX04BC7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93SBX04BC7');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">文章详情 - 五十音图游戏集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/blog.css">
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="index.html"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+            </div>
+            <div class="nav-links">
+                <a href="blogs.html" class="back-link" data-i18n="back_to_blog">
+                    <i class="fas fa-arrow-left"></i> 返回博客
+                </a>
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="blog-detail-main">
+        <div class="article-container">
+            <!-- 文章头部信息 -->
+            <div class="article-header">
+                <div class="article-icon" id="articleIcon">文</div>
+                <div class="article-meta">
+                    <h1 id="articleTitle">加载中...</h1>
+                    <div class="article-info">
+                        <span class="author">
+                            <i class="fas fa-user"></i>
+                            <span id="articleAuthor">-</span>
+                        </span>
+                        <span class="update-time">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span id="articleUpdateTime">-</span>
+                        </span>
+                    </div>
+                    <div class="article-tags" id="articleTags">
+                        <!-- 标签将通过 JavaScript 动态生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文章内容 -->
+            <div class="article-content" id="articleContent">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span data-i18n="loading">加载中...</span>
+                </div>
+            </div>
+
+            <!-- 文章导航 -->
+            <div class="article-navigation" id="articleNavigation">
+                <!-- 导航按钮将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+
+        <!-- 目录 -->
+        <div class="toc-container" id="tocContainer">
+            <div class="toc-header">
+                <h3 data-i18n="table_of_contents">目录</h3>
+                <button class="toc-toggle" id="tocToggle">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+            <div class="toc-content" id="tocContent">
+                <!-- 目录将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+
+        <!-- 错误提示 -->
+        <div class="error-message" id="errorMessage" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3 data-i18n="article_not_found">文章未找到</h3>
+            <p data-i18n="article_not_found_desc">抱歉，当前语言下没有找到该文章。</p>
+            <a href="blogs.html" class="btn-primary" data-i18n="back_to_blog_list">返回文章列表</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p><i class="far fa-copyright"></i> <span data-i18n="copyright">2025 五十音図ゲーム - 版权所有</span></p>
+            <div class="footer-support">
+                <a href="https://ko-fi.com/donyleaf" target="_blank" class="footer-kofi-btn" data-i18n="support_footer">
+                    <i class="fas fa-heart"></i> <span data-i18n="support_us">支持我们</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/blog-detail.js"></script>
+</body>
+</html>
