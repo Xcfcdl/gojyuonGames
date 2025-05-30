@@ -107,5 +107,18 @@
   "latest_articles_title": "最新の学習記事",
   "latest_articles_desc": "最新の日本語学習テクニックと方法を発見",
   "view_all_articles": "すべての記事を見る",
-  "read_more": "続きを読む"
+  "read_more": "続きを読む",
+
+  "kana_reader_title": "五十音読み上げ",
+  "kana_reader_desc": "かなをクリックして発音を聞き、発音のコツと単語例を確認",
+  "basic_kana": "基本かな",
+  "dakuon_kana": "濁音かな",
+  "youon_kana": "拗音かな",
+  "play_pronunciation": "発音を再生",
+  "pronunciation_tips": "発音のコツ",
+  "word_examples": "単語例",
+  "writing_animation": "書き方アニメ",
+  "speed": "速度",
+  "switch_to_katakana": "カタカナに切り替え",
+  "switch_to_hiragana": "ひらがなに切り替え"
 }

@@ -107,5 +107,18 @@
   "latest_articles_title": "Latest Learning Articles",
   "latest_articles_desc": "Discover the latest Japanese learning techniques and methods",
   "view_all_articles": "View All Articles",
-  "read_more": "Read More"
+  "read_more": "Read More",
+
+  "kana_reader_title": "Kana Reader",
+  "kana_reader_desc": "Click kana to hear pronunciation, view pronunciation tips and word examples",
+  "basic_kana": "Basic Kana",
+  "dakuon_kana": "Dakuon Kana",
+  "youon_kana": "Youon Kana",
+  "play_pronunciation": "Play Pronunciation",
+  "pronunciation_tips": "Pronunciation Tips",
+  "word_examples": "Word Examples",
+  "writing_animation": "Writing Animation",
+  "speed": "Speed",
+  "switch_to_katakana": "Switch to Katakana",
+  "switch_to_hiragana": "Switch to Hiragana"
 }

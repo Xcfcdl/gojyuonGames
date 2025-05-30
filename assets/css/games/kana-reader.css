@@ -1,0 +1,966 @@
+/* 五十音点读游戏样式 */
+
+/* Header 和 Footer 滚动隐藏效果 */
+header {
+    transition: transform 0.3s ease-in-out;
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+footer {
+    transition: transform 0.3s ease-in-out;
+}
+
+footer.hidden {
+    transform: translateY(100%);
+}
+
+/* 固定的游戏控制栏 */
+.game-control-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--whitet);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(76, 159, 112, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 0.8rem 1rem;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    display: none;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.game-control-bar.visible {
+    transform: translateY(0);
+    display: block !important;
+}
+
+.game-control-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.control-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.control-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.control-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 1.5rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(76, 159, 112, 0.1);
+}
+
+.mini-kana-display {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(76, 159, 112, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 1px solid rgba(76, 159, 112, 0.2);
+}
+
+.mini-kana-char {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: var(--japanese-font-stack);
+}
+
+.mini-kana-romaji {
+    font-size: 1rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-family: var(--code-font-stack);
+}
+
+.mini-play-button {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.mini-play-button:hover {
+    background: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* 写法动画样式 */
+.mini-writing-animation h5,
+.mini-pronunciation-tips h5,
+.mini-word-examples h5 {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-family: var(--handwriting-font-stack);
+    font-weight: 600;
+}
+
+.writing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.writing-canvas-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.kana-writing-canvas {
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(76, 159, 112, 0.2);
+    border-radius: var(--border-radius-sm);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.writing-controls {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+.writing-control-btn {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.7rem;
+}
+
+.writing-control-btn:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.writing-control-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 速度控制样式 */
+.speed-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(76, 159, 112, 0.1);
+}
+
+.speed-label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.speed-slider {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(76, 159, 112, 0.2);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.speed-slider::-webkit-slider-thumb:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.speed-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+.speed-slider::-moz-range-thumb:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.speed-value {
+    font-size: 0.75rem;
+    color: var(--text-color);
+    font-weight: 600;
+    font-family: var(--code-font-stack);
+    background: rgba(76, 159, 112, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    min-width: 35px;
+    text-align: center;
+}
+
+#mini-pronunciation-tip-text {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-color);
+    background: rgba(76, 159, 112, 0.05);
+    padding: 0.6rem;
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--accent-color);
+    margin: 0;
+}
+
+/* 迷你单词示例样式 */
+.mini-examples-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    max-height: 80px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(76, 159, 112, 0.3) transparent;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.mini-examples-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.mini-examples-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mini-examples-list::-webkit-scrollbar-thumb {
+    background: rgba(76, 159, 112, 0.3);
+    border-radius: 2px;
+}
+
+.mini-examples-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(76, 159, 112, 0.5);
+}
+
+/* 控制栏滚动条样式 */
+.game-control-bar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.game-control-bar::-webkit-scrollbar-track {
+    background: rgba(76, 159, 112, 0.05);
+}
+
+.game-control-bar::-webkit-scrollbar-thumb {
+    background: rgba(76, 159, 112, 0.3);
+    border-radius: 3px;
+}
+
+.game-control-bar::-webkit-scrollbar-thumb:hover {
+    background: rgba(76, 159, 112, 0.5);
+}
+
+.mini-example-item {
+    background: linear-gradient(135deg, rgba(76, 159, 112, 0.08), rgba(76, 159, 112, 0.12));
+    border-radius: 20px;
+    padding: 0.3rem 0.6rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid rgba(76, 159, 112, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0.2rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(76, 159, 112, 0.1);
+}
+
+.mini-example-item:hover {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(76, 159, 112, 0.15), rgba(76, 159, 112, 0.2));
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 3px 8px rgba(76, 159, 112, 0.25);
+}
+
+.mini-example-item.playing {
+    animation: miniExamplePulse 0.6s ease-in-out;
+    background: linear-gradient(135deg, rgba(76, 159, 112, 0.25), rgba(76, 159, 112, 0.35));
+    border-color: var(--secondary-color);
+    box-shadow: 0 2px 6px rgba(76, 159, 112, 0.3);
+}
+
+@keyframes miniExamplePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.mini-example-content {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.mini-example-word {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-family: var(--japanese-font-stack);
+}
+
+.mini-example-romaji {
+    font-size: 0.65rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    font-family: var(--code-font-stack);
+}
+
+.mini-example-romaji::after {
+    content: "·";
+    margin: 0 0.2rem;
+    color: var(--text-color);
+    opacity: 0.4;
+}
+
+.mini-example-meaning {
+    font-size: 0.7rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.mini-example-play {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+}
+
+.mini-example-play:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+#game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--whitet);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: 0;
+    transition: margin-top 0.3s ease-in-out;
+}
+
+#game-container.with-control-bar {
+    margin-top: 80px;
+}
+
+.header-area {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header-area h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-family: var(--handwriting-font-stack);
+}
+
+.game-description {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+/* 平假名/片假名切换按钮 */
+.kana-type-switch {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.kana-type-button {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(76, 159, 112, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.kana-type-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 159, 112, 0.4);
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+}
+
+.kana-type-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(76, 159, 112, 0.3);
+}
+
+.kana-type-button i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.kana-type-button:hover i {
+    transform: rotate(180deg);
+}
+
+.kana-type-button.switching {
+    animation: switchingPulse 0.6s ease-in-out;
+}
+
+@keyframes switchingPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 语音模式切换按钮 */
+.speech-mode-button {
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.speech-mode-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(135deg, #FF8E53, #FF6B6B);
+}
+
+.speech-mode-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+}
+
+.speech-mode-button i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.speech-mode-button:hover i {
+    transform: scale(1.1);
+}
+
+.speech-mode-button.switching {
+    animation: switchingPulse 0.6s ease-in-out;
+}
+
+/* 语音模式状态指示 */
+.speech-mode-button.individual-mode {
+    background: linear-gradient(135deg, #4ECDC4, #44A08D);
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.speech-mode-button.individual-mode:hover {
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+    background: linear-gradient(135deg, #44A08D, #4ECDC4);
+}
+
+.game-layout {
+    display: block;
+    width: 100%;
+}
+
+/* 五十音图容器 */
+.kana-chart-container {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.chart-section {
+    margin-bottom: 3rem;
+}
+
+.chart-section:last-child {
+    margin-bottom: 0;
+}
+
+.chart-section h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-family: var(--handwriting-font-stack);
+}
+
+/* 假名网格 */
+.kana-grid {
+    display: grid;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.basic-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.dakuon-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.youon-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+/* 假名按钮 */
+.kana-button {
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--primary-color);
+    background: var(--white);
+    border-radius: var(--border-radius-sm);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--japanese-font-stack);
+    position: relative;
+    overflow: hidden;
+}
+
+.kana-button:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+.kana-button.active {
+    background: var(--secondary-color);
+    color: var(--white);
+    border-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.kana-button.playing {
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* 空白占位符 */
+.kana-placeholder {
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+}
+
+/* 移除了原有的info-panel样式，现在完全使用控制栏 */
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .kana-chart-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #game-container {
+        padding: 1rem;
+    }
+
+    .header-area h2 {
+        font-size: 2rem;
+    }
+
+    .kana-type-button,
+    .speech-mode-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        gap: 0.4rem;
+    }
+
+    .kana-type-switch {
+        gap: 0.8rem;
+    }
+
+    .kana-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+
+    .kana-placeholder {
+        width: 50px;
+        height: 50px;
+    }
+
+    .kana-char {
+        font-size: 3rem;
+    }
+
+    .basic-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.3rem;
+    }
+
+    .dakuon-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.3rem;
+    }
+
+    .youon-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .kana-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .kana-placeholder {
+        width: 40px;
+        height: 40px;
+    }
+
+    .game-control-bar {
+        padding: 0.6rem 0.8rem;
+        max-height: 45vh;
+    }
+
+    .mini-kana-display {
+        padding: 0.4rem 0.8rem;
+        gap: 0.6rem;
+    }
+
+    .mini-kana-char {
+        font-size: 1.5rem;
+    }
+
+    .mini-kana-romaji {
+        font-size: 0.9rem;
+    }
+
+    .mini-play-button {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+
+    .control-left,
+    .control-right {
+        gap: 0.5rem;
+    }
+
+    #game-container.with-control-bar {
+        margin-top: 70px;
+    }
+
+    .control-bottom {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* 优化移动端笔顺动画区域 */
+    .mini-writing-animation {
+        order: 1; /* 确保写法动画在第一位 */
+    }
+
+    .mini-pronunciation-tips {
+        order: 2;
+    }
+
+    .mini-word-examples {
+        order: 3;
+    }
+
+    .writing-container {
+        gap: 0.6rem;
+        align-items: center;
+    }
+
+    .writing-canvas-container {
+        gap: 0.4rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .kana-writing-canvas {
+        width: 60px;
+        height: 60px;
+        border: 2px solid rgba(76, 159, 112, 0.3);
+        flex-shrink: 0;
+    }
+
+    /* 确保两个字符的画布正确对齐 */
+    .kana-writing-canvas:first-child {
+        margin-right: 0.2rem;
+    }
+
+    .kana-writing-canvas:last-child {
+        margin-left: 0.2rem;
+    }
+
+    .writing-controls {
+        gap: 0.3rem;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+
+    .writing-control-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 0.6rem;
+        flex-shrink: 0;
+    }
+
+    .speed-control {
+        margin-top: 0.6rem;
+        padding-top: 0.6rem;
+        gap: 0.4rem;
+        width: 100%;
+    }
+
+    .speed-label {
+        font-size: 0.7rem;
+        gap: 0.2rem;
+        text-align: center;
+    }
+
+    .speed-slider {
+        height: 3px;
+        width: 100%;
+        max-width: 120px;
+    }
+
+    .speed-slider::-webkit-slider-thumb {
+        width: 14px;
+        height: 14px;
+    }
+
+    .speed-slider::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+    }
+
+    .speed-value {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.4rem;
+        min-width: 30px;
+        text-align: center;
+    }
+
+    .mini-examples-list {
+        max-height: 60px;
+        gap: 0.15rem;
+    }
+
+    .mini-example-item {
+        padding: 0.25rem 0.5rem;
+        gap: 0.3rem;
+        margin: 0.1rem;
+        border-radius: 15px;
+    }
+
+    .mini-example-word {
+        font-size: 0.7rem;
+    }
+
+    .mini-example-romaji {
+        font-size: 0.6rem;
+    }
+
+    .mini-example-meaning {
+        font-size: 0.65rem;
+    }
+
+    .mini-example-play {
+        width: 14px;
+        height: 14px;
+        font-size: 0.5rem;
+    }
+
+    #mini-pronunciation-tip-text {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .mini-pronunciation-tips h5,
+    .mini-word-examples h5,
+    .mini-writing-animation h5 {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+        text-align: center;
+    }
+
+    /* 修复dmak SVG在移动端的对齐问题 */
+    .kana-writing-canvas svg {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* 修复简单动画canvas的对齐 */
+    .kana-writing-canvas canvas {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 确保加载状态和静态显示正确对齐 */
+    .kana-writing-canvas .loading-state,
+    .kana-writing-canvas > div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* 平板端优化 */
+@media (max-width: 1200px) and (min-width: 481px) {
+    .game-control-bar {
+        max-height: 35vh;
+    }
+
+    #game-container.with-control-bar {
+        margin-top: 120px;
+    }
+
+    .kana-writing-canvas {
+        width: 70px;
+        height: 70px;
+    }
+
+    .writing-controls {
+        gap: 0.4rem;
+    }
+
+    .writing-control-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 0.65rem;
+    }
+
+    .speed-control {
+        gap: 0.5rem;
+    }
+
+    .speed-slider {
+        max-width: 150px;
+    }
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93SBX04BC7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-93SBX04BC7');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五十音点读 - 五十音图游戏集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/games/kana-reader.css">
+
+    <!-- Dmak库依赖 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://unpkg.com/dmak@0.3.1/dist/dmak.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="../index.html" data-i18n="title"><i class="fas fa-language"></i> 五十音図ゲーム</a></h1>
+            </div>
+            <div class="nav-links">
+                <button id="bgm-toggle" class="bgm-button" title="背景音乐">
+                    <i class="fas fa-music"></i>
+                </button>
+                <!-- 添加语言切换下拉菜单 -->
+                <div class="lang-switch dropdown">
+                  <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                  <div class="dropdown-content lang-dropdown-content">
+                    <a href="#" onclick="setLang('zh');return false;">中文</a>
+                    <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                    <a href="#" onclick="setLang('en');return false;">English</a>
+                  </div>
+                </div>
+                <a href="../index.html" class="back-link"><i class="fas fa-home"></i> <span data-i18n="back_home">返回首页</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 游戏控制栏 -->
+    <div class="game-control-bar" id="game-control-bar">
+        <div class="game-control-content">
+            <div class="control-top">
+                <div class="control-left">
+                    <div class="mini-kana-display">
+                        <span class="mini-kana-char" id="mini-kana-char">あ</span>
+                        <span class="mini-kana-romaji" id="mini-kana-romaji">a</span>
+                    </div>
+                    <button class="mini-play-button" id="mini-play-button">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="control-right">
+                    <div class="lang-switch dropdown">
+                        <button class="start-button lang-dropdown-btn"><i class="fas fa-globe"></i> <span id="mini-current-lang-label">中文</span> <i class="fas fa-caret-down"></i></button>
+                        <div class="dropdown-content lang-dropdown-content">
+                            <a href="#" onclick="setLang('zh');return false;">中文</a>
+                            <a href="#" onclick="setLang('ja');return false;">日本語</a>
+                            <a href="#" onclick="setLang('en');return false;">English</a>
+                        </div>
+                    </div>
+                    <a href="../index.html" class="back-link"><i class="fas fa-home"></i></a>
+                </div>
+            </div>
+
+            <div class="control-bottom">
+                <div class="mini-writing-animation">
+                    <h5 data-i18n="writing_animation">写法动画</h5>
+                    <div class="writing-container">
+                        <div class="writing-canvas-container">
+                            <div id="kana-writing-animation-1" class="kana-writing-canvas"></div>
+                            <div id="kana-writing-animation-2" class="kana-writing-canvas" style="display: none;"></div>
+                        </div>
+                        <div class="writing-controls">
+                            <button class="writing-control-btn" id="play-writing-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="writing-control-btn" id="pause-writing-btn">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="writing-control-btn" id="restart-writing-btn">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                        <div class="speed-control">
+                            <label for="speed-slider" class="speed-label">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span data-i18n="speed">速度</span>
+                            </label>
+                            <input type="range" id="speed-slider" class="speed-slider"
+                                   min="0.5" max="3" step="0.1" value="2">
+                            <span class="speed-value" id="speed-value">2.0x</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mini-pronunciation-tips">
+                    <h5 data-i18n="pronunciation_tips">发音技巧</h5>
+                    <p id="mini-pronunciation-tip-text">嘴巴张开，发音类似中文的'啊'，但更短促</p>
+                </div>
+
+                <div class="mini-word-examples">
+                    <h5 data-i18n="word_examples">单词示例</h5>
+                    <div class="mini-examples-list" id="mini-examples-list">
+                        <!-- 单词示例将由JavaScript生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div id="game-container">
+            <div class="header-area">
+                <h2 data-i18n="kana_reader_title"><i class="fas fa-volume-up"></i> 五十音点读</h2>
+                <div class="game-description">
+                    <p data-i18n="kana_reader_desc">点击假名听发音，查看发音技巧和单词示例</p>
+                </div>
+                <!-- 平假名/片假名切换按钮 -->
+                <div class="kana-type-switch">
+                    <button id="kana-type-toggle" class="kana-type-button" title="切换平假名/片假名">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span id="kana-type-label" data-i18n="switch_to_katakana">切换到片假名</span>
+                    </button>
+                    <button id="speech-mode-toggle" class="speech-mode-button" title="切换发音模式">
+                        <i class="fas fa-volume-up"></i>
+                        <span id="speech-mode-label" data-i18n="speech_mode_tts">智能发音</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="game-layout">
+                <!-- 五十音图区域 -->
+                <div class="kana-chart-container">
+                    <div class="chart-section">
+                        <h3 data-i18n="basic_kana">基础假名</h3>
+                        <div class="kana-grid basic-grid" id="basic-grid">
+                            <!-- 基础假名将由JavaScript生成 -->
+                        </div>
+                    </div>
+
+                    <div class="chart-section">
+                        <h3 data-i18n="dakuon_kana">浊音假名</h3>
+                        <div class="kana-grid dakuon-grid" id="dakuon-grid">
+                            <!-- 浊音假名将由JavaScript生成 -->
+                        </div>
+                    </div>
+
+                    <div class="chart-section">
+                        <h3 data-i18n="youon_kana">拗音假名</h3>
+                        <div class="kana-grid youon-grid" id="youon-grid">
+                            <!-- 拗音假名将由JavaScript生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> <span data-i18n="copyright">2025 五十音図ゲーム - 版权所有</span></p>
+    </footer>
+
+    <!-- 加载游戏脚本 -->
+    <script src="../assets/js/i18n.js"></script>
+    <script type="module" src="../assets/js/games/kana-reader.js"></script>
+</body>
+</html>

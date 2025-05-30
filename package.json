@@ -1,0 +1,13 @@
+{
+  "name": "gojyuon-games",
+  "version": "1.0.0",
+  "description": "Interactive Japanese Gojuon learning games",
+  "scripts": {
+    "download-svg": "node scripts/download-kana-svg.js",
+    "serve": "python3 -m http.server 8080",
+    "dev": "npm run serve"
+  },
+  "keywords": ["japanese", "kana", "learning", "games", "gojuon"],
+  "author": "Your Name",
+  "license": "MIT"
+}

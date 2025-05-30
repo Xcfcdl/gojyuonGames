@@ -274,5 +274,17 @@
     "icon": "fa-paint-brush",
     "url": "games/draw.html",
     "status": "pending"
+  },
+  {
+    "id": "kana-reader",
+    "title": { "zh": "五十音点读", "ja": "五十音読み上げ", "en": "Kana Reader" },
+    "desc": {
+      "zh": "点击假名听发音，查看发音技巧和单词示例，轻松掌握五十音图。",
+      "ja": "かなをクリックして発音を聞き、発音のコツと単語例を確認して五十音図を簡単にマスター。",
+      "en": "Click kana to hear pronunciation, view pronunciation tips and word examples to easily master the Gojuon chart."
+    },
+    "icon": "fa-volume-up",
+    "url": "games/kana-reader.html",
+    "status": "normal"
   }
 ]

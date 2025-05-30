@@ -1,0 +1,542 @@
+{
+  "ア": {
+    "pronunciation_tips": {
+      "zh": "嘴巴张开，发音类似中文的'啊'，但更短促",
+      "ja": "口を大きく開けて、短く「ア」と発音する",
+      "en": "Open your mouth wide and pronounce like 'ah' but shorter"
+    },
+    "examples": [
+      {
+        "word": "アメリカ",
+        "romaji": "amerika",
+        "meaning": {
+          "zh": "美国",
+          "ja": "アメリカ",
+          "en": "America"
+        }
+      },
+      {
+        "word": "アニメ",
+        "romaji": "anime",
+        "meaning": {
+          "zh": "动画",
+          "ja": "アニメ",
+          "en": "anime"
+        }
+      },
+      {
+        "word": "アイス",
+        "romaji": "aisu",
+        "meaning": {
+          "zh": "冰淇淋",
+          "ja": "アイス",
+          "en": "ice cream"
+        }
+      }
+    ]
+  },
+  "イ": {
+    "pronunciation_tips": {
+      "zh": "嘴角向两边拉开，发音类似中文的'衣'",
+      "ja": "口角を横に引いて「イ」と発音する",
+      "en": "Stretch the corners of your mouth and pronounce like 'ee'"
+    },
+    "examples": [
+      {
+        "word": "イタリア",
+        "romaji": "itaria",
+        "meaning": {
+          "zh": "意大利",
+          "ja": "イタリア",
+          "en": "Italy"
+        }
+      },
+      {
+        "word": "インド",
+        "romaji": "indo",
+        "meaning": {
+          "zh": "印度",
+          "ja": "インド",
+          "en": "India"
+        }
+      },
+      {
+        "word": "イス",
+        "romaji": "isu",
+        "meaning": {
+          "zh": "椅子",
+          "ja": "イス",
+          "en": "chair"
+        }
+      }
+    ]
+  },
+  "ウ": {
+    "pronunciation_tips": {
+      "zh": "嘴唇稍微突出，发音类似中文的'乌'",
+      "ja": "唇を少し突き出して「ウ」と発音する",
+      "en": "Slightly protrude your lips and pronounce like 'oo'"
+    },
+    "examples": [
+      {
+        "word": "ウイルス",
+        "romaji": "uirusu",
+        "meaning": {
+          "zh": "病毒",
+          "ja": "ウイルス",
+          "en": "virus"
+        }
+      },
+      {
+        "word": "ウール",
+        "romaji": "uuru",
+        "meaning": {
+          "zh": "羊毛",
+          "ja": "ウール",
+          "en": "wool"
+        }
+      },
+      {
+        "word": "ウサギ",
+        "romaji": "usagi",
+        "meaning": {
+          "zh": "兔子",
+          "ja": "ウサギ",
+          "en": "rabbit"
+        }
+      }
+    ]
+  },
+  "エ": {
+    "pronunciation_tips": {
+      "zh": "嘴巴半开，发音类似中文的'诶'",
+      "ja": "口を半分開けて「エ」と発音する",
+      "en": "Half-open your mouth and pronounce like 'eh'"
+    },
+    "examples": [
+      {
+        "word": "エレベーター",
+        "romaji": "erebeetaa",
+        "meaning": {
+          "zh": "电梯",
+          "ja": "エレベーター",
+          "en": "elevator"
+        }
+      },
+      {
+        "word": "エアコン",
+        "romaji": "eakon",
+        "meaning": {
+          "zh": "空调",
+          "ja": "エアコン",
+          "en": "air conditioner"
+        }
+      },
+      {
+        "word": "エンジン",
+        "romaji": "enjin",
+        "meaning": {
+          "zh": "引擎",
+          "ja": "エンジン",
+          "en": "engine"
+        }
+      }
+    ]
+  },
+  "オ": {
+    "pronunciation_tips": {
+      "zh": "嘴巴呈圆形，发音类似中文的'哦'",
+      "ja": "口を丸くして「オ」と発音する",
+      "en": "Make your mouth round and pronounce like 'oh'"
+    },
+    "examples": [
+      {
+        "word": "オレンジ",
+        "romaji": "orenji",
+        "meaning": {
+          "zh": "橙子",
+          "ja": "オレンジ",
+          "en": "orange"
+        }
+      },
+      {
+        "word": "オフィス",
+        "romaji": "ofisu",
+        "meaning": {
+          "zh": "办公室",
+          "ja": "オフィス",
+          "en": "office"
+        }
+      },
+      {
+        "word": "オリンピック",
+        "romaji": "orinpikku",
+        "meaning": {
+          "zh": "奥运会",
+          "ja": "オリンピック",
+          "en": "Olympics"
+        }
+      }
+    ]
+  },
+  "カ": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，发音类似中文的'卡'",
+      "ja": "舌の奥を上あごにつけて「カ」と発音する",
+      "en": "Touch the back of your tongue to the soft palate, like 'ka'"
+    },
+    "examples": [
+      {
+        "word": "カメラ",
+        "romaji": "kamera",
+        "meaning": {
+          "zh": "相机",
+          "ja": "カメラ",
+          "en": "camera"
+        }
+      },
+      {
+        "word": "カレー",
+        "romaji": "karee",
+        "meaning": {
+          "zh": "咖喱",
+          "ja": "カレー",
+          "en": "curry"
+        }
+      },
+      {
+        "word": "カード",
+        "romaji": "kaado",
+        "meaning": {
+          "zh": "卡片",
+          "ja": "カード",
+          "en": "card"
+        }
+      }
+    ]
+  },
+  "キ": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴角拉开，发音类似中文的'ki'",
+      "ja": "舌の奥を上あごにつけて口角を引いて「キ」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with mouth corners stretched, like 'kee'"
+    },
+    "examples": [
+      {
+        "word": "キーボード",
+        "romaji": "kiiboodo",
+        "meaning": {
+          "zh": "键盘",
+          "ja": "キーボード",
+          "en": "keyboard"
+        }
+      },
+      {
+        "word": "キッチン",
+        "romaji": "kicchin",
+        "meaning": {
+          "zh": "厨房",
+          "ja": "キッチン",
+          "en": "kitchen"
+        }
+      },
+      {
+        "word": "キャンプ",
+        "romaji": "kyanpu",
+        "meaning": {
+          "zh": "露营",
+          "ja": "キャンプ",
+          "en": "camp"
+        }
+      }
+    ]
+  },
+  "ク": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴唇突出，发音类似中文的'库'",
+      "ja": "舌の奥を上あごにつけて唇を突き出して「ク」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with protruded lips, like 'koo'"
+    },
+    "examples": [
+      {
+        "word": "クラス",
+        "romaji": "kurasu",
+        "meaning": {
+          "zh": "班级",
+          "ja": "クラス",
+          "en": "class"
+        }
+      },
+      {
+        "word": "クッキー",
+        "romaji": "kukkii",
+        "meaning": {
+          "zh": "饼干",
+          "ja": "クッキー",
+          "en": "cookie"
+        }
+      },
+      {
+        "word": "クリスマス",
+        "romaji": "kurisumasu",
+        "meaning": {
+          "zh": "圣诞节",
+          "ja": "クリスマス",
+          "en": "Christmas"
+        }
+      }
+    ]
+  },
+  "ケ": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴巴半开，发音类似中文的'ke'",
+      "ja": "舌の奥を上あごにつけて口を半分開けて「ケ」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with half-open mouth, like 'keh'"
+    },
+    "examples": [
+      {
+        "word": "ケーキ",
+        "romaji": "keeki",
+        "meaning": {
+          "zh": "蛋糕",
+          "ja": "ケーキ",
+          "en": "cake"
+        }
+      },
+      {
+        "word": "ケータイ",
+        "romaji": "keetai",
+        "meaning": {
+          "zh": "手机",
+          "ja": "ケータイ",
+          "en": "mobile phone"
+        }
+      },
+      {
+        "word": "ケチャップ",
+        "romaji": "kechappu",
+        "meaning": {
+          "zh": "番茄酱",
+          "ja": "ケチャップ",
+          "en": "ketchup"
+        }
+      }
+    ]
+  },
+  "コ": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴巴呈圆形，发音类似中文的'ko'",
+      "ja": "舌の奥を上あごにつけて口を丸くして「コ」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with round mouth, like 'koh'"
+    },
+    "examples": [
+      {
+        "word": "コーヒー",
+        "romaji": "koohii",
+        "meaning": {
+          "zh": "咖啡",
+          "ja": "コーヒー",
+          "en": "coffee"
+        }
+      },
+      {
+        "word": "コンピューター",
+        "romaji": "konpyuutaa",
+        "meaning": {
+          "zh": "电脑",
+          "ja": "コンピューター",
+          "en": "computer"
+        }
+      },
+      {
+        "word": "コップ",
+        "romaji": "koppu",
+        "meaning": {
+          "zh": "杯子",
+          "ja": "コップ",
+          "en": "cup"
+        }
+      }
+    ]
+  },
+  "サ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，发音类似中文的'sa'",
+      "ja": "舌先を上の歯茎につけて「サ」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums, like 'sah'"
+    },
+    "examples": [
+      {
+        "word": "サッカー",
+        "romaji": "sakkaa",
+        "meaning": {
+          "zh": "足球",
+          "ja": "サッカー",
+          "en": "soccer"
+        }
+      },
+      {
+        "word": "サラダ",
+        "romaji": "sarada",
+        "meaning": {
+          "zh": "沙拉",
+          "ja": "サラダ",
+          "en": "salad"
+        }
+      },
+      {
+        "word": "サンドイッチ",
+        "romaji": "sandoicchi",
+        "meaning": {
+          "zh": "三明治",
+          "ja": "サンドイッチ",
+          "en": "sandwich"
+        }
+      }
+    ]
+  },
+  "シ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接近上齿龈，发音类似中文的'xi'",
+      "ja": "舌先を上の歯茎に近づけて「シ」と発音する",
+      "en": "Bring the tip of your tongue close to the upper gums, like 'shee'"
+    },
+    "examples": [
+      {
+        "word": "シャツ",
+        "romaji": "shatsu",
+        "meaning": {
+          "zh": "衬衫",
+          "ja": "シャツ",
+          "en": "shirt"
+        }
+      },
+      {
+        "word": "シネマ",
+        "romaji": "shinema",
+        "meaning": {
+          "zh": "电影院",
+          "ja": "シネマ",
+          "en": "cinema"
+        }
+      },
+      {
+        "word": "システム",
+        "romaji": "shisutemu",
+        "meaning": {
+          "zh": "系统",
+          "ja": "システム",
+          "en": "system"
+        }
+      }
+    ]
+  },
+  "ス": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴唇稍微突出，发音类似中文的'su'",
+      "ja": "舌先を上の歯茎につけて唇を少し突き出して「ス」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with slightly protruded lips, like 'soo'"
+    },
+    "examples": [
+      {
+        "word": "スポーツ",
+        "romaji": "supootsu",
+        "meaning": {
+          "zh": "运动",
+          "ja": "スポーツ",
+          "en": "sports"
+        }
+      },
+      {
+        "word": "スーパー",
+        "romaji": "suupaa",
+        "meaning": {
+          "zh": "超市",
+          "ja": "スーパー",
+          "en": "supermarket"
+        }
+      },
+      {
+        "word": "スマホ",
+        "romaji": "sumaho",
+        "meaning": {
+          "zh": "智能手机",
+          "ja": "スマホ",
+          "en": "smartphone"
+        }
+      }
+    ]
+  },
+  "セ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴巴半开，发音类似中文的'se'",
+      "ja": "舌先を上の歯茎につけて口を半分開けて「セ」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with half-open mouth, like 'seh'"
+    },
+    "examples": [
+      {
+        "word": "セーター",
+        "romaji": "seetaa",
+        "meaning": {
+          "zh": "毛衣",
+          "ja": "セーター",
+          "en": "sweater"
+        }
+      },
+      {
+        "word": "センター",
+        "romaji": "sentaa",
+        "meaning": {
+          "zh": "中心",
+          "ja": "センター",
+          "en": "center"
+        }
+      },
+      {
+        "word": "セット",
+        "romaji": "setto",
+        "meaning": {
+          "zh": "套装",
+          "ja": "セット",
+          "en": "set"
+        }
+      }
+    ]
+  },
+  "ソ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴巴呈圆形，发音类似中文的'so'",
+      "ja": "舌先を上の歯茎につけて口を丸くして「ソ」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with round mouth, like 'soh'"
+    },
+    "examples": [
+      {
+        "word": "ソファー",
+        "romaji": "sofaa",
+        "meaning": {
+          "zh": "沙发",
+          "ja": "ソファー",
+          "en": "sofa"
+        }
+      },
+      {
+        "word": "ソース",
+        "romaji": "soosu",
+        "meaning": {
+          "zh": "酱汁",
+          "ja": "ソース",
+          "en": "sauce"
+        }
+      },
+      {
+        "word": "ソフト",
+        "romaji": "sofuto",
+        "meaning": {
+          "zh": "软件",
+          "ja": "ソフト",
+          "en": "software"
+        }
+      }
+    ]
+  }
+}

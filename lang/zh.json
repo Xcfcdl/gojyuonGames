@@ -107,5 +107,18 @@
   "latest_articles_title": "最新学习文章",
   "latest_articles_desc": "发现最新的日语学习技巧和方法",
   "view_all_articles": "查看所有文章",
-  "read_more": "阅读更多"
+  "read_more": "阅读更多",
+
+  "kana_reader_title": "五十音点读",
+  "kana_reader_desc": "点击假名听发音，查看发音技巧和单词示例",
+  "basic_kana": "基础假名",
+  "dakuon_kana": "浊音假名",
+  "youon_kana": "拗音假名",
+  "play_pronunciation": "播放发音",
+  "pronunciation_tips": "发音技巧",
+  "word_examples": "单词示例",
+  "writing_animation": "写法动画",
+  "speed": "速度",
+  "switch_to_katakana": "切换到片假名",
+  "switch_to_hiragana": "切换到平假名"
 }

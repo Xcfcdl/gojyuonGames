@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dmak Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://unpkg.com/dmak@0.3.1/dist/dmak.min.js"></script>
+</head>
+<body>
+    <h1>Dmak Library Test</h1>
+    <div id="dmak-test" style="border: 1px solid #ccc; width: 200px; height: 200px; margin: 20px;"></div>
+    <button onclick="testDmak()">Test Dmak</button>
+    <button onclick="playAnimation()">Play Animation</button>
+    
+    <script>
+        let dmakInstance = null;
+        
+        function testDmak() {
+            console.log('Testing Dmak...');
+            console.log('Raphael available:', typeof Raphael !== 'undefined');
+            console.log('Dmak available:', typeof Dmak !== 'undefined');
+            
+            if (typeof Dmak !== 'undefined') {
+                try {
+                    dmakInstance = new Dmak('あ', {
+                        element: 'dmak-test',
+                        width: 200,
+                        height: 200,
+                        autoplay: true,
+                        loaded: function(strokes) {
+                            console.log('Dmak loaded successfully, strokes:', strokes);
+                        }
+                    });
+                    console.log('Dmak instance created:', dmakInstance);
+                } catch (error) {
+                    console.error('Error creating Dmak instance:', error);
+                }
+            } else {
+                console.error('Dmak library not available');
+            }
+        }
+        
+        function playAnimation() {
+            if (dmakInstance) {
+                dmakInstance.render();
+            } else {
+                console.log('No dmak instance available');
+            }
+        }
+        
+        // 自动测试
+        window.addEventListener('load', function() {
+            setTimeout(testDmak, 1000);
+        });
+    </script>
+</body>
+</html>
