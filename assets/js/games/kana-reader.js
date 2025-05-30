@@ -16,7 +16,7 @@ class KanaReaderGame {
         this.animationQueue = []; // 动画队列
         this.isKatakana = false; // 当前是否为片假名模式
         this.speechVoices = []; // 可用的语音列表
-        this.useTTSMode = true; // 是否使用TTS模式（true: Google TTS, false: 逐个假名）
+        this.speechMode = 'smart'; // 语音模式：'smart' (仅智能发音), 'individual' (逐个假名), 'combined' (拼读模式)
         this.init();
     }
 
@@ -612,6 +612,113 @@ class KanaReaderGame {
                 if (window.langData[key]) {
                     toggleLabel.textContent = window.langData[key];
                 }
+            }
+        }
+    }
+
+    setupSpeechModeToggle() {
+        const toggleButton = document.getElementById('speech-mode-toggle');
+        if (toggleButton) {
+            // 初始化按钮状态
+            this.updateSpeechModeButton();
+
+            toggleButton.addEventListener('click', () => {
+                this.toggleSpeechMode();
+            });
+        }
+    }
+
+    toggleSpeechMode() {
+        const toggleButton = document.getElementById('speech-mode-toggle');
+
+        if (toggleButton) {
+            toggleButton.classList.add('switching');
+            toggleButton.disabled = true;
+        }
+
+        try {
+            // 循环切换三种模式：smart -> combined -> individual -> smart
+            switch (this.speechMode) {
+                case 'smart':
+                    this.speechMode = 'combined';
+                    break;
+                case 'combined':
+                    this.speechMode = 'individual';
+                    break;
+                case 'individual':
+                    this.speechMode = 'smart';
+                    break;
+                default:
+                    this.speechMode = 'smart';
+            }
+
+            // 更新按钮显示
+            this.updateSpeechModeButton();
+
+            console.log(`切换到${this.getSpeechModeDisplayName()}发音模式`);
+
+        } catch (error) {
+            console.error('切换语音模式失败:', error);
+            // 如果切换失败，恢复到智能模式
+            this.speechMode = 'smart';
+        } finally {
+            if (toggleButton) {
+                toggleButton.classList.remove('switching');
+                toggleButton.disabled = false;
+            }
+        }
+    }
+
+    getSpeechModeDisplayName() {
+        switch (this.speechMode) {
+            case 'smart': return '智能发音';
+            case 'combined': return '拼读模式';
+            case 'individual': return '逐个假名';
+            default: return '智能发音';
+        }
+    }
+
+    updateSpeechModeButton() {
+        const toggleButton = document.getElementById('speech-mode-toggle');
+        const toggleLabel = document.getElementById('speech-mode-label');
+
+        if (toggleButton && toggleLabel) {
+            // 移除所有模式类
+            toggleButton.classList.remove('individual-mode', 'combined-mode');
+
+            let displayText, dataI18nKey, titleText;
+
+            switch (this.speechMode) {
+                case 'smart':
+                    displayText = '智能发音';
+                    dataI18nKey = 'speech_mode_smart';
+                    titleText = '当前：智能发音模式，点击切换到拼读模式';
+                    break;
+                case 'combined':
+                    displayText = '拼读模式';
+                    dataI18nKey = 'speech_mode_combined';
+                    titleText = '当前：拼读模式（逐个假名+智能发音），点击切换到逐个假名模式';
+                    toggleButton.classList.add('combined-mode');
+                    break;
+                case 'individual':
+                    displayText = '逐个假名';
+                    dataI18nKey = 'speech_mode_individual';
+                    titleText = '当前：逐个假名模式，点击切换到智能发音模式';
+                    toggleButton.classList.add('individual-mode');
+                    break;
+                default:
+                    displayText = '智能发音';
+                    dataI18nKey = 'speech_mode_smart';
+                    titleText = '当前：智能发音模式';
+            }
+
+            toggleLabel.textContent = displayText;
+            toggleLabel.setAttribute('data-i18n', dataI18nKey);
+            toggleButton.title = titleText;
+
+            // 如果国际化已加载，更新文本
+            if (window.langData && this.currentLang && window.langData[dataI18nKey]) {
+                toggleLabel.textContent = window.langData[dataI18nKey];
             }
         }
     }
@@ -1251,13 +1358,32 @@ class KanaReaderGame {
         if (!word || word.length === 0) return;
 
         try {
-            // 首先尝试使用Google TTS播放完整单词发音
-            const ttsSuccess = await this.playWordWithGoogleTTS(word);
+            switch (this.speechMode) {
+                case 'smart':
+                    // 仅使用Google TTS智能发音
+                    const ttsSuccess = await this.playWordWithGoogleTTS(word);
+                    if (!ttsSuccess) {
+                        console.log('Google TTS failed, falling back to individual kana pronunciation');
+                        await this.playWordWithIndividualKanaOnly(word);
+                    }
+                    break;
 
-            if (!ttsSuccess) {
-                // 如果Google TTS失败，回退到逐个假名播放
-                console.log('Google TTS failed, falling back to individual kana pronunciation');
-                await this.playWordWithIndividualKana(word);
+                case 'combined':
+                    // 拼读模式：先逐个假名，再智能发音
+                    await this.playWordWithIndividualKana(word);
+                    break;
+
+                case 'individual':
+                    // 仅逐个假名播放
+                    await this.playWordWithIndividualKanaOnly(word);
+                    break;
+
+                default:
+                    // 默认使用智能发音
+                    const defaultTtsSuccess = await this.playWordWithGoogleTTS(word);
+                    if (!defaultTtsSuccess) {
+                        await this.playWordWithIndividualKanaOnly(word);
+                    }
             }
         } catch (error) {
             console.error('播放单词音频失败:', error);
@@ -1329,8 +1455,11 @@ class KanaReaderGame {
     }
 
     async playWordWithIndividualKana(word) {
-        // 原有的逐个假名播放方法
+        // 逐个假名播放方法，播放完后跟上智能发音
         try {
+            console.log('开始逐个假名播放:', word);
+
+            // 第一步：逐个播放假名
             for (let i = 0; i < word.length; i++) {
                 const kana = word[i];
                 const romaji = this.getRomaji(kana);
@@ -1352,8 +1481,58 @@ class KanaReaderGame {
                     }
                 }
             }
+
+            // 第二步：逐个假名播放完成后，添加停顿，然后播放完整单词
+            console.log('逐个假名播放完成，准备播放完整单词');
+            await new Promise(resolve => setTimeout(resolve, 500)); // 停顿500ms
+
+            // 第三步：播放完整单词的智能发音
+            console.log('开始播放完整单词:', word);
+            const ttsSuccess = await this.playWordWithGoogleTTS(word);
+
+            if (!ttsSuccess) {
+                console.log('智能发音播放失败，跳过');
+            } else {
+                console.log('完整单词播放完成');
+            }
+
         } catch (error) {
             console.error('Individual kana playback failed:', error);
+            throw error;
+        }
+    }
+
+    async playWordWithIndividualKanaOnly(word) {
+        // 仅逐个假名播放方法，不包含后续的智能发音
+        try {
+            console.log('开始仅逐个假名播放:', word);
+
+            for (let i = 0; i < word.length; i++) {
+                const kana = word[i];
+                const romaji = this.getRomaji(kana);
+
+                if (romaji) {
+                    const audioPath = `../assets/audio/kana/${romaji}.mp3`;
+                    const audio = new Audio(audioPath);
+
+                    // 等待当前音频播放完成
+                    await new Promise((resolve, reject) => {
+                        audio.onended = resolve;
+                        audio.onerror = reject;
+                        audio.play().catch(reject);
+                    });
+
+                    // 在假名之间添加短暂停顿
+                    if (i < word.length - 1) {
+                        await new Promise(resolve => setTimeout(resolve, 200));
+                    }
+                }
+            }
+
+            console.log('仅逐个假名播放完成');
+
+        } catch (error) {
+            console.error('Individual kana only playback failed:', error);
             throw error;
         }
     }

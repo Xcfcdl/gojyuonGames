@@ -107,7 +107,13 @@
                 </div>
 
                 <div class="mini-word-examples">
-                    <h5 data-i18n="word_examples">单词示例</h5>
+                    <div class="word-examples-header">
+                        <h5 data-i18n="word_examples">单词示例</h5>
+                        <button id="speech-mode-toggle" class="speech-mode-button mini" title="切换发音模式">
+                            <i class="fas fa-volume-up"></i>
+                            <span id="speech-mode-label" data-i18n="speech_mode_tts">智能发音</span>
+                        </button>
+                    </div>
                     <div class="mini-examples-list" id="mini-examples-list">
                         <!-- 单词示例将由JavaScript生成 -->
                     </div>
@@ -128,10 +134,6 @@
                     <button id="kana-type-toggle" class="kana-type-button" title="切换平假名/片假名">
                         <i class="fas fa-exchange-alt"></i>
                         <span id="kana-type-label" data-i18n="switch_to_katakana">切换到片假名</span>
-                    </button>
-                    <button id="speech-mode-toggle" class="speech-mode-button" title="切换发音模式">
-                        <i class="fas fa-volume-up"></i>
-                        <span id="speech-mode-label" data-i18n="speech_mode_tts">智能发音</span>
                     </button>
                 </div>
             </div>

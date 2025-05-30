@@ -120,5 +120,8 @@
   "writing_animation": "写法动画",
   "speed": "速度",
   "switch_to_katakana": "切换到片假名",
-  "switch_to_hiragana": "切换到平假名"
+  "switch_to_hiragana": "切换到平假名",
+  "speech_mode_smart": "智能发音",
+  "speech_mode_combined": "拼读模式",
+  "speech_mode_individual": "逐个假名"
 }

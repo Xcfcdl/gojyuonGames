@@ -1654,5 +1654,2093 @@
         }
       }
     ]
+  },
+  "が": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，浊化发音，类似中文的'ga' (嘎)",
+      "ja": "舌の奥を上あごにつけて濁らせて「が」と発音する",
+      "en": "Touch the back of your tongue to the soft palate and voice it, like 'ga' in 'garden'"
+    },
+    "examples": [
+      {
+        "word": "がっこう",
+        "romaji": "gakkou",
+        "meaning": {
+          "zh": "学校",
+          "ja": "学校",
+          "en": "school"
+        }
+      },
+      {
+        "word": "かぎ",
+        "romaji": "kagi",
+        "meaning": {
+          "zh": "钥匙",
+          "ja": "鍵",
+          "en": "key"
+        }
+      },
+      {
+        "word": "まんが",
+        "romaji": "manga",
+        "meaning": {
+          "zh": "漫画",
+          "ja": "漫画",
+          "en": "manga/comic"
+        }
+      }
+    ]
+  },
+  "ぎ": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴角拉开，浊化发音，类似中文的'gi' (吉)",
+      "ja": "舌の奥を上あごにつけて口角を引いて濁らせて「ぎ」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with mouth corners stretched and voice it, like 'gi' in 'give'"
+    },
+    "examples": [
+      {
+        "word": "ぎんこう",
+        "romaji": "ginkou",
+        "meaning": {
+          "zh": "银行",
+          "ja": "銀行",
+          "en": "bank"
+        }
+      },
+      {
+        "word": "みぎ",
+        "romaji": "migi",
+        "meaning": {
+          "zh": "右边",
+          "ja": "右",
+          "en": "right (direction)"
+        }
+      },
+      {
+        "word": "うさぎ",
+        "romaji": "usagi",
+        "meaning": {
+          "zh": "兔子",
+          "ja": "兎",
+          "en": "rabbit"
+        }
+      }
+    ]
+  },
+  "ぐ": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴唇突出，浊化发音，类似中文的'gu' (估)",
+      "ja": "舌の奥を上あごにつけて唇を突き出して濁らせて「ぐ」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with protruded lips and voice it, like 'gu' in 'good'"
+    },
+    "examples": [
+      {
+        "word": "かぐ",
+        "romaji": "kagu",
+        "meaning": {
+          "zh": "家具",
+          "ja": "家具",
+          "en": "furniture"
+        }
+      },
+      {
+        "word": "すぐ",
+        "romaji": "sugu",
+        "meaning": {
+          "zh": "马上",
+          "ja": "直ぐ",
+          "en": "immediately"
+        }
+      },
+      {
+        "word": "でぐち",
+        "romaji": "deguchi",
+        "meaning": {
+          "zh": "出口",
+          "ja": "出口",
+          "en": "exit"
+        }
+      }
+    ]
+  },
+  "げ": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴巴半开，浊化发音，类似中文的'ge' (给)",
+      "ja": "舌の奥を上あごにつけて口を半分開けて濁らせて「げ」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with half-open mouth and voice it, like 'ge' in 'get'"
+    },
+    "examples": [
+      {
+        "word": "げんき",
+        "romaji": "genki",
+        "meaning": {
+          "zh": "健康/有精神",
+          "ja": "元気",
+          "en": "healthy/energetic"
+        }
+      },
+      {
+        "word": "かげ",
+        "romaji": "kage",
+        "meaning": {
+          "zh": "影子",
+          "ja": "影",
+          "en": "shadow"
+        }
+      },
+      {
+        "word": "にげる",
+        "romaji": "nigeru",
+        "meaning": {
+          "zh": "逃跑",
+          "ja": "逃げる",
+          "en": "to escape"
+        }
+      }
+    ]
+  },
+  "ご": {
+    "pronunciation_tips": {
+      "zh": "舌根接触软腭，嘴巴呈圆形，浊化发音，类似中文的'go' (锅)",
+      "ja": "舌の奥を上あごにつけて口を丸くして濁らせて「ご」と発音する",
+      "en": "Touch the back of your tongue to the soft palate with round mouth and voice it, like 'go' in 'go'"
+    },
+    "examples": [
+      {
+        "word": "ごはん",
+        "romaji": "gohan",
+        "meaning": {
+          "zh": "米饭/饭",
+          "ja": "ご飯",
+          "en": "rice/meal"
+        }
+      },
+      {
+        "word": "しごと",
+        "romaji": "shigoto",
+        "meaning": {
+          "zh": "工作",
+          "ja": "仕事",
+          "en": "work"
+        }
+      },
+      {
+        "word": "りんご",
+        "romaji": "ringo",
+        "meaning": {
+          "zh": "苹果",
+          "ja": "林檎",
+          "en": "apple"
+        }
+      }
+    ]
+  },
+  "ざ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，浊化发音，类似中文的'za' (杂)",
+      "ja": "舌先を上の歯茎につけて濁らせて「ざ」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums and voice it, like 'za' in 'pizza'"
+    },
+    "examples": [
+      {
+        "word": "ざっし",
+        "romaji": "zasshi",
+        "meaning": {
+          "zh": "杂志",
+          "ja": "雑誌",
+          "en": "magazine"
+        }
+      },
+      {
+        "word": "かぞく",
+        "romaji": "kazoku",
+        "meaning": {
+          "zh": "家庭",
+          "ja": "家族",
+          "en": "family"
+        }
+      },
+      {
+        "word": "ざんねん",
+        "romaji": "zannen",
+        "meaning": {
+          "zh": "遗憾",
+          "ja": "残念",
+          "en": "regrettable/disappointing"
+        }
+      }
+    ]
+  },
+  "じ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接近上齿龈，浊化发音，类似中文的'ji' (吉)",
+      "ja": "舌先を上の歯茎に近づけて濁らせて「じ」と発音する",
+      "en": "Bring the tip of your tongue close to the upper gums and voice it, like 'ji' in 'jeans' or 'vision'"
+    },
+    "examples": [
+      {
+        "word": "じかん",
+        "romaji": "jikan",
+        "meaning": {
+          "zh": "时间",
+          "ja": "時間",
+          "en": "time"
+        }
+      },
+      {
+        "word": "かじ",
+        "romaji": "kaji",
+        "meaning": {
+          "zh": "火灾",
+          "ja": "火事",
+          "en": "fire (disaster)"
+        }
+      },
+      {
+        "word": "じぶん",
+        "romaji": "jibun",
+        "meaning": {
+          "zh": "自己",
+          "ja": "自分",
+          "en": "oneself"
+        }
+      }
+    ]
+  },
+  "ず": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴唇稍微突出，浊化发音，类似中文的'zu' (族)",
+      "ja": "舌先を上の歯茎につけて唇を少し突き出して濁らせて「ず」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with slightly protruded lips and voice it, like 'zu' in 'zoo'"
+    },
+    "examples": [
+      {
+        "word": "みず",
+        "romaji": "mizu",
+        "meaning": {
+          "zh": "水",
+          "ja": "水",
+          "en": "water"
+        }
+      },
+      {
+        "word": "チーズ",
+        "romaji": "chiizu",
+        "meaning": {
+          "zh": "奶酪",
+          "ja": "チーズ",
+          "en": "cheese"
+        }
+      },
+      {
+        "word": "ずつう",
+        "romaji": "zutsuu",
+        "meaning": {
+          "zh": "头痛",
+          "ja": "頭痛",
+          "en": "headache"
+        }
+      }
+    ]
+  },
+  "ぜ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴巴半开，浊化发音，类似中文的'ze' (则)",
+      "ja": "舌先を上の歯茎につけて口を半分開けて濁らせて「ぜ」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with half-open mouth and voice it, like 'ze' in 'zebra'"
+    },
+    "examples": [
+      {
+        "word": "かぜ",
+        "romaji": "kaze",
+        "meaning": {
+          "zh": "感冒/风",
+          "ja": "風邪/風",
+          "en": "cold (illness)/wind"
+        }
+      },
+      {
+        "word": "ぜんぶ",
+        "romaji": "zenbu",
+        "meaning": {
+          "zh": "全部",
+          "ja": "全部",
+          "en": "all/everything"
+        }
+      },
+      {
+        "word": "ぜひ",
+        "romaji": "zehi",
+        "meaning": {
+          "zh": "一定/务必",
+          "ja": "是非",
+          "en": "by all means/definitely"
+        }
+      }
+    ]
+  },
+  "ぞ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴巴呈圆形，浊化发音，类似中文的'zo' (作)",
+      "ja": "舌先を上の歯茎につけて口を丸くして濁らせて「ぞ」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with round mouth and voice it, like 'zo' in 'zone'"
+    },
+    "examples": [
+      {
+        "word": "どうぞ",
+        "romaji": "douzo",
+        "meaning": {
+          "zh": "请",
+          "ja": "どうぞ",
+          "en": "please (offering)"
+        }
+      },
+      {
+        "word": "かぞく",
+        "romaji": "kazoku",
+        "meaning": {
+          "zh": "家庭",
+          "ja": "家族",
+          "en": "family"
+        }
+      },
+      {
+        "word": "ぞう",
+        "romaji": "zou",
+        "meaning": {
+          "zh": "大象",
+          "ja": "象",
+          "en": "elephant"
+        }
+      }
+    ]
+  },
+  "だ": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，浊化发音，类似中文的'da' (达)",
+      "ja": "舌先を上の歯茎につけて濁らせて「だ」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums and voice it, like 'da' in 'dad'"
+    },
+    "examples": [
+      {
+        "word": "だいがく",
+        "romaji": "daigaku",
+        "meaning": {
+          "zh": "大学",
+          "ja": "大学",
+          "en": "university"
+        }
+      },
+      {
+        "word": "からだ",
+        "romaji": "karada",
+        "meaning": {
+          "zh": "身体",
+          "ja": "体",
+          "en": "body"
+        }
+      },
+      {
+        "word": "だれ",
+        "romaji": "dare",
+        "meaning": {
+          "zh": "谁",
+          "ja": "誰",
+          "en": "who"
+        }
+      }
+    ]
+  },
+  "ぢ": {
+    "pronunciation_tips": {
+      "zh": "发音与「じ」基本相同，类似中文的'ji' (吉)，使用较少",
+      "ja": "「じ」とほぼ同じ発音で、あまり使われない",
+      "en": "Pronounced almost the same as 'ji', used infrequently"
+    },
+    "examples": [
+      {
+        "word": "はなぢ",
+        "romaji": "hanaji",
+        "meaning": {
+          "zh": "鼻血",
+          "ja": "鼻血",
+          "en": "nosebleed"
+        }
+      },
+      {
+        "word": "ちぢむ",
+        "romaji": "chijimu",
+        "meaning": {
+          "zh": "收缩",
+          "ja": "縮む",
+          "en": "to shrink"
+        }
+      },
+      {
+        "word": "みぢか",
+        "romaji": "mijika",
+        "meaning": {
+          "zh": "身边/切身",
+          "ja": "身近",
+          "en": "close/familiar"
+        }
+      }
+    ]
+  },
+  "づ": {
+    "pronunciation_tips": {
+      "zh": "发音与「ず」基本相同，类似中文的'zu' (族)，使用较少",
+      "ja": "「ず」とほぼ同じ発音で、あまり使われない",
+      "en": "Pronounced almost the same as 'zu', used infrequently"
+    },
+    "examples": [
+      {
+        "word": "つづく",
+        "romaji": "tsuzuku",
+        "meaning": {
+          "zh": "继续",
+          "ja": "続く",
+          "en": "to continue"
+        }
+      },
+      {
+        "word": "みかづき",
+        "romaji": "mikazuki",
+        "meaning": {
+          "zh": "月牙/新月",
+          "ja": "三日月",
+          "en": "crescent moon"
+        }
+      },
+      {
+        "word": "こづつみ",
+        "romaji": "kozutsumi",
+        "meaning": {
+          "zh": "包裹",
+          "ja": "小包",
+          "en": "parcel/package"
+        }
+      }
+    ]
+  },
+  "で": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴巴半开，浊化发音，类似中文的'de' (得)",
+      "ja": "舌先を上の歯茎につけて口を半分開けて濁らせて「で」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with half-open mouth and voice it, like 'de' in 'desk'"
+    },
+    "examples": [
+      {
+        "word": "でんわ",
+        "romaji": "denwa",
+        "meaning": {
+          "zh": "电话",
+          "ja": "電話",
+          "en": "telephone"
+        }
+      },
+      {
+        "word": "でかける",
+        "romaji": "dekakeru",
+        "meaning": {
+          "zh": "出门",
+          "ja": "出かける",
+          "en": "to go out"
+        }
+      },
+      {
+        "word": "うで",
+        "romaji": "ude",
+        "meaning": {
+          "zh": "手臂",
+          "ja": "腕",
+          "en": "arm"
+        }
+      }
+    ]
+  },
+  "ど": {
+    "pronunciation_tips": {
+      "zh": "舌尖接触上齿龈，嘴巴呈圆形，浊化发音，类似中文的'do' (多)",
+      "ja": "舌先を上の歯茎につけて口を丸くして濁らせて「ど」と発音する",
+      "en": "Touch the tip of your tongue to the upper gums with round mouth and voice it, like 'do' in 'door'"
+    },
+    "examples": [
+      {
+        "word": "どこ",
+        "romaji": "doko",
+        "meaning": {
+          "zh": "哪里",
+          "ja": "何処",
+          "en": "where"
+        }
+      },
+      {
+        "word": "まど",
+        "romaji": "mado",
+        "meaning": {
+          "zh": "窗户",
+          "ja": "窓",
+          "en": "window"
+        }
+      },
+      {
+        "word": "こども",
+        "romaji": "kodomo",
+        "meaning": {
+          "zh": "孩子",
+          "ja": "子供",
+          "en": "child"
+        }
+      }
+    ]
+  },
+  "ば": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，浊化发音，类似中文的'ba' (吧)",
+      "ja": "唇を軽く合わせて濁らせて「ば」と発音する",
+      "en": "Lightly touch your lips together and voice it, like 'ba' in 'bat'"
+    },
+    "examples": [
+      {
+        "word": "かばん",
+        "romaji": "kaban",
+        "meaning": {
+          "zh": "包",
+          "ja": "鞄",
+          "en": "bag"
+        }
+      },
+      {
+        "word": "そば",
+        "romaji": "soba",
+        "meaning": {
+          "zh": "旁边/荞麦面",
+          "ja": "側/蕎麦",
+          "en": "near/soba noodles"
+        }
+      },
+      {
+        "word": "くちばし",
+        "romaji": "kuchibashi",
+        "meaning": {
+          "zh": "鸟嘴",
+          "ja": "嘴",
+          "en": "beak"
+        }
+      }
+    ]
+  },
+  "び": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴角拉开，浊化发音，类似中文的'bi' (比)",
+      "ja": "唇を軽く合わせて口角を引いて濁らせて「び」と発音する",
+      "en": "Lightly touch your lips with mouth corners stretched and voice it, like 'bi' in 'big'"
+    },
+    "examples": [
+      {
+        "word": "えんぴつ",
+        "romaji": "enpitsu",
+        "meaning": {
+          "zh": "铅笔",
+          "ja": "鉛筆",
+          "en": "pencil"
+        }
+      },
+      {
+        "word": "くび",
+        "romaji": "kubi",
+        "meaning": {
+          "zh": "脖子",
+          "ja": "首",
+          "en": "neck"
+        }
+      },
+      {
+        "word": "てれび",
+        "romaji": "terebi",
+        "meaning": {
+          "zh": "电视",
+          "ja": "テレビ",
+          "en": "television"
+        }
+      }
+    ]
+  },
+  "ぶ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴唇稍微突出，浊化发音，类似中文的'bu' (不)",
+      "ja": "唇を軽く合わせて少し突き出して濁らせて「ぶ」と発音する",
+      "en": "Lightly touch your lips with slightly protruded lips and voice it, like 'bu' in 'book'"
+    },
+    "examples": [
+      {
+        "word": "しんぶん",
+        "romaji": "shinbun",
+        "meaning": {
+          "zh": "报纸",
+          "ja": "新聞",
+          "en": "newspaper"
+        }
+      },
+      {
+        "word": "ぶた",
+        "romaji": "buta",
+        "meaning": {
+          "zh": "猪",
+          "ja": "豚",
+          "en": "pig"
+        }
+      },
+      {
+        "word": "あそぶ",
+        "romaji": "asobu",
+        "meaning": {
+          "zh": "玩耍",
+          "ja": "遊ぶ",
+          "en": "to play"
+        }
+      }
+    ]
+  },
+  "べ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴巴半开，浊化发音，类似中文的'be' (呗)",
+      "ja": "唇を軽く合わせて口を半分開けて濁らせて「べ」と発音する",
+      "en": "Lightly touch your lips with half-open mouth and voice it, like 'be' in 'bed'"
+    },
+    "examples": [
+      {
+        "word": "たべる",
+        "romaji": "taberu",
+        "meaning": {
+          "zh": "吃",
+          "ja": "食べる",
+          "en": "to eat"
+        }
+      },
+      {
+        "word": "べんきょう",
+        "romaji": "benkyou",
+        "meaning": {
+          "zh": "学习",
+          "ja": "勉強",
+          "en": "study"
+        }
+      },
+      {
+        "word": "かべ",
+        "romaji": "kabe",
+        "meaning": {
+          "zh": "墙壁",
+          "ja": "壁",
+          "en": "wall"
+        }
+      }
+    ]
+  },
+  "ぼ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴巴呈圆形，浊化发音，类似中文的'bo' (播)",
+      "ja": "唇を軽く合わせて口を丸くして濁らせて「ぼ」と発音する",
+      "en": "Lightly touch your lips with round mouth and voice it, like 'bo' in 'boat'"
+    },
+    "examples": [
+      {
+        "word": "ぼうし",
+        "romaji": "boushi",
+        "meaning": {
+          "zh": "帽子",
+          "ja": "帽子",
+          "en": "hat/cap"
+        }
+      },
+      {
+        "word": "かばん",
+        "romaji": "kaban",
+        "meaning": {
+          "zh": "包",
+          "ja": "鞄",
+          "en": "bag"
+        }
+      },
+      {
+        "word": "あそぼう",
+        "romaji": "asobou",
+        "meaning": {
+          "zh": "玩吧",
+          "ja": "遊ぼう",
+          "en": "let's play"
+        }
+      }
+    ]
+  },
+  "ぱ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，强送气，类似中文的'pa' (趴)",
+      "ja": "唇を軽く合わせて強く息を出して「ぱ」と発音する",
+      "en": "Lightly touch your lips and release with a puff of air, like 'pa' in 'party'"
+    },
+    "examples": [
+      {
+        "word": "パン",
+        "romaji": "pan",
+        "meaning": {
+          "zh": "面包",
+          "ja": "パン",
+          "en": "bread"
+        }
+      },
+      {
+        "word": "しっぱい",
+        "romaji": "shippai",
+        "meaning": {
+          "zh": "失败",
+          "ja": "失敗",
+          "en": "failure"
+        }
+      },
+      {
+        "word": "ぱちぱち",
+        "romaji": "pachipachi",
+        "meaning": {
+          "zh": "啪啪声/鼓掌声",
+          "ja": "ぱちぱち",
+          "en": "clapping sound/crackling sound"
+        }
+      }
+    ]
+  },
+  "ぴ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴角拉开，强送气，类似中文的'pi' (批)",
+      "ja": "唇を軽く合わせて口角を引いて強く息を出して「ぴ」と発音する",
+      "en": "Lightly touch your lips with mouth corners stretched and release with a puff of air, like 'pi' in 'pizza'"
+    },
+    "examples": [
+      {
+        "word": "えんぴつ",
+        "romaji": "enpitsu",
+        "meaning": {
+          "zh": "铅笔",
+          "ja": "鉛筆",
+          "en": "pencil"
+        }
+      },
+      {
+        "word": "ぴったり",
+        "romaji": "pittari",
+        "meaning": {
+          "zh": "正好/恰好",
+          "ja": "ぴったり",
+          "en": "perfectly/exactly"
+        }
+      },
+      {
+        "word": "ピンク",
+        "romaji": "pinku",
+        "meaning": {
+          "zh": "粉红色",
+          "ja": "ピンク",
+          "en": "pink"
+        }
+      }
+    ]
+  },
+  "ぷ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴唇稍微突出，强送气，类似中文的'pu' (扑)",
+      "ja": "唇を軽く合わせて少し突き出して強く息を出して「ぷ」と発音する",
+      "en": "Lightly touch your lips with slightly protruded lips and release with a puff of air, like 'pu' in 'put'"
+    },
+    "examples": [
+      {
+        "word": "さんぽ",
+        "romaji": "sanpo",
+        "meaning": {
+          "zh": "散步",
+          "ja": "散歩",
+          "en": "walk/stroll"
+        }
+      },
+      {
+        "word": "コップ",
+        "romaji": "koppu",
+        "meaning": {
+          "zh": "杯子",
+          "ja": "コップ",
+          "en": "cup/glass"
+        }
+      },
+      {
+        "word": "プレゼント",
+        "romaji": "purezento",
+        "meaning": {
+          "zh": "礼物",
+          "ja": "プレゼント",
+          "en": "present/gift"
+        }
+      }
+    ]
+  },
+  "ぺ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴巴半开，强送气，类似中文的'pe' (配)",
+      "ja": "唇を軽く合わせて口を半分開けて強く息を出して「ぺ」と発音する",
+      "en": "Lightly touch your lips with half-open mouth and release with a puff of air, like 'pe' in 'pen'"
+    },
+    "examples": [
+      {
+        "word": "ぺこぺこ",
+        "romaji": "pekopeko",
+        "meaning": {
+          "zh": "肚子饿/点头哈腰",
+          "ja": "ぺこぺこ",
+          "en": "hungry/bowing repeatedly"
+        }
+      },
+      {
+        "word": "ペン",
+        "romaji": "pen",
+        "meaning": {
+          "zh": "笔",
+          "ja": "ペン",
+          "en": "pen"
+        }
+      },
+      {
+        "word": "ページ",
+        "romaji": "peeji",
+        "meaning": {
+          "zh": "页",
+          "ja": "ページ",
+          "en": "page"
+        }
+      }
+    ]
+  },
+  "ぽ": {
+    "pronunciation_tips": {
+      "zh": "双唇轻触，嘴巴呈圆形，强送气，类似中文的'po' (坡)",
+      "ja": "唇を軽く合わせて口を丸くして強く息を出して「ぽ」と発音する",
+      "en": "Lightly touch your lips with round mouth and release with a puff of air, like 'po' in 'pop'"
+    },
+    "examples": [
+      {
+        "word": "しっぽ",
+        "romaji": "shippo",
+        "meaning": {
+          "zh": "尾巴",
+          "ja": "尻尾",
+          "en": "tail"
+        }
+      },
+      {
+        "word": "ポスト",
+        "romaji": "posuto",
+        "meaning": {
+          "zh": "邮箱",
+          "ja": "ポスト",
+          "en": "postbox/mailbox"
+        }
+      },
+      {
+        "word": "ぽかぽか",
+        "romaji": "pokapoka",
+        "meaning": {
+          "zh": "暖洋洋",
+          "ja": "ぽかぽか",
+          "en": "pleasantly warm"
+        }
+      }
+    ]
+  },
+  "きゃ": {
+    "pronunciation_tips": {
+      "zh": "き和ゃ的连读，类似中文拼音'qia'的发音",
+      "ja": "「き」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'ki' and small 'ya' quickly together, like 'kya'"
+    },
+    "examples": [
+      {
+        "word": "きゃく",
+        "romaji": "kyaku",
+        "meaning": {
+          "zh": "客人",
+          "ja": "客",
+          "en": "guest/customer"
+        }
+      },
+      {
+        "word": "きゃくせき",
+        "romaji": "kyakuseki",
+        "meaning": {
+          "zh": "观众席",
+          "ja": "客席",
+          "en": "audience seats"
+        }
+      },
+      {
+        "word": "キャンプ",
+        "romaji": "kyanpu",
+        "meaning": {
+          "zh": "露营",
+          "ja": "キャンプ",
+          "en": "camp"
+        }
+      }
+    ]
+  },
+  "きゅ": {
+    "pronunciation_tips": {
+      "zh": "き和ゅ的连读，类似中文拼音'qiu'的发音",
+      "ja": "「き」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'ki' and small 'yu' quickly together, like 'kyu' in 'cute'"
+    },
+    "examples": [
+      {
+        "word": "きゅうり",
+        "romaji": "kyuuri",
+        "meaning": {
+          "zh": "黄瓜",
+          "ja": "胡瓜",
+          "en": "cucumber"
+        }
+      },
+      {
+        "word": "やきゅう",
+        "romaji": "yakyuu",
+        "meaning": {
+          "zh": "棒球",
+          "ja": "野球",
+          "en": "baseball"
+        }
+      },
+      {
+        "word": "きゅうけい",
+        "romaji": "kyuukei",
+        "meaning": {
+          "zh": "休息",
+          "ja": "休憩",
+          "en": "break/rest"
+        }
+      }
+    ]
+  },
+  "きょ": {
+    "pronunciation_tips": {
+      "zh": "き和ょ的连读，类似中文拼音'qiao'的发音",
+      "ja": "「き」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'ki' and small 'yo' quickly together, like 'kyo' in 'Kyoto'"
+    },
+    "examples": [
+      {
+        "word": "きょう",
+        "romaji": "kyou",
+        "meaning": {
+          "zh": "今天",
+          "ja": "今日",
+          "en": "today"
+        }
+      },
+      {
+        "word": "とうきょう",
+        "romaji": "toukyou",
+        "meaning": {
+          "zh": "东京",
+          "ja": "東京",
+          "en": "Tokyo"
+        }
+      },
+      {
+        "word": "きょり",
+        "romaji": "kyori",
+        "meaning": {
+          "zh": "距离",
+          "ja": "距離",
+          "en": "distance"
+        }
+      }
+    ]
+  },
+  "しゃ": {
+    "pronunciation_tips": {
+      "zh": "し和ゃ的连读，类似中文拼音'sha'的发音 (如 沙)",
+      "ja": "「し」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'shi' and small 'ya' quickly together, like 'sha' in 'shark'"
+    },
+    "examples": [
+      {
+        "word": "かいしゃ",
+        "romaji": "kaisha",
+        "meaning": {
+          "zh": "公司",
+          "ja": "会社",
+          "en": "company"
+        }
+      },
+      {
+        "word": "しゃしん",
+        "romaji": "shashin",
+        "meaning": {
+          "zh": "照片",
+          "ja": "写真",
+          "en": "photograph"
+        }
+      },
+      {
+        "word": "いしゃ",
+        "romaji": "isha",
+        "meaning": {
+          "zh": "医生",
+          "ja": "医者",
+          "en": "doctor"
+        }
+      }
+    ]
+  },
+  "しゅ": {
+    "pronunciation_tips": {
+      "zh": "し和ゅ的连读，类似中文拼音'shu'的发音 (如 书)",
+      "ja": "「し」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'shi' and small 'yu' quickly together, like 'shu' in 'shoe'"
+    },
+    "examples": [
+      {
+        "word": "しゅくだい",
+        "romaji": "shukudai",
+        "meaning": {
+          "zh": "作业",
+          "ja": "宿題",
+          "en": "homework"
+        }
+      },
+      {
+        "word": "しゅみ",
+        "romaji": "shumi",
+        "meaning": {
+          "zh": "爱好",
+          "ja": "趣味",
+          "en": "hobby"
+        }
+      },
+      {
+        "word": "しゅじん",
+        "romaji": "shujin",
+        "meaning": {
+          "zh": "丈夫/(商店)老板",
+          "ja": "主人",
+          "en": "husband/master (of a shop)"
+        }
+      }
+    ]
+  },
+  "しょ": {
+    "pronunciation_tips": {
+      "zh": "し和ょ的连读，类似中文拼音'shao'的发音",
+      "ja": "「し」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'shi' and small 'yo' quickly together, like 'sho' in 'shop'"
+    },
+    "examples": [
+      {
+        "word": "しょくじ",
+        "romaji": "shokuji",
+        "meaning": {
+          "zh": "用餐",
+          "ja": "食事",
+          "en": "meal"
+        }
+      },
+      {
+        "word": "じしょ",
+        "romaji": "jisho",
+        "meaning": {
+          "zh": "词典",
+          "ja": "辞書",
+          "en": "dictionary"
+        }
+      },
+      {
+        "word": "しょうゆ",
+        "romaji": "shouyu",
+        "meaning": {
+          "zh": "酱油",
+          "ja": "醤油",
+          "en": "soy sauce"
+        }
+      }
+    ]
+  },
+  "ちゃ": {
+    "pronunciation_tips": {
+      "zh": "ち和ゃ的连读，类似中文拼音'cha'的发音 (如 茶)",
+      "ja": "「ち」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'chi' and small 'ya' quickly together, like 'cha' in 'chart'"
+    },
+    "examples": [
+      {
+        "word": "おちゃ",
+        "romaji": "ocha",
+        "meaning": {
+          "zh": "茶",
+          "ja": "お茶",
+          "en": "tea"
+        }
+      },
+      {
+        "word": "ちゃいろ",
+        "romaji": "chairo",
+        "meaning": {
+          "zh": "棕色",
+          "ja": "茶色",
+          "en": "brown"
+        }
+      },
+      {
+        "word": "めちゃくちゃ",
+        "romaji": "mechakucha",
+        "meaning": {
+          "zh": "乱七八糟",
+          "ja": "滅茶苦茶",
+          "en": "messy/absurd"
+        }
+      }
+    ]
+  },
+  "ちゅ": {
+    "pronunciation_tips": {
+      "zh": "ち和ゅ的连读，类似中文拼音'chu'的发音 (如 出)",
+      "ja": "「ち」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'chi' and small 'yu' quickly together, like 'chu' in 'chew'"
+    },
+    "examples": [
+      {
+        "word": "ちゅうしゃ",
+        "romaji": "chuusha",
+        "meaning": {
+          "zh": "注射/停车",
+          "ja": "注射/駐車",
+          "en": "injection/parking"
+        }
+      },
+      {
+        "word": "ちゅうもん",
+        "romaji": "chuumon",
+        "meaning": {
+          "zh": "订单/点菜",
+          "ja": "注文",
+          "en": "order (for goods/food)"
+        }
+      },
+      {
+        "word": "ちゅうがくせい",
+        "romaji": "chuugakusei",
+        "meaning": {
+          "zh": "初中生",
+          "ja": "中学生",
+          "en": "junior high school student"
+        }
+      }
+    ]
+  },
+  "ちょ": {
+    "pronunciation_tips": {
+      "zh": "ち和ょ的连读，类似中文拼音'chao'的发音",
+      "ja": "「ち」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'chi' and small 'yo' quickly together, like 'cho' in 'chocolate'"
+    },
+    "examples": [
+      {
+        "word": "ちょっと",
+        "romaji": "chotto",
+        "meaning": {
+          "zh": "一点儿",
+          "ja": "ちょっと",
+          "en": "a little"
+        }
+      },
+      {
+        "word": "ちょうしょく",
+        "romaji": "choushoku",
+        "meaning": {
+          "zh": "早餐",
+          "ja": "朝食",
+          "en": "breakfast"
+        }
+      },
+      {
+        "word": "ちょきん",
+        "romaji": "chokin",
+        "meaning": {
+          "zh": "储蓄",
+          "ja": "貯金",
+          "en": "savings"
+        }
+      }
+    ]
+  },
+  "にゃ": {
+    "pronunciation_tips": {
+      "zh": "に和ゃ的连读，类似中文拼音'nia'的发音",
+      "ja": "「に」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'ni' and small 'ya' quickly together, like 'nya' (cat sound)"
+    },
+    "examples": [
+      {
+        "word": "こんにゃく",
+        "romaji": "konnyaku",
+        "meaning": {
+          "zh": "魔芋",
+          "ja": "蒟蒻",
+          "en": "konjac"
+        }
+      },
+      {
+        "word": "にゃんこ",
+        "romaji": "nyanko",
+        "meaning": {
+          "zh": "小猫 (爱称)",
+          "ja": "にゃんこ",
+          "en": "kitty (affectionate)"
+        }
+      },
+      {
+        "word": "にゃあにゃあ",
+        "romaji": "nyaanyaa",
+        "meaning": {
+          "zh": "猫叫声",
+          "ja": "にゃあにゃあ",
+          "en": "meow meow"
+        }
+      }
+    ]
+  },
+  "にゅ": {
+    "pronunciation_tips": {
+      "zh": "に和ゅ的连读，类似中文拼音'niu'的发音 (如 牛)",
+      "ja": "「に」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'ni' and small 'yu' quickly together, like 'nyu' in 'new'"
+    },
+    "examples": [
+      {
+        "word": "ぎゅうにゅう",
+        "romaji": "gyuunyuu",
+        "meaning": {
+          "zh": "牛奶",
+          "ja": "牛乳",
+          "en": "milk"
+        }
+      },
+      {
+        "word": "にゅういん",
+        "romaji": "nyuuin",
+        "meaning": {
+          "zh": "住院",
+          "ja": "入院",
+          "en": "hospitalization"
+        }
+      },
+      {
+        "word": "にゅうがく",
+        "romaji": "nyuugaku",
+        "meaning": {
+          "zh": "入学",
+          "ja": "入学",
+          "en": "school admission"
+        }
+      }
+    ]
+  },
+  "にょ": {
+    "pronunciation_tips": {
+      "zh": "に和ょ的连读，类似中文拼音'niao'的发音",
+      "ja": "「に」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'ni' and small 'yo' quickly together"
+    },
+    "examples": [
+      {
+        "word": "にょうぼう",
+        "romaji": "nyoubou",
+        "meaning": {
+          "zh": "妻子 (较旧说法)",
+          "ja": "女房",
+          "en": "wife (older term)"
+        }
+      },
+      {
+        "word": "にょきにょき",
+        "romaji": "nyokinyoki",
+        "meaning": {
+          "zh": "(植物等)不停地长出来",
+          "ja": "にょきにょき",
+          "en": "(plants etc.) sprouting up one after another"
+        }
+      },
+      {
+        "word": "にょらい",
+        "romaji": "nyorai",
+        "meaning": {
+          "zh": "如来 (佛)",
+          "ja": "如来",
+          "en": "Tathagata (Buddha)"
+        }
+      }
+    ]
+  },
+  "ひゃ": {
+    "pronunciation_tips": {
+      "zh": "ひ和ゃ的连读，类似中文拼音'xia'的近似发音 (气音更强)",
+      "ja": "「ひ」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'hi' and small 'ya' quickly together"
+    },
+    "examples": [
+      {
+        "word": "ひゃく",
+        "romaji": "hyaku",
+        "meaning": {
+          "zh": "百",
+          "ja": "百",
+          "en": "hundred"
+        }
+      },
+      {
+        "word": "ろっぴゃく",
+        "romaji": "roppyaku",
+        "meaning": {
+          "zh": "六百",
+          "ja": "六百",
+          "en": "six hundred"
+        }
+      },
+      {
+        "word": "ひゃっかてん",
+        "romaji": "hyakkaten",
+        "meaning": {
+          "zh": "百货商店",
+          "ja": "百貨店",
+          "en": "department store"
+        }
+      }
+    ]
+  },
+  "ひゅ": {
+    "pronunciation_tips": {
+      "zh": "ひ和ゅ的连读，类似中文拼音'xiu'的近似发音 (气音更强)",
+      "ja": "「ひ」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'hi' and small 'yu' quickly together, like 'hyu' in 'hue'"
+    },
+    "examples": [
+      {
+        "word": "ひゅうひゅう",
+        "romaji": "hyuuhyuu",
+        "meaning": {
+          "zh": "风刮过的声音/咻咻声",
+          "ja": "ひゅうひゅう",
+          "en": "whistling sound (wind)"
+        }
+      },
+      {
+        "word": "ヒューマン",
+        "romaji": "hyuuman",
+        "meaning": {
+          "zh": "人类/人",
+          "ja": "ヒューマン",
+          "en": "human"
+        }
+      },
+      {
+        "word": "コンピュータ",
+        "romaji": "konpyuuta",
+        "meaning": {
+          "zh": "电脑",
+          "ja": "コンピュータ",
+          "en": "computer"
+        }
+      }
+    ]
+  },
+  "ひょ": {
+    "pronunciation_tips": {
+      "zh": "ひ和ょ的连读，类似中文拼音'xiao'的近似发音 (气音更强)",
+      "ja": "「ひ」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'hi' and small 'yo' quickly together"
+    },
+    "examples": [
+      {
+        "word": "ひょう",
+        "romaji": "hyou",
+        "meaning": {
+          "zh": "豹/表格",
+          "ja": "豹/表",
+          "en": "leopard/table (chart)"
+        }
+      },
+      {
+        "word": "ひょうじょう",
+        "romaji": "hyoujou",
+        "meaning": {
+          "zh": "表情",
+          "ja": "表情",
+          "en": "facial expression"
+        }
+      },
+      {
+        "word": "さんびゃく",
+        "romaji": "sanbyaku",
+        "meaning": {
+          "zh": "三百",
+          "ja": "三百",
+          "en": "three hundred"
+        }
+      }
+    ]
+  },
+  "みゃ": {
+    "pronunciation_tips": {
+      "zh": "み和ゃ的连读，类似中文拼音'mia'的近似发音",
+      "ja": "「み」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'mi' and small 'ya' quickly together"
+    },
+    "examples": [
+      {
+        "word": "みゃく",
+        "romaji": "myaku",
+        "meaning": {
+          "zh": "脉搏",
+          "ja": "脈",
+          "en": "pulse"
+        }
+      },
+      {
+        "word": "さんみゃく",
+        "romaji": "sanmyaku",
+        "meaning": {
+          "zh": "山脉",
+          "ja": "山脈",
+          "en": "mountain range"
+        }
+      },
+      {
+        "word": "みゃあみゃあ",
+        "romaji": "myaamyaa",
+        "meaning": {
+          "zh": "猫叫声 (另一种)",
+          "ja": "みゃあみゃあ",
+          "en": "meow meow (another variation)"
+        }
+      }
+    ]
+  },
+  "みゅ": {
+    "pronunciation_tips": {
+      "zh": "み和ゅ的连读，类似中文拼音'miu'的近似发音",
+      "ja": "「み」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'mi' and small 'yu' quickly together, like 'myu' in 'music'"
+    },
+    "examples": [
+      {
+        "word": "ミュージック",
+        "romaji": "myuujikku",
+        "meaning": {
+          "zh": "音乐",
+          "ja": "ミュージック",
+          "en": "music"
+        }
+      },
+      {
+        "word": "ミュージカル",
+        "romaji": "myuujikaru",
+        "meaning": {
+          "zh": "音乐剧",
+          "ja": "ミュージカル",
+          "en": "musical"
+        }
+      },
+      {
+        "word": "コミュニティ",
+        "romaji": "komyuniti",
+        "meaning": {
+          "zh": "社区",
+          "ja": "コミュニティ",
+          "en": "community"
+        }
+      }
+    ]
+  },
+  "みょ": {
+    "pronunciation_tips": {
+      "zh": "み和ょ的连读，类似中文拼音'miao'的近似发音 (如 庙)",
+      "ja": "「み」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'mi' and small 'yo' quickly together"
+    },
+    "examples": [
+      {
+        "word": "みょうじ",
+        "romaji": "myouji",
+        "meaning": {
+          "zh": "姓氏",
+          "ja": "名字",
+          "en": "surname/family name"
+        }
+      },
+      {
+        "word": "きみょう",
+        "romaji": "kimyou",
+        "meaning": {
+          "zh": "奇妙",
+          "ja": "奇妙",
+          "en": "strange/curious"
+        }
+      },
+      {
+        "word": "みょうにち",
+        "romaji": "myounichi",
+        "meaning": {
+          "zh": "明天 (书面语)",
+          "ja": "明日",
+          "en": "tomorrow (formal)"
+        }
+      }
+    ]
+  },
+  "りゃ": {
+    "pronunciation_tips": {
+      "zh": "り和ゃ的连读，类似中文拼音'lia'的近似发音",
+      "ja": "「り」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'ri' and small 'ya' quickly together"
+    },
+    "examples": [
+      {
+        "word": "りゃくす",
+        "romaji": "ryakusu",
+        "meaning": {
+          "zh": "省略",
+          "ja": "略す",
+          "en": "to abbreviate/to omit"
+        }
+      },
+      {
+        "word": "でんりゅう",
+        "romaji": "denryuu",
+        "meaning": {
+          "zh": "电流",
+          "ja": "電流",
+          "en": "electric current"
+        }
+      },
+      {
+        "word": "ほりょ",
+        "romaji": "horyo",
+        "meaning": {
+          "zh": "俘虏",
+          "ja": "捕虜",
+          "en": "prisoner of war"
+        }
+      }
+    ]
+  },
+  "りゅ": {
+    "pronunciation_tips": {
+      "zh": "り和ゅ的连读，类似中文拼音'liu'的发音 (如 流)",
+      "ja": "「り」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'ri' and small 'yu' quickly together"
+    },
+    "examples": [
+      {
+        "word": "りゅうがくせい",
+        "romaji": "ryuugakusei",
+        "meaning": {
+          "zh": "留学生",
+          "ja": "留学生",
+          "en": "international student"
+        }
+      },
+      {
+        "word": "りゅう",
+        "romaji": "ryuu",
+        "meaning": {
+          "zh": "龙",
+          "ja": "竜",
+          "en": "dragon"
+        }
+      },
+      {
+        "word": "しゅるい",
+        "romaji": "shurui",
+        "meaning": {
+          "zh": "种类",
+          "ja": "種類",
+          "en": "type/kind"
+        }
+      }
+    ]
+  },
+  "りょ": {
+    "pronunciation_tips": {
+      "zh": "り和ょ的连读，类似中文拼音'liao'的近似发音",
+      "ja": "「り」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'ri' and small 'yo' quickly together"
+    },
+    "examples": [
+      {
+        "word": "りょうり",
+        "romaji": "ryouri",
+        "meaning": {
+          "zh": "料理",
+          "ja": "料理",
+          "en": "cuisine/cooking"
+        }
+      },
+      {
+        "word": "りょこう",
+        "romaji": "ryokou",
+        "meaning": {
+          "zh": "旅行",
+          "ja": "旅行",
+          "en": "travel"
+        }
+      },
+      {
+        "word": "どうりょう",
+        "romaji": "douryou",
+        "meaning": {
+          "zh": "同事",
+          "ja": "同僚",
+          "en": "colleague"
+        }
+      }
+    ]
+  },
+  "ぎゃ": {
+    "pronunciation_tips": {
+      "zh": "ぎ和ゃ的连读，类似中文拼音'jia'的浊化音",
+      "ja": "「ぎ」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'gi' and small 'ya' quickly together"
+    },
+    "examples": [
+      {
+        "word": "ぎゃく",
+        "romaji": "gyaku",
+        "meaning": {
+          "zh": "相反/逆",
+          "ja": "逆",
+          "en": "reverse/opposite"
+        }
+      },
+      {
+        "word": "ぎゃくたい",
+        "romaji": "gyakutai",
+        "meaning": {
+          "zh": "虐待",
+          "ja": "虐待",
+          "en": "abuse"
+        }
+      },
+      {
+        "word": "ぎゃくに",
+        "romaji": "gyakuni",
+        "meaning": {
+          "zh": "反过来",
+          "ja": "逆に",
+          "en": "on the contrary"
+        }
+      }
+    ]
+  },
+  "ぎゅ": {
+    "pronunciation_tips": {
+      "zh": "ぎ和ゅ的连读，类似中文拼音'jiu'的浊化音",
+      "ja": "「ぎ」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'gi' and small 'yu' quickly together"
+    },
+    "examples": [
+      {
+        "word": "ぎゅうにく",
+        "romaji": "gyuuniku",
+        "meaning": {
+          "zh": "牛肉",
+          "ja": "牛肉",
+          "en": "beef"
+        }
+      },
+      {
+        "word": "ぎゅうにゅう",
+        "romaji": "gyuunyuu",
+        "meaning": {
+          "zh": "牛奶",
+          "ja": "牛乳",
+          "en": "milk"
+        }
+      },
+      {
+        "word": "ぎゅっと",
+        "romaji": "gyutto",
+        "meaning": {
+          "zh": "紧紧地",
+          "ja": "ぎゅっと",
+          "en": "tightly"
+        }
+      }
+    ]
+  },
+  "ぎょ": {
+    "pronunciation_tips": {
+      "zh": "ぎ和ょ的连读，类似中文拼音'jiao'的浊化音",
+      "ja": "「ぎ」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'gi' and small 'yo' quickly together"
+    },
+    "examples": [
+      {
+        "word": "ぎょうざ",
+        "romaji": "gyouza",
+        "meaning": {
+          "zh": "饺子",
+          "ja": "餃子",
+          "en": "gyoza/dumpling"
+        }
+      },
+      {
+        "word": "ぎょせん",
+        "romaji": "gyosen",
+        "meaning": {
+          "zh": "渔船",
+          "ja": "漁船",
+          "en": "fishing boat"
+        }
+      },
+      {
+        "word": "きんぎょ",
+        "romaji": "kingyo",
+        "meaning": {
+          "zh": "金鱼",
+          "ja": "金魚",
+          "en": "goldfish"
+        }
+      }
+    ]
+  },
+  "じゃ": {
+    "pronunciation_tips": {
+      "zh": "じ和ゃ的连读，类似中文拼音'zha'的近似发音 (浊音)",
+      "ja": "「じ」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'ji' and small 'ya' quickly together, like 'ja' in 'jar'"
+    },
+    "examples": [
+      {
+        "word": "じゃあ",
+        "romaji": "jaa",
+        "meaning": {
+          "zh": "那么",
+          "ja": "じゃあ",
+          "en": "well then/in that case"
+        }
+      },
+      {
+        "word": "じゃがいも",
+        "romaji": "jagaimo",
+        "meaning": {
+          "zh": "土豆",
+          "ja": "じゃが芋",
+          "en": "potato"
+        }
+      },
+      {
+        "word": "おじゃまします",
+        "romaji": "ojamashimasu",
+        "meaning": {
+          "zh": "打扰了",
+          "ja": "お邪魔します",
+          "en": "excuse me for disturbing you"
+        }
+      }
+    ]
+  },
+  "じゅ": {
+    "pronunciation_tips": {
+      "zh": "じ和ゅ的连读，类似中文拼音'zhu'的近似发音 (浊音)",
+      "ja": "「じ」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'ji' and small 'yu' quickly together, like 'ju' in 'juice'"
+    },
+    "examples": [
+      {
+        "word": "じゅうしょ",
+        "romaji": "juusho",
+        "meaning": {
+          "zh": "地址",
+          "ja": "住所",
+          "en": "address"
+        }
+      },
+      {
+        "word": "じゅぎょう",
+        "romaji": "jugyou",
+        "meaning": {
+          "zh": "课程/上课",
+          "ja": "授業",
+          "en": "class/lesson"
+        }
+      },
+      {
+        "word": "じゅんばん",
+        "romaji": "junban",
+        "meaning": {
+          "zh": "顺序",
+          "ja": "順番",
+          "en": "order/turn"
+        }
+      }
+    ]
+  },
+  "じょ": {
+    "pronunciation_tips": {
+      "zh": "じ和ょ的连读，类似中文拼音'zhao'的近似发音 (浊音)",
+      "ja": "「じ」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'ji' and small 'yo' quickly together, like 'jo' in 'job'"
+    },
+    "examples": [
+      {
+        "word": "じょうず",
+        "romaji": "jouzu",
+        "meaning": {
+          "zh": "擅长",
+          "ja": "上手",
+          "en": "skillful/good at"
+        }
+      },
+      {
+        "word": "じょせい",
+        "romaji": "josei",
+        "meaning": {
+          "zh": "女性",
+          "ja": "女性",
+          "en": "female/woman"
+        }
+      },
+      {
+        "word": "だいじょうぶ",
+        "romaji": "daijoubu",
+        "meaning": {
+          "zh": "没关系/不要紧",
+          "ja": "大丈夫",
+          "en": "alright/okay"
+        }
+      }
+    ]
+  },
+  "びゃ": {
+    "pronunciation_tips": {
+      "zh": "び和ゃ的连读，类似中文拼音'bia'的近似发音",
+      "ja": "「び」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'bi' and small 'ya' quickly together"
+    },
+    "examples": [
+      {
+        "word": "さんびゃく",
+        "romaji": "sanbyaku",
+        "meaning": {
+          "zh": "三百",
+          "ja": "三百",
+          "en": "three hundred"
+        }
+      },
+      {
+        "word": "びゃくや",
+        "romaji": "byakuya",
+        "meaning": {
+          "zh": "白夜",
+          "ja": "白夜",
+          "en": "white night/midnight sun"
+        }
+      },
+      {
+        "word": "びゃっこたい",
+        "romaji": "byakkotai",
+        "meaning": {
+          "zh": "白虎队 (历史)",
+          "ja": "白虎隊",
+          "en": "Byakkotai (historical)"
+        }
+      }
+    ]
+  },
+  "びゅ": {
+    "pronunciation_tips": {
+      "zh": "び和ゅ的连读，类似中文拼音'biu'的近似发音",
+      "ja": "「び」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'bi' and small 'yu' quickly together, like 'byu' in 'view' (voiced)"
+    },
+    "examples": [
+      {
+        "word": "ビューティフル",
+        "romaji": "byuutifuru",
+        "meaning": {
+          "zh": "美丽",
+          "ja": "ビューティフル",
+          "en": "beautiful"
+        }
+      },
+      {
+        "word": "インタビュー",
+        "romaji": "intabyuu",
+        "meaning": {
+          "zh": "采访",
+          "ja": "インタビュー",
+          "en": "interview"
+        }
+      },
+      {
+        "word": "デビュー",
+        "romaji": "debyuu",
+        "meaning": {
+          "zh": "初次登台",
+          "ja": "デビュー",
+          "en": "debut"
+        }
+      }
+    ]
+  },
+  "びょ": {
+    "pronunciation_tips": {
+      "zh": "び和ょ的连读，类似中文拼音'biao'的近似发音 (如 表)",
+      "ja": "「び」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'bi' and small 'yo' quickly together"
+    },
+    "examples": [
+      {
+        "word": "びょういん",
+        "romaji": "byouin",
+        "meaning": {
+          "zh": "医院",
+          "ja": "病院",
+          "en": "hospital"
+        }
+      },
+      {
+        "word": "びょうき",
+        "romaji": "byouki",
+        "meaning": {
+          "zh": "疾病",
+          "ja": "病気",
+          "en": "illness/sickness"
+        }
+      },
+      {
+        "word": "びょう",
+        "romaji": "byou",
+        "meaning": {
+          "zh": "秒",
+          "ja": "秒",
+          "en": "second (time unit)"
+        }
+      }
+    ]
+  },
+  "ぴゃ": {
+    "pronunciation_tips": {
+      "zh": "ぴ和ゃ的连读，类似中文拼音'pia'的近似发音",
+      "ja": "「ぴ」と小さい「ゃ」を続けて発音する",
+      "en": "Pronounce 'pi' and small 'ya' quickly together"
+    },
+    "examples": [
+      {
+        "word": "ろっぴゃく",
+        "romaji": "roppyaku",
+        "meaning": {
+          "zh": "六百",
+          "ja": "六百",
+          "en": "six hundred"
+        }
+      },
+      {
+        "word": "はっぴょう",
+        "romaji": "happyou",
+        "meaning": {
+          "zh": "发表/宣布",
+          "ja": "発表",
+          "en": "announcement/presentation"
+        }
+      },
+      {
+        "word": "ハッピー",
+        "romaji": "happii",
+        "meaning": {
+          "zh": "快乐",
+          "ja": "ハッピー",
+          "en": "happy"
+        }
+      }
+    ]
+  },
+  "ぴゅ": {
+    "pronunciation_tips": {
+      "zh": "ぴ和ゅ的连读，类似中文拼音'piu'的近似发音",
+      "ja": "「ぴ」と小さい「ゅ」を続けて発音する",
+      "en": "Pronounce 'pi' and small 'yu' quickly together, like 'pyu' in 'computer'"
+    },
+    "examples": [
+      {
+        "word": "コンピュータ",
+        "romaji": "konpyuuta",
+        "meaning": {
+          "zh": "电脑",
+          "ja": "コンピュータ",
+          "en": "computer"
+        }
+      },
+      {
+        "word": "ピュア",
+        "romaji": "pyua",
+        "meaning": {
+          "zh": "纯粹",
+          "ja": "ピュア",
+          "en": "pure"
+        }
+      },
+      {
+        "word": "オリンピック",
+        "romaji": "orinpikku",
+        "meaning": {
+          "zh": "奥林匹克",
+          "ja": "オリンピック",
+          "en": "Olympics"
+        }
+      }
+    ]
+  },
+  "ぴょ": {
+    "pronunciation_tips": {
+      "zh": "ぴ和ょ的连读，类似中文拼音'piao'的近似发音 (如 票)",
+      "ja": "「ぴ」と小さい「ょ」を続けて発音する",
+      "en": "Pronounce 'pi' and small 'yo' quickly together"
+    },
+    "examples": [
+      {
+        "word": "ぴょんぴょん",
+        "romaji": "pyonpyon",
+        "meaning": {
+          "zh": "蹦蹦跳跳",
+          "ja": "ぴょんぴょん",
+          "en": "hopping/jumping lightly"
+        }
+      },
+      {
+        "word": "きっぷ",
+        "romaji": "kippu",
+        "meaning": {
+          "zh": "票",
+          "ja": "切符",
+          "en": "ticket"
+        }
+      },
+      {
+        "word": "コピー",
+        "romaji": "kopii",
+        "meaning": {
+          "zh": "复印/副本",
+          "ja": "コピー",
+          "en": "copy"
+        }
+      }
+    ]
   }
 }

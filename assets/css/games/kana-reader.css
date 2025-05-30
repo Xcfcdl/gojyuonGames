@@ -449,9 +449,7 @@ footer.hidden {
 .kana-type-switch {
     display: flex;
     justify-content: center;
-    gap: 1rem;
     margin-bottom: 1rem;
-    flex-wrap: wrap;
 }
 
 .kana-type-button {
@@ -554,6 +552,66 @@ footer.hidden {
 .speech-mode-button.individual-mode:hover {
     box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
     background: linear-gradient(135deg, #44A08D, #4ECDC4);
+}
+
+.speech-mode-button.combined-mode {
+    background: linear-gradient(135deg, #9B59B6, #8E44AD);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+.speech-mode-button.combined-mode:hover {
+    box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+    background: linear-gradient(135deg, #8E44AD, #9B59B6);
+}
+
+/* 单词示例区域头部 */
+.word-examples-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+}
+
+.word-examples-header h5 {
+    margin: 0;
+    flex: 1;
+}
+
+/* 迷你语音模式按钮 */
+.speech-mode-button.mini {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    border-radius: 15px;
+    gap: 0.3rem;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
+    min-width: auto;
+    white-space: nowrap;
+}
+
+.speech-mode-button.mini:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(255, 107, 107, 0.3);
+}
+
+.speech-mode-button.mini i {
+    font-size: 0.8rem;
+}
+
+.speech-mode-button.mini.individual-mode {
+    box-shadow: 0 2px 8px rgba(78, 205, 196, 0.2);
+}
+
+.speech-mode-button.mini.individual-mode:hover {
+    box-shadow: 0 3px 12px rgba(78, 205, 196, 0.3);
+}
+
+.speech-mode-button.mini.combined-mode {
+    box-shadow: 0 2px 8px rgba(155, 89, 182, 0.2);
+}
+
+.speech-mode-button.mini.combined-mode:hover {
+    box-shadow: 0 3px 12px rgba(155, 89, 182, 0.3);
 }
 
 .game-layout {
@@ -678,15 +736,32 @@ footer.hidden {
         font-size: 2rem;
     }
 
-    .kana-type-button,
-    .speech-mode-button {
+    .kana-type-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
         gap: 0.4rem;
     }
 
-    .kana-type-switch {
-        gap: 0.8rem;
+    /* 移动端迷你语音模式按钮 */
+    .speech-mode-button.mini {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.65rem;
+        gap: 0.2rem;
+        border-radius: 12px;
+    }
+
+    .speech-mode-button.mini i {
+        font-size: 0.7rem;
+    }
+
+    .word-examples-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+
+    .word-examples-header h5 {
+        margin-bottom: 0.2rem;
     }
 
     .kana-button {

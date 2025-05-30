@@ -120,5 +120,8 @@
   "writing_animation": "Writing Animation",
   "speed": "Speed",
   "switch_to_katakana": "Switch to Katakana",
-  "switch_to_hiragana": "Switch to Hiragana"
+  "switch_to_hiragana": "Switch to Hiragana",
+  "speech_mode_smart": "Smart Speech",
+  "speech_mode_combined": "Phonetic Mode",
+  "speech_mode_individual": "Individual Kana"
 }

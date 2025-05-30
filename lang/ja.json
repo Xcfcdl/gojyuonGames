@@ -120,5 +120,8 @@
   "writing_animation": "書き方アニメ",
   "speed": "速度",
   "switch_to_katakana": "カタカナに切り替え",
-  "switch_to_hiragana": "ひらがなに切り替え"
+  "switch_to_hiragana": "ひらがなに切り替え",
+  "speech_mode_smart": "スマート発音",
+  "speech_mode_combined": "読み方練習",
+  "speech_mode_individual": "個別かな"
 }
