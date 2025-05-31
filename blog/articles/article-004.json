@@ -15,7 +15,7 @@
     "ja": "基本仮名、濁音、半濁音、拗音を含むひらがなの数を詳しく解析し、学習者がひらがなシステムを包括的に理解できるよう支援します。",
     "en": "Detailed analysis of the number of hiragana characters, including basic kana, dakuten, handakuten, and yōon, helping learners comprehensively understand the hiragana system."
   },
-  "updateTime": "2024-12-21",
+  "updateTime": "2025-05-20",
   "tags": {
     "zh": ["平假名", "字符数量", "基础知识", "日语学习"],
     "ja": ["ひらがな", "文字数", "基礎知識", "日本語学習"],

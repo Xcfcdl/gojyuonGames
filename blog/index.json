@@ -95,6 +95,30 @@
         "ja": ["ひらがな", "文字数", "基礎知識", "日本語学習"],
         "en": ["Hiragana", "Character Count", "Basics", "Japanese Learning"]
       }
+    },
+    {
+      "id": "article-005",
+      "title": {
+        "zh": "如何开始日语学习：完整的入门指南",
+        "ja": "日本語学習の始め方：完全な入門ガイド",
+        "en": "How to Start Learning Japanese: A Complete Beginner's Guide"
+      },
+      "author": {
+        "zh": "学习顾问",
+        "ja": "学習アドバイザー",
+        "en": "Learning Advisor"
+      },
+      "desc": {
+        "zh": "从零开始学习日语的完整指南，包括学习步骤、方法推荐和实用工具，让你的日语学习之路更加顺畅。",
+        "ja": "ゼロから日本語を学ぶための完全ガイド。学習ステップ、方法の推奨、実用的なツールを含み、日本語学習の道のりをよりスムーズにします。",
+        "en": "A complete guide to learning Japanese from scratch, including learning steps, method recommendations, and practical tools to make your Japanese learning journey smoother."
+      },
+      "updateTime": "2024-12-22",
+      "tags": {
+        "zh": ["入门指南", "学习方法", "初学者", "日语学习"],
+        "ja": ["入門ガイド", "学習方法", "初心者", "日本語学習"],
+        "en": ["Beginner Guide", "Learning Methods", "Beginner", "Japanese Learning"]
+      }
     }
   ]
 }
