@@ -5,7 +5,7 @@
   <!-- 主页 -->
   <url>
     <loc>https://gojyuon.dooleaf.cn/</loc>
-    <lastmod>2024-12-20</lastmod>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/" />
@@ -16,7 +16,7 @@
   <!-- 博客列表页 -->
   <url>
     <loc>https://gojyuon.dooleaf.cn/blogs.html</loc>
-    <lastmod>2024-12-20</lastmod>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/blogs.html" />
@@ -47,46 +47,92 @@
   </url>
 
   <!-- 游戏页面 -->
+  <!-- 五十音点读游戏 - 重大更新：平假名/片假名切换、Google TTS集成、拼读模式 -->
   <url>
-    <loc>https://gojyuon.dooleaf.cn/games/五十音记忆游戏.html</loc>
-    <lastmod>2024-12-10</lastmod>
+    <loc>https://gojyuon.dooleaf.cn/games/kana-reader.html</loc>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/kana-reader.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/kana-reader.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/kana-reader.html" />
   </url>
 
+  <!-- 假名打地鼠游戏 -->
   <url>
-    <loc>https://gojyuon.dooleaf.cn/games/假名打地鼠.html</loc>
-    <lastmod>2024-12-10</lastmod>
+    <loc>https://gojyuon.dooleaf.cn/games/whack-a-kana.html</loc>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/whack-a-kana.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/whack-a-kana.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/whack-a-kana.html" />
   </url>
 
+  <!-- 假名消消乐游戏 -->
   <url>
-    <loc>https://gojyuon.dooleaf.cn/games/假名消消乐.html</loc>
-    <lastmod>2024-12-10</lastmod>
+    <loc>https://gojyuon.dooleaf.cn/games/match.html</loc>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/match.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/match.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/match.html" />
   </url>
 
+  <!-- 五十音听力练习 -->
   <url>
-    <loc>https://gojyuon.dooleaf.cn/games/五十音听力练习.html</loc>
-    <lastmod>2024-12-10</lastmod>
+    <loc>https://gojyuon.dooleaf.cn/games/listening.html</loc>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/listening.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/listening.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/listening.html" />
   </url>
 
+  <!-- Type Kana 打字游戏 -->
   <url>
-    <loc>https://gojyuon.dooleaf.cn/games/type-kana/index.html</loc>
-    <lastmod>2024-12-10</lastmod>
+    <loc>https://gojyuon.dooleaf.cn/games/type-kana.html</loc>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/type-kana.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/type-kana.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/type-kana.html" />
   </url>
 
+  <!-- 歌词打字练习 -->
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/typing.html</loc>
+    <lastmod>2024-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/typing.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/typing.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/typing.html" />
+  </url>
+
+  <!-- 跳跃游戏 -->
+  <url>
+    <loc>https://gojyuon.dooleaf.cn/games/jump.html</loc>
+    <lastmod>2024-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/jump.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/jump.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/jump.html" />
+  </url>
+
+  <!-- 日语课堂教学辅助游戏 -->
   <url>
     <loc>https://gojyuon.dooleaf.cn/games/日语课堂教学辅助游戏.html</loc>
-    <lastmod>2024-12-10</lastmod>
+    <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://gojyuon.dooleaf.cn/games/日语课堂教学辅助游戏.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gojyuon.dooleaf.cn/games/日语课堂教学辅助游戏.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gojyuon.dooleaf.cn/games/日语课堂教学辅助游戏.html" />
   </url>
 
 </urlset>
