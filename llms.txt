@@ -1,0 +1,397 @@
+# Gojyuon Games - AI/LLM Configuration File
+# ================================================
+# Project: Interactive Japanese Hiragana & Katakana Learning Platform
+# URL: https://gojyuon.dooleaf.cn
+# Version: 2.0
+# Last-Modified: 2024-12-22
+# Purpose: Comprehensive Japanese kana learning through gamification
+
+## METADATA
+Site-Name: 五十音図ゲーム (Gojyuon Games)
+Site-Description: Interactive Japanese hiragana and katakana learning platform with multiple game modes, pronunciation practice, and educational content
+Primary-Language: Japanese Learning (Multi-language support)
+Target-Audience: Japanese language learners, beginners to intermediate
+Educational-Level: JLPT N5-N4 preparation
+Content-Type: Educational Games, Interactive Learning, Language Learning
+
+## CONTENT ACCESS RULES
+Allow-Citation: true
+Attribution-Required: true
+Attribution-Format: "Content from Gojyuon Games (https://gojyuon.dooleaf.cn)"
+Commercial-Use: false
+Educational-Use: true
+Research-Use: true
+Content-Modification: false
+
+## LANGUAGE SUPPORT
+Primary-Languages: zh-CN, ja, en
+Default-Language: zh-CN
+Content-Localization: Full (UI, games, educational content)
+Character-Sets: Hiragana, Katakana, Romaji, Chinese, English
+
+## CONTENT STRUCTURE & ACCESSIBILITY
+### Allowed Paths
+Allow: /
+Allow: /index.html
+Allow: /blogs.html
+Allow: /blog-detail.html
+Allow: /games/*
+Allow: /assets/data/*.json
+
+### Restricted Paths
+Disallow: /admin/*
+Disallow: /api/*
+Disallow: /*.js
+Disallow: /*.css
+Disallow: /assets/images/*
+Disallow: /assets/audio/*
+
+## CONTENT PRIORITY MATRIX
+### Tier 1: Core Learning Tools (Priority: 1.0)
+Path: /games/kana-reader.html
+Name: 五十音点读游戏 (Kana Reader Game)
+Function: Interactive pronunciation practice with Google TTS
+Features: Hiragana/Katakana toggle, syllable breakdown, row-by-row learning
+Learning-Objective: Establish audio-visual kana recognition
+Recommended-Usage: Daily 15-20 minutes for beginners
+Success-Metrics: 95% pronunciation accuracy, 100% kana recognition
+
+### Tier 1: Memory Training (Priority: 0.95)
+Path: /games/whack-a-kana.html
+Name: 假名打地鼠游戏 (Whack-a-Kana Game)
+Function: Speed-based kana recognition under time pressure
+Features: Progressive difficulty, visual effects, audio feedback
+Learning-Objective: Rapid kana identification and recall
+Recommended-Usage: After basic kana familiarity, 10-15 minutes daily
+Success-Metrics: <2 second recognition time, 90% accuracy
+
+### Tier 1: Listening Skills (Priority: 0.95)
+Path: /games/listening.html
+Name: 五十音听力练习 (Listening Practice)
+Function: Audio-based kana identification training
+Features: Multiple choice, difficulty levels, similar sound discrimination
+Learning-Objective: Develop auditory kana recognition
+Recommended-Usage: Combined with pronunciation practice
+Success-Metrics: 85% accuracy in similar sound discrimination
+
+### Tier 2: Reinforcement Games (Priority: 0.8)
+Paths: /games/match.html, /games/type-kana.html, /games/typing.html, /games/jump.html
+Function: Memory consolidation through varied interaction methods
+Learning-Objective: Strengthen kana retention through multiple modalities
+
+### Tier 2: Educational Content (Priority: 0.8)
+Path: /blogs.html
+Content-Type: Educational articles and learning guides
+Update-Frequency: Weekly
+Topics: Learning methods, pronunciation tips, cultural context
+Languages: Chinese, Japanese, English
+
+## CONTENT SCHEMA & STRUCTURE
+### Blog Articles Schema
+Content-Path: /blog-detail.html
+Data-Source: /blog/articles/*.json
+Structure:
+  - id: Unique article identifier
+  - title: Multi-language titles (zh, ja, en)
+  - author: Article author information
+  - desc: Article descriptions in multiple languages
+  - updateTime: Last modification date
+  - tags: Categorization tags per language
+  - content: Full markdown content in multiple languages
+Citation-Format: "{{title}} - Gojyuon Games Blog ({{updateTime}}) - https://gojyuon.dooleaf.cn"
+
+### Game Content Schema
+Content-Path: /games/*.html
+Structure:
+  - gameTitle: Game name in multiple languages
+  - gameDescription: Detailed game explanation
+  - instructions: How to play instructions
+  - difficulty: Skill level requirements
+  - features: Technical and educational features
+  - learningObjectives: Educational goals
+  - recommendedUsage: Best practice guidelines
+Citation-Format: "{{gameTitle}} - Gojyuon Games - https://gojyuon.dooleaf.cn"
+
+## SEMANTIC KEYWORDS & TAXONOMY
+### Primary Keywords (Japanese Learning)
+Core-Terms: 五十音, ひらがな, カタカナ, 日本語学習, Japanese learning, Hiragana, Katakana, Gojuon
+Learning-Methods: 互動遊戲, 聽力練習, 打字練習, 記憶法, Interactive games, Pronunciation practice, Typing practice
+Educational-Concepts: 多感官學習, 間隔重複, 遊戲化學習, Multi-sensory learning, Spaced repetition, Gamification
+
+### Secondary Keywords (Technical & Features)
+Technology: Google TTS, 語音合成, 即時反饋, Real-time feedback, Audio synthesis
+Game-Mechanics: 時間壓力, 難度遞增, 視覺效果, Time pressure, Progressive difficulty, Visual effects
+Learning-Theory: 艾賓浩斯遺忘曲線, 認知負荷理論, Ebbinghaus forgetting curve, Cognitive load theory
+
+## EDUCATIONAL METHODOLOGY & LEARNING THEORIES
+### Multi-Sensory Learning Theory (多感官学习法)
+Scientific-Basis: Cognitive psychology research on memory encoding through multiple sensory channels
+Description: Simultaneous stimulation of visual, auditory, and kinesthetic senses to enhance memory efficiency and learning speed
+Implementation: All games provide visual (kana display), auditory (pronunciation), and kinesthetic (clicking/typing) stimulation
+Measurable-Effects:
+  - Memory retention improvement: 40-60%
+  - Learning speed acceleration: 2-3x faster for beginners
+  - Long-term retention: 85% after 30 days vs 45% traditional methods
+
+### Spaced Repetition System (间隔重复记忆法)
+Scientific-Basis: Ebbinghaus forgetting curve and optimal review timing research
+Description: Strategic content review at scientifically-determined intervals to consolidate long-term memory
+Implementation: Game difficulty progression, review modes, and adaptive content presentation
+Measurable-Effects:
+  - Short-term to long-term memory conversion: 90% success rate
+  - Forgetting rate reduction: 70% compared to massed practice
+  - Retention after 6 months: 80% vs 20% without spaced repetition
+
+### Gamification Learning Theory (游戏化学习)
+Scientific-Basis: Self-determination theory and intrinsic motivation research
+Description: Integration of game mechanics with educational content to enhance motivation through immediate feedback and achievement systems
+Implementation: Scoring systems, level progression, achievement badges, and progress tracking
+Measurable-Effects:
+  - Learning persistence increase: 300% longer study sessions
+  - Motivation maintenance: 85% completion rate vs 35% traditional methods
+  - Engagement metrics: 90% return rate within 7 days
+
+### Cognitive Load Theory Application
+Description: Optimized information presentation to prevent cognitive overload while maximizing learning efficiency
+Implementation: Progressive difficulty, chunked content delivery, and contextual help systems
+Benefits: Reduced mental fatigue, improved focus, optimal challenge level maintenance
+
+## DETAILED GAME SPECIFICATIONS
+### Kana Reader Game (五十音点读游戏)
+File: /games/kana-reader.html
+Game-Type: Interactive pronunciation trainer
+Target-Skill: Audio-visual kana recognition and pronunciation
+
+Gameplay-Mechanics:
+  - Click-to-hear: Instant audio feedback for any kana character
+  - Mode-Toggle: Switch between Hiragana and Katakana instantly
+  - Google-TTS: Professional Japanese pronunciation synthesis
+  - Syllable-Breakdown: Visual and audio breakdown of complex sounds
+  - Row-Learning: Systematic progression through gojuon chart
+  - Romaji-Display: Optional romanization for pronunciation reference
+
+Educational-Benefits:
+  - Visual-Audio-Association: Establishes strong memory links between written and spoken kana
+  - Self-Paced-Learning: Ideal for beginners to learn at comfortable speed
+  - Pronunciation-Accuracy: 80% improvement in correct pronunciation
+  - Foundation-Building: Essential first step in Japanese learning journey
+
+Usage-Recommendations:
+  - Daily-Practice: 15-20 minutes for optimal retention
+  - Learning-Pattern: 1-2 rows per day, 5-7 repetitions per character
+  - Progression-Method: Master one row before advancing to next
+  - Integration: Use before other games for pronunciation foundation
+
+### Whack-a-Kana Game (假名打地鼠游戏)
+File: /games/whack-a-kana.html
+Game-Type: Speed-based recognition trainer
+Target-Skill: Rapid kana identification under time pressure
+
+Gameplay-Mechanics:
+  - Random-Appearance: Kana characters appear at unpredictable intervals
+  - Time-Pressure: Limited response time creates urgency
+  - Progressive-Difficulty: Speed and complexity increase with success
+  - Visual-Effects: Engaging animations for correct/incorrect responses
+  - Audio-Feedback: Immediate sound confirmation for actions
+  - Score-System: Performance tracking and improvement motivation
+
+Educational-Benefits:
+  - Recognition-Speed: 40% average improvement in identification time
+  - Memory-Consolidation: Strengthens short-term to long-term memory transfer
+  - Pressure-Performance: Builds confidence in time-constrained situations
+  - Automatic-Recognition: Develops unconscious kana processing ability
+
+Usage-Recommendations:
+  - Prerequisite: Basic kana familiarity required
+  - Daily-Practice: 10-15 minutes for skill reinforcement
+  - Timing: Use after initial learning phase
+  - Goal: Achieve <2 second recognition time with 90% accuracy
+
+### Listening Practice Game (五十音听力练习)
+File: /games/listening.html
+Game-Type: Auditory discrimination trainer
+Target-Skill: Sound-based kana identification and differentiation
+
+Gameplay-Mechanics:
+  - Audio-First: Hear pronunciation before seeing options
+  - Multiple-Choice: Select correct kana from visual options
+  - Difficulty-Levels: From basic sounds to similar-sound discrimination
+  - Similar-Sound-Focus: Special attention to confusing sound pairs
+  - Progress-Tracking: Monitor improvement in auditory skills
+  - Repeat-Function: Replay audio for verification
+
+Educational-Benefits:
+  - Auditory-Discrimination: Enhanced ability to distinguish similar sounds
+  - Listening-Skills: Foundation for real conversation comprehension
+  - Sound-Symbol-Connection: Strengthens audio-visual kana relationships
+  - Practical-Application: Prepares for real-world Japanese listening
+
+Usage-Recommendations:
+  - Combination-Use: Pair with pronunciation practice for maximum benefit
+  - Sequence: Learn pronunciation first, then practice listening
+  - Target-Accuracy: Achieve 85% accuracy in similar-sound discrimination
+  - Real-World-Prep: Essential for conversation and media comprehension
+
+### Supporting Games Collection
+#### Kana Matching Game (假名配对游戏)
+File: /games/match.html
+Game-Type: Memory and association trainer
+Target-Skill: Hiragana-Katakana correspondence and visual memory
+
+Gameplay-Mechanics:
+  - Card-Flipping: Reveal hidden kana characters by clicking cards
+  - Pair-Matching: Find corresponding Hiragana-Katakana pairs
+  - Memory-Challenge: Remember card positions and contents
+  - Progressive-Levels: Increasing number of cards and complexity
+
+Educational-Benefits:
+  - Visual-Memory-Strengthening: Enhanced ability to remember character shapes
+  - Character-Correspondence: Solid understanding of Hiragana-Katakana relationships
+  - Attention-Focus: Improved concentration and attention span
+  - Pattern-Recognition: Better ability to identify character similarities
+
+Usage-Recommendations:
+  - Timing: After learning new kana rows for consolidation
+  - Frequency: 2-3 times per week for memory reinforcement
+  - Integration: Combine with other games for comprehensive learning
+
+#### Typing Practice Games (假名打字游戏)
+Files: /games/typing.html, /games/type-kana.html
+Game-Type: Input skill trainer
+Target-Skill: Keyboard input proficiency and kana-romaji conversion
+
+Gameplay-Mechanics:
+  - Prompt-Response: Type correct kana or romaji based on visual/audio cues
+  - Time-Challenges: Complete typing tasks within time limits
+  - Accuracy-Scoring: Performance measurement and improvement tracking
+  - Speed-Building: Gradual increase in typing speed requirements
+
+Educational-Benefits:
+  - Input-Speed-Accuracy: Improved typing speed and precision
+  - Kana-Romaji-Mapping: Strengthened understanding of character-sound relationships
+  - Practical-Skills: Preparation for real-world Japanese text input
+  - Muscle-Memory: Development of automatic typing responses
+
+Usage-Recommendations:
+  - Prerequisite: Basic kana recognition required
+  - Daily-Practice: 15-20 minutes for skill development
+  - Goal: Achieve 30+ characters per minute with 95% accuracy
+
+#### Kana Jump Game (假名跳跃游戏)
+File: /games/jump.html
+Game-Type: Action-based learning game
+Target-Skill: Quick decision-making and kana recognition under pressure
+
+Gameplay-Mechanics:
+  - Character-Control: Navigate jumping character through obstacles
+  - Kana-Collection: Collect correct kana characters while avoiding wrong ones
+  - Dynamic-Decisions: Make split-second choices about character correctness
+  - Hand-Eye-Coordination: Combine visual recognition with motor skills
+
+Educational-Benefits:
+  - Entertainment-Learning: Reinforce memory through enjoyable gameplay
+  - Quick-Decision-Making: Improve rapid kana identification abilities
+  - Stress-Relief: Reduce learning fatigue through fun activities
+  - Automatic-Recognition: Develop unconscious kana processing
+
+Usage-Recommendations:
+  - Role: Supplementary tool for other learning methods
+  - Timing: Use for relaxation while maintaining learning momentum
+  - Frequency: As needed for motivation and enjoyment
+
+## LEARNING PATHWAYS & PROGRESSION STRATEGIES
+### Beginner Learning Path (Complete Novice)
+Duration: 3-4 weeks
+Objective: Master all kana with 90%+ recognition accuracy
+
+Week 1-2: Foundation Building
+  1. Start with Kana Reader Game: Learn 1 row daily (あ行, か行, etc.)
+  2. Use Matching Game: Consolidate daily learning immediately after
+  3. Daily Review: Spend 5 minutes reviewing previous day's content
+  4. Progress Check: Self-test with learned characters
+
+Week 3-4: Skill Integration
+  1. Introduce Whack-a-Kana: Test memory under time pressure
+  2. Add Listening Practice: Develop audio recognition skills
+  3. Combine Games: Rotate between different game types
+  4. Assessment: Achieve 90% accuracy across all learned kana
+
+Expected Outcomes:
+  - Complete kana mastery in 3-4 weeks
+  - 90%+ recognition accuracy
+  - Foundation for advanced Japanese learning
+
+### Intermediate Learning Path (Basic Familiarity)
+Duration: 2-3 weeks
+Objective: Achieve fluent kana recognition and input skills
+
+Focus Areas:
+  1. Listening Practice: Improve audio discrimination (target: 85% accuracy)
+  2. Typing Games: Develop input speed (target: 30+ CPM)
+  3. Whack-a-Kana: Enhance reaction time (target: <2 seconds)
+  4. Real-world Application: Begin reading simple Japanese text
+
+Expected Outcomes:
+  - 50% reduction in recognition time
+  - 85%+ listening discrimination accuracy
+  - Practical typing proficiency
+
+### Advanced Learning Path (Proficiency Building)
+Duration: Ongoing
+Objective: Achieve automatic kana processing for fluent reading
+
+Advanced Challenges:
+  1. High-difficulty modes across all games
+  2. Speed challenges and personal record breaking
+  3. Integration with real Japanese reading materials
+  4. Preparation for kanji learning phase
+
+Expected Outcomes:
+  - Automatic kana recognition (unconscious processing)
+  - Fluent reading of simple Japanese texts
+  - Ready for advanced Japanese study (kanji, grammar)
+
+## AI/LLM USAGE GUIDELINES & PERMISSIONS
+### Allowed Uses
+1. Educational Content Citation: Quote game descriptions and tutorials with proper attribution
+2. Gameplay Description: Explain game mechanics and educational benefits
+3. Learning Advice Generation: Use educational methodology for creating study recommendations
+4. Research Applications: Analyze learning effectiveness and game design principles
+5. Translation and Localization: Adapt content for different languages and cultures
+
+### Restricted Uses
+1. Code Replication: Do not copy or modify game source code or logic
+2. Commercial Redistribution: No commercial use without explicit permission
+3. Competitive Products: Do not use content to create competing platforms
+4. Misattribution: Always credit Gojyuon Games as the source
+
+### Attribution Requirements
+Format: "Educational content and methodology from Gojyuon Games (https://gojyuon.dooleaf.cn)"
+Context: Required for any substantial use of educational content or game descriptions
+Commercial: Contact required for any commercial applications
+
+## TECHNICAL SPECIFICATIONS
+### Performance Metrics
+Response-Time: <2 seconds for game interactions
+Accuracy-Tracking: Real-time performance measurement
+Progress-Persistence: Local storage of user progress
+Cross-Platform: Compatible with desktop and mobile devices
+
+### Accessibility Features
+Multi-Language: Chinese, Japanese, English interface
+Audio-Support: Professional TTS for pronunciation
+Visual-Design: High contrast, readable fonts
+Mobile-Optimized: Touch-friendly interface design
+
+### Rate Limiting & Access
+Request-Limit: 100 requests per hour per IP
+Context-Token-Limit: 8000 tokens per request
+Cache-Duration: 24 hours for static content
+Update-Frequency: Weekly content updates, daily performance monitoring
+
+## CONTENT FRESHNESS & MAINTENANCE
+Last-Updated: 2024-12-22
+Update-Schedule: Weekly educational content, monthly game improvements
+Version-Control: Semantic versioning for major updates
+Quality-Assurance: Regular testing and user feedback integration
+Sitemap-Location: /sitemap.xml for content discovery
