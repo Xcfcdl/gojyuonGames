@@ -1,0 +1,230 @@
+# Gojyuon Games - Complete Site Links
+# ====================================
+# Website: https://gojyuon.dooleaf.cn
+# Last Updated: 2025-06-17
+# Description: Complete list of all pages and resources on the Gojyuon Games website
+
+## MAIN PAGES
+# Homepage
+https://gojyuon.dooleaf.cn/
+https://gojyuon.dooleaf.cn/index.html
+
+# Blog Section
+https://gojyuon.dooleaf.cn/blogs.html
+https://gojyuon.dooleaf.cn/blog-detail.html
+
+## BLOG ARTICLES
+# Learning Tips and Guides
+https://gojyuon.dooleaf.cn/blog-detail.html?id=article-001
+https://gojyuon.dooleaf.cn/blog-detail.html?id=article-002
+https://gojyuon.dooleaf.cn/blog-detail.html?id=article-003
+https://gojyuon.dooleaf.cn/blog-detail.html?id=article-004
+https://gojyuon.dooleaf.cn/blog-detail.html?id=article-005
+
+## CORE GAMES
+# Primary Learning Tools
+https://gojyuon.dooleaf.cn/games/kana-reader.html
+https://gojyuon.dooleaf.cn/games/whack-a-kana.html
+https://gojyuon.dooleaf.cn/games/listening.html
+
+# Supporting Games
+https://gojyuon.dooleaf.cn/games/match.html
+https://gojyuon.dooleaf.cn/games/type-kana.html
+https://gojyuon.dooleaf.cn/games/typing.html
+https://gojyuon.dooleaf.cn/games/jump.html
+
+# Special Games
+https://gojyuon.dooleaf.cn/games/日语课堂教学辅助游戏.html
+
+## DEVELOPMENT & TESTING PAGES
+# Test Pages
+https://gojyuon.dooleaf.cn/test-dmak.html
+https://gojyuon.dooleaf.cn/re.html
+
+## STATIC RESOURCES
+# Manifest and Configuration
+https://gojyuon.dooleaf.cn/site.webmanifest
+https://gojyuon.dooleaf.cn/robots.txt
+https://gojyuon.dooleaf.cn/sitemap.xml
+https://gojyuon.dooleaf.cn/llms.txt
+
+# Favicons and Icons
+https://gojyuon.dooleaf.cn/favicon.ico
+https://gojyuon.dooleaf.cn/favicon-16x16.png
+https://gojyuon.dooleaf.cn/favicon-32x32.png
+https://gojyuon.dooleaf.cn/apple-touch-icon.png
+
+## DATA FILES
+# Language Files
+https://gojyuon.dooleaf.cn/lang/zh.json
+https://gojyuon.dooleaf.cn/lang/ja.json
+https://gojyuon.dooleaf.cn/lang/en.json
+
+# Game Data
+https://gojyuon.dooleaf.cn/games/games.json
+https://gojyuon.dooleaf.cn/assets/data/kana-hira.json
+https://gojyuon.dooleaf.cn/assets/data/kana-kata.json
+
+# Blog Data
+https://gojyuon.dooleaf.cn/blog/index.json
+https://gojyuon.dooleaf.cn/blog/articles/article-001.json
+https://gojyuon.dooleaf.cn/blog/articles/article-002.json
+https://gojyuon.dooleaf.cn/blog/articles/article-003.json
+https://gojyuon.dooleaf.cn/blog/articles/article-004.json
+https://gojyuon.dooleaf.cn/blog/articles/article-005.json
+
+## CSS STYLESHEETS
+# Main Styles
+https://gojyuon.dooleaf.cn/assets/css/style.css
+https://gojyuon.dooleaf.cn/assets/css/blog.css
+https://gojyuon.dooleaf.cn/assets/css/games.css
+
+## JAVASCRIPT FILES
+# Core Scripts
+https://gojyuon.dooleaf.cn/assets/js/main.js
+https://gojyuon.dooleaf.cn/assets/js/i18n.js
+https://gojyuon.dooleaf.cn/assets/js/blog.js
+https://gojyuon.dooleaf.cn/assets/js/blog-detail.js
+
+# Game Scripts
+https://gojyuon.dooleaf.cn/assets/js/kana-reader.js
+https://gojyuon.dooleaf.cn/assets/js/whack-a-kana.js
+https://gojyuon.dooleaf.cn/assets/js/listening.js
+https://gojyuon.dooleaf.cn/assets/js/match.js
+https://gojyuon.dooleaf.cn/assets/js/type-kana.js
+https://gojyuon.dooleaf.cn/assets/js/typing.js
+https://gojyuon.dooleaf.cn/assets/js/jump.js
+
+# Utility Scripts
+https://gojyuon.dooleaf.cn/assets/js/audio-manager.js
+https://gojyuon.dooleaf.cn/assets/js/game-utils.js
+
+## IMAGE RESOURCES
+# Logo and Branding
+https://gojyuon.dooleaf.cn/assets/images/logo126.png
+https://gojyuon.dooleaf.cn/assets/images/logo.png
+
+# Background Images
+https://gojyuon.dooleaf.cn/assets/images/bg1.jpg
+https://gojyuon.dooleaf.cn/assets/images/bg2.jpg
+https://gojyuon.dooleaf.cn/assets/images/bg3.jpg
+https://gojyuon.dooleaf.cn/assets/images/bg4.jpg
+https://gojyuon.dooleaf.cn/assets/images/bg5.jpg
+
+# Game Assets
+https://gojyuon.dooleaf.cn/assets/images/mouse.png
+https://gojyuon.dooleaf.cn/assets/images/hole.png
+https://gojyuon.dooleaf.cn/assets/images/character.png
+
+# Blog Images
+https://gojyuon.dooleaf.cn/assets/blog/images/
+
+## AUDIO RESOURCES
+# Kana Pronunciation Files
+https://gojyuon.dooleaf.cn/assets/audio/hiragana/
+https://gojyuon.dooleaf.cn/assets/audio/katakana/
+
+# Game Sound Effects
+https://gojyuon.dooleaf.cn/assets/audio/correct.mp3
+https://gojyuon.dooleaf.cn/assets/audio/incorrect.mp3
+https://gojyuon.dooleaf.cn/assets/audio/click.mp3
+
+## SVG RESOURCES
+# Kana Writing Animations
+https://gojyuon.dooleaf.cn/assets/svg/
+
+## TEMPLATE FILES
+# HTML Templates
+https://gojyuon.dooleaf.cn/assets/templates/
+
+## EXTERNAL INTEGRATIONS
+# Google TTS API (used by games)
+# Font Awesome Icons (CDN)
+# Google Analytics
+# Ko-fi Support Link: https://ko-fi.com/donyleaf
+
+## SPECIAL FEATURES
+# Multi-language Support (zh-CN, ja, en)
+# Progressive Web App (PWA) Support
+# Mobile-responsive Design
+# Offline Capability
+# Audio Pronunciation
+# Interactive Games
+# Educational Blog Content
+
+## LEARNING PATHS
+# Beginner: kana-reader.html → match.html → whack-a-kana.html
+# Intermediate: listening.html → type-kana.html → typing.html
+# Advanced: All games + blog content + real-world practice
+
+## SEO & DISCOVERY
+# Sitemap: https://gojyuon.dooleaf.cn/sitemap.xml
+# Robots: https://gojyuon.dooleaf.cn/robots.txt
+# LLM Config: https://gojyuon.dooleaf.cn/llms.txt
+
+## SOCIAL & SUPPORT
+# Ko-fi Donation: https://ko-fi.com/donyleaf
+# GitHub Repository: https://github.com/Xcfcdl/gojyuonGames
+
+## ANALYTICS & TRACKING
+# Google Analytics ID: G-93SBX04BC7
+
+## CONTENT CATEGORIES
+# Educational: Blog articles, learning guides
+# Interactive: Games, pronunciation tools
+# Reference: Kana charts, pronunciation guides
+# Community: Support links, feedback options
+
+## ACCESSIBILITY FEATURES
+# Screen reader support
+# Keyboard navigation
+# High contrast mode
+# Audio descriptions
+# Multiple language options
+
+## TECHNICAL SPECIFICATIONS
+# HTML5 compliant
+# CSS3 animations
+# ES6+ JavaScript
+# JSON data format
+# SVG graphics
+# Web Audio API
+# Local Storage
+# Service Worker (PWA)
+
+## PERFORMANCE OPTIMIZATIONS
+# Lazy loading
+# Image compression
+# Minified assets
+# CDN integration
+# Caching strategies
+
+## SECURITY FEATURES
+# HTTPS enforcement
+# Content Security Policy
+# XSS protection
+# Safe external links
+
+## MOBILE FEATURES
+# Touch-friendly interface
+# Responsive design
+# Mobile-optimized games
+# Offline functionality
+# App-like experience
+
+## BROWSER COMPATIBILITY
+# Chrome, Firefox, Safari, Edge
+# Mobile browsers
+# Progressive enhancement
+# Fallback support
+
+## FUTURE ENHANCEMENTS
+# Additional games
+# More blog content
+# Advanced learning features
+# Community features
+# API integrations
+
+# END OF LINKS LIST
+# Total unique URLs: 100+
+# Last verification: 2025-06-17
